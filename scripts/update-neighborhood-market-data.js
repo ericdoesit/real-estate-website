@@ -40,7 +40,7 @@ const NEIGHBORHOOD_ZIPS = {
 
 async function getMarketData(zipCode) {
   try {
-    const url = `${RENTCAST_API_BASE}/markets?zipCode=${zipCode}`
+    const url = `${RENTCAST_API_BASE}/markets?zipCode=${zipCode}&dataType=Sale&historyRange=3`
     const response = await fetch(url, {
       headers: {
         'X-API-Key': RENTCAST_API_KEY,
@@ -83,16 +83,14 @@ async function updateNeighborhoodMarketData() {
         continue
       }
 
-      // Extract relevant fields from RentCast response
+      // Extract relevant fields from RentCast response (nested under saleData)
+      const saleData = marketData.saleData || {}
       const updates = {
         marketStats: {
-          medianPrice: marketData.medianSalePrice || neighborhood.marketStats?.medianPrice,
-          avgDaysOnMarket:
-            marketData.averageDaysOnMarket || neighborhood.marketStats?.avgDaysOnMarket,
-          activeListings: marketData.totalListings || neighborhood.marketStats?.activeListings,
-          pricePerSqFt: marketData.pricePerSquareFoot || neighborhood.marketStats?.pricePerSqFt,
-          // For YoY change: compare with previous quarter's data if available
-          // This stores the current price for next quarter's calculation
+          medianPrice: saleData.medianPrice || neighborhood.marketStats?.medianPrice,
+          avgDaysOnMarket: saleData.medianDaysOnMarket || neighborhood.marketStats?.avgDaysOnMarket,
+          activeListings: saleData.totalListings || neighborhood.marketStats?.activeListings,
+          pricePerSqFt: saleData.medianPricePerSquareFoot || neighborhood.marketStats?.pricePerSqFt,
           lastUpdated: new Date().toISOString(),
         },
       }
