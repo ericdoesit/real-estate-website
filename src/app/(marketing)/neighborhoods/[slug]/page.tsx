@@ -8,13 +8,6 @@ interface Neighborhood {
   slug: { current: string }
   tagline: string
   overview: any[]
-  marketStats: {
-    medianPrice: number
-    avgDaysOnMarket: number
-    activeListings: number
-    pricePerSqFt: number
-    lastUpdated: string
-  }
   lifestyleHighlights: Array<{
     category: string
     name: string
@@ -76,55 +69,6 @@ export default async function NeighborhoodDetailPage({
             </div>
           )}
 
-          {/* Market Stats */}
-          {neighborhood.marketStats && (
-            <div className="space-y-6">
-              <h2 className="font-serif text-3xl font-semibold text-charcoal">
-                Market Data
-              </h2>
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 bg-cream p-8 rounded-xl">
-                  <div>
-                    <p className="text-sm text-muted uppercase tracking-luxury mb-2">
-                      Median Price
-                    </p>
-                    <p className="text-2xl font-serif font-semibold text-blue">
-                      ${neighborhood.marketStats.medianPrice?.toLocaleString()}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted uppercase tracking-luxury mb-2">
-                      Avg Days on Market
-                    </p>
-                    <p className="text-2xl font-serif font-semibold text-blue">
-                      {neighborhood.marketStats.avgDaysOnMarket}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted uppercase tracking-luxury mb-2">
-                      Active Listings
-                    </p>
-                    <p className="text-2xl font-serif font-semibold text-blue">
-                      {neighborhood.marketStats.activeListings}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted uppercase tracking-luxury mb-2">
-                      Price Per Sq Ft
-                    </p>
-                    <p className="text-2xl font-serif font-semibold text-blue">
-                      ${neighborhood.marketStats.pricePerSqFt}
-                    </p>
-                  </div>
-                </div>
-                {neighborhood.marketStats.lastUpdated && (
-                  <p className="text-xs text-muted">
-                    Data as of {new Date(neighborhood.marketStats.lastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
 
           {/* Lifestyle Highlights */}
           {neighborhood.lifestyleHighlights &&
