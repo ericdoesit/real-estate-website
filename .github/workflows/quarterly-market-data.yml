@@ -1,0 +1,40 @@
+name: Quarterly Market Data Update
+
+# Run on the first day of Jan, Apr, Jul, Oct at 9 AM UTC
+on:
+  schedule:
+    - cron: '0 9 1 1,4,7,10 *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update-market-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update neighborhood market data
+        env:
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
+          RENTCAST_API_KEY: ${{ secrets.RENTCAST_API_KEY }}
+        run: node scripts/update-neighborhood-market-data.js
+
+      - name: Commit and push updates
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Market Data Bot"
+          git add .
+          git commit -m "chore: quarterly market data update" --allow-empty
+          git push

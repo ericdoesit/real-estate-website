@@ -1,5 +1,3 @@
-import { Nav } from '@/components/layout/Nav'
-import { Footer } from '@/components/layout/Footer'
 import { HeroEditorial } from '@/components/home/HeroEditorial'
 import { AboutSnippet } from '@/components/home/AboutSnippet'
 import { FeaturedListings } from '@/components/home/FeaturedListings'
@@ -8,16 +6,12 @@ import { CTABanner } from '@/components/home/CTABanner'
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Nav />
-      <main className="flex-1">
-        <HeroEditorial />
-        <FeaturedListings />
-        <AboutSnippet />
-        <NeighborhoodTeaser />
-        <CTABanner />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <HeroEditorial />
+      <FeaturedListings />
+      <AboutSnippet />
+      <NeighborhoodTeaser />
+      <CTABanner />
+    </>
   )
 }

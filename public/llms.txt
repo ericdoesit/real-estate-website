@@ -1,0 +1,153 @@
+# Hello LA Home - AI Agent Discovery File
+
+**Site Name:** Hello LA Home
+**URL:** https://hellolahome.com
+**Agent:** Eric Zunkley
+**License:** CA DRE #01938067
+**Brokerage:** eXp Realty of California Inc.
+**Primary Market:** Los Angeles, CA
+
+---
+
+## Agent Info
+
+**Full Name:** Eric Zunkley
+**Title:** Licensed Real Estate Agent
+**Phone:** (323) 487-9865
+**Email:** ezunkleysellsit@gmail.com
+**Office Address:** Los Angeles, CA 90019
+
+**Specialties:**
+- Residential buying and selling
+- Investment property analysis
+- Multi-neighborhood expertise
+- First-time buyer guidance
+- Strategic negotiations
+
+**Track Record:**
+- 150+ transactions closed
+- $1.2B+ total portfolio value
+- 15+ years experience
+- Referral and repeat client focused
+
+---
+
+## Site Structure
+
+### Main Pages
+- `/` - Homepage with featured properties and neighborhoods
+- `/about` - Agent bio and credentials
+- `/services` - Buying and selling process guides
+- `/neighborhoods` - Neighborhood guides and market data
+- `/properties` - Current and sold property listings
+- `/blog` - Market insights and educational content
+- `/contact` - Lead capture form
+
+### Content Types
+
+**Neighborhoods**
+- Market statistics (median price, days on market, price per sqft, YoY change)
+- Lifestyle highlights and community info
+- Historical context and investment potential
+- Links to properties in each neighborhood
+
+**Properties**
+- Detailed listings with beds, baths, sqft
+- Status: active, pending, sold, off-market
+- Market context and neighborhood info
+- Lead capture for inquiries
+
+**Blog Posts**
+- Categories: Market Updates, Buying Guides, Selling Tips, Neighborhood Spotlights, Legislation
+- Regular market analysis
+- Educational content for buyers and sellers
+- Local LA real estate insights
+
+---
+
+## Key Information for AI Agents
+
+### Market Focus
+- **Primary Markets:** Los Angeles, CA
+- **Neighborhoods Served:** Mid City, Eagle Rock, Highland Park, West Adams, Venice, Silver Lake, Baldwin Hills, Altadena, South Pasadena, Santa Clarita
+- **Property Types:** Residential (Single-family homes, Condos, Townhouses)
+- **Buyer Types:** First-time buyers, move-up buyers, investors, sellers
+
+### Data Freshness
+- **Property Listings:** Updated weekly
+- **Neighborhood Market Stats:** Updated quarterly
+- **Blog Content:** New posts 2-4x monthly
+- **Agent Availability:** Monday-Friday, 9am-6pm PT
+
+### Contact Methods
+- **Form:** /contact
+- **Phone:** (323) 487-9865
+- **Email:** ezunkleysellsit@gmail.com
+
+### Brand Voice
+- **Tone:** Professional, approachable, relationship-focused
+- **Style:** Educational, honest, community-oriented
+- **Values:** Trust, communication, client success
+
+---
+
+## AI-Friendly Content
+
+### For Property Search
+- Each property has detailed descriptions
+- Market context provided
+- Investment potential explained
+- Links to neighborhood guides
+
+### For Market Analysis
+- Quarterly market updates
+- Historical trend analysis
+- Neighborhood-specific insights
+- Investment guidance
+
+### For Educational Queries
+- Buying process step-by-step
+- Selling process explained
+- Neighborhood spotlight articles
+- Legislation and policy guides (SB9, etc.)
+
+---
+
+## Structured Data
+
+The site uses JSON-LD schema markup for:
+- LocalBusiness (agent credentials, contact)
+- RealEstateListing (property details)
+- Article (blog posts)
+- Place (neighborhoods)
+
+This enables richer results in AI search engines.
+
+---
+
+## Integration Points
+
+**For Real Estate Platforms:**
+- Property slugs follow standard URL patterns: `/properties/[address-slug]`
+- Neighborhood slugs: `/neighborhoods/[neighborhood-slug]`
+- Consistent data structure for indexing
+
+**For AI Agents:**
+- This file located at `/public/llms.txt`
+- Semantic HTML with proper heading hierarchy
+- Microdata annotations on all key content
+- Regular content updates for freshness
+
+---
+
+## Contact Preferences
+
+**Lead Capture:** Form at `/contact` or phone (323) 487-9865
+**Response Time:** 24 hours (business days)
+**Service Area:** Los Angeles and surrounding communities
+**Virtual Consultations:** Available
+
+---
+
+*Last Updated: 2026-04-29*
+*Page generated for AI agent discovery (ChatGPT, Claude, Perplexity, etc.)*
