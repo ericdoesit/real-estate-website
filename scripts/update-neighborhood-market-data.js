@@ -59,10 +59,6 @@ async function getMarketData(zipCode) {
   }
 }
 
-function calculateYoYChange(currentPrice, previousPrice) {
-  if (!previousPrice || previousPrice === 0) return 0
-  return ((currentPrice - previousPrice) / previousPrice) * 100
-}
 
 async function updateNeighborhoodMarketData() {
   try {
@@ -101,17 +97,6 @@ async function updateNeighborhoodMarketData() {
         },
       }
 
-      // If we have historical data, calculate YoY change
-      if (
-        neighborhood.marketStats?.medianPrice &&
-        marketData.medianSalePrice &&
-        neighborhood.marketStats.medianPrice > 0
-      ) {
-        updates.marketStats.yoyPriceChange = calculateYoYChange(
-          marketData.medianSalePrice,
-          neighborhood.marketStats.medianPrice
-        )
-      }
 
       // Update in Sanity
       await sanityClient

@@ -13,7 +13,6 @@ interface Neighborhood {
     avgDaysOnMarket: number
     activeListings: number
     pricePerSqFt: number
-    yoyPriceChange: number
     lastUpdated: string
   }
   lifestyleHighlights: Array<{
@@ -115,19 +114,6 @@ export default async function NeighborhoodDetailPage({
                     </p>
                     <p className="text-2xl font-serif font-semibold text-blue">
                       ${neighborhood.marketStats.pricePerSqFt}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted uppercase tracking-luxury mb-2">
-                      YoY Price Change
-                    </p>
-                    <p className={`text-2xl font-serif font-semibold ${
-                      neighborhood.marketStats.yoyPriceChange > 0
-                        ? 'text-coral'
-                        : 'text-charcoal'
-                    }`}>
-                      {neighborhood.marketStats.yoyPriceChange > 0 ? '+' : ''}
-                      {neighborhood.marketStats.yoyPriceChange}%
                     </p>
                   </div>
                 </div>

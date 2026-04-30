@@ -9,7 +9,6 @@ interface Neighborhood {
   tagline: string
   marketStats?: {
     medianPrice?: number
-    yoyPriceChange?: number
   }
 }
 
@@ -36,42 +35,42 @@ export default async function NeighborhoodsPage() {
         name: 'Mid City',
         slug: { current: 'mid-city' },
         tagline: "LA's vibrant heart",
-        marketStats: { medianPrice: 850000, yoyPriceChange: 3.2 },
+        marketStats: { medianPrice: 850000 },
       },
       {
         _id: '2',
         name: 'Eagle Rock',
         slug: { current: 'eagle-rock' },
         tagline: 'Character and charm',
-        marketStats: { medianPrice: 720000, yoyPriceChange: 5.1 },
+        marketStats: { medianPrice: 720000 },
       },
       {
         _id: '3',
         name: 'Highland Park',
         slug: { current: 'highland-park' },
         tagline: 'Emerging coolness',
-        marketStats: { medianPrice: 780000, yoyPriceChange: 6.8 },
+        marketStats: { medianPrice: 780000 },
       },
       {
         _id: '4',
         name: 'West Adams',
         slug: { current: 'west-adams' },
         tagline: 'Historic elegance',
-        marketStats: { medianPrice: 1200000, yoyPriceChange: 4.5 },
+        marketStats: { medianPrice: 1200000 },
       },
       {
         _id: '5',
         name: 'Venice',
         slug: { current: 'venice' },
         tagline: 'Beachside culture',
-        marketStats: { medianPrice: 2100000, yoyPriceChange: 2.8 },
+        marketStats: { medianPrice: 2100000 },
       },
       {
         _id: '6',
         name: 'Silver Lake',
         slug: { current: 'silver-lake' },
         tagline: 'Artistic haven',
-        marketStats: { medianPrice: 950000, yoyPriceChange: 5.2 },
+        marketStats: { medianPrice: 950000 },
       },
     ]
   }
@@ -120,18 +119,9 @@ export default async function NeighborhoodsPage() {
                 </h3>
                 <p className="text-muted text-sm mt-2">{neighborhood.tagline}</p>
 
-                {neighborhood.marketStats && (
-                  <div className="mt-4 pt-4 border-t border-charcoal/10 space-y-2 text-sm text-muted">
-                    {neighborhood.marketStats.medianPrice && (
-                      <p>
-                        Median: ${(neighborhood.marketStats.medianPrice / 1000000).toFixed(2)}M
-                      </p>
-                    )}
-                    {neighborhood.marketStats.yoyPriceChange && (
-                      <p className="text-dark-green font-semibold">
-                        +{neighborhood.marketStats.yoyPriceChange}% YoY
-                      </p>
-                    )}
+                {neighborhood.marketStats && neighborhood.marketStats.medianPrice && (
+                  <div className="mt-4 pt-4 border-t border-charcoal/10 text-sm text-muted">
+                    <p>Median: ${(neighborhood.marketStats.medianPrice / 1000000).toFixed(2)}M</p>
                   </div>
                 )}
               </Link>
