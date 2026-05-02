@@ -29,12 +29,8 @@ export function AboutSnippet() {
               </h2>
             </div>
 
-            <p className="font-sans text-lg text-charcoal leading-relaxed">
-              I'm a California real estate agent committed to helping my clients achieve their goals through honesty, deep market knowledge, and genuine care. Most of my business comes through referrals and repeat clients—a reflection of the relationships I build with every transaction.
-            </p>
-
-            <p className="font-sans text-base text-charcoal">
-              Whether you're buying your first home, selling a property, or investing in LA real estate, I bring creative problem-solving and a deep understanding of neighborhoods from Eagle Rock to Venice, Mid City to West Adams.
+            <p className="font-sans text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
+              I'm a California real estate agent committed to helping my clients achieve their goals through honesty, deep market knowledge, and genuine care. Most of my business comes through referrals and repeat clients—a reflection of the relationships I build with every transaction. Whether you're buying your first home, selling a property, or investing in LA real estate, I bring creative problem-solving and a deep understanding of neighborhoods from Eagle Rock to Venice, Mid City to West Adams.
             </p>
 
             <div className="pt-4">
