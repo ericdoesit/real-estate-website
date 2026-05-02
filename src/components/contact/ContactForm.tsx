@@ -110,14 +110,14 @@ export function ContactForm() {
       <Button
         type="submit"
         disabled={isLoading}
-        className="bg-crimson hover:bg-crimson/90 font-semibold w-full"
+        className="bg-goldenrod hover:bg-goldenrod/90 font-semibold w-full"
       >
         {isLoading ? 'Sending...' : 'Send Message'}
       </Button>
 
       <p className="text-sm text-muted text-center">
         Or call me directly at{' '}
-        <a href="tel:+13234879865" className="text-crimson font-semibold hover:text-crimson/80">
+        <a href="tel:+13234879865" className="font-semibold hover:transition-colors">
           (323) 487-9865
         </a>
       </p>

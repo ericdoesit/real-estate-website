@@ -7,7 +7,7 @@ interface LogoProps {
   showText?: boolean
 }
 
-export function Logo({ className = 'h-10 w-10', showText = true }: LogoProps) {
+export function Logo({ className = 'h-16 w-16', showText = true }: LogoProps) {
   return (
     <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
       <div className={className + ' flex-shrink-0 rounded overflow-hidden'}>
@@ -19,8 +19,7 @@ export function Logo({ className = 'h-10 w-10', showText = true }: LogoProps) {
       </div>
       {showText && (
         <div className="hidden sm:flex flex-col leading-tight">
-          <span className="text-sm font-semibold text-charcoal">Eric Zunkley</span>
-          <span className="text-xs text-muted">Real Estate</span>
+          <span className="text-base font-semibold text-charcoal">Eric Zunkley, Realtor</span>
         </div>
       )}
     </Link>

@@ -2,7 +2,6 @@ import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { HeroEditorial } from '@/components/home/HeroEditorial'
 import { AboutSnippet } from '@/components/home/AboutSnippet'
-import { FeaturedListings } from '@/components/home/FeaturedListings'
 import { NeighborhoodTeaser } from '@/components/home/NeighborhoodTeaser'
 import { CTABanner } from '@/components/home/CTABanner'
 
@@ -12,7 +11,6 @@ export default function HomePage() {
       <Nav />
       <main className="flex-1">
         <HeroEditorial />
-        <FeaturedListings />
         <AboutSnippet />
         <NeighborhoodTeaser />
         <CTABanner />

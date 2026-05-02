@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 
 export const metadata = {
   title: 'Services - Buying & Selling Guide',
@@ -104,9 +105,7 @@ export default function ServicesPage() {
       <section className="pt-20 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
-            <p className="text-sm font-semibold tracking-luxury text-crimson uppercase">
-              Services
-            </p>
+            <Eyebrow>Services</Eyebrow>
             <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
               Expert guidance. Every step.
             </h1>
@@ -126,7 +125,7 @@ export default function ServicesPage() {
             <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase mb-2">
               Buying
             </p>
-            <h2 className="font-serif text-4xl font-semibold text-charcoal">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal">
               The Buying Process
             </h2>
           </div>
@@ -140,7 +139,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-serif text-xl font-semibold text-charcoal mb-2">
+                  <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
                     {step.title}
                   </h3>
                   <p className="text-muted leading-relaxed">{step.description}</p>
@@ -155,10 +154,10 @@ export default function ServicesPage() {
       <section className="bg-cream py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
-            <p className="text-sm font-semibold tracking-luxury text-crimson uppercase mb-2">
+            <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
               Selling
             </p>
-            <h2 className="font-serif text-4xl font-semibold text-charcoal">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal">
               The Selling Process
             </h2>
           </div>
@@ -167,12 +166,12 @@ export default function ServicesPage() {
             {sellingSteps.map((step) => (
               <div key={step.number} className="flex gap-6 pb-6 border-b border-charcoal/10">
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-crimson text-white font-serif font-semibold text-lg">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-goldenrod text-white font-serif font-semibold text-lg">
                     {step.number}
                   </div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-serif text-xl font-semibold text-charcoal mb-2">
+                  <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
                     {step.title}
                   </h3>
                   <p className="text-muted leading-relaxed">{step.description}</p>
@@ -186,13 +185,13 @@ export default function ServicesPage() {
       {/* Additional Services */}
       <section>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-4xl font-semibold text-charcoal mb-12">
+          <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
             Additional Services
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Investment Analysis
               </h3>
               <p className="text-muted">
@@ -202,7 +201,7 @@ export default function ServicesPage() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Market Consultation
               </h3>
               <p className="text-muted">
@@ -212,7 +211,7 @@ export default function ServicesPage() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 1031 Exchange Support
               </h3>
               <p className="text-muted">
@@ -222,7 +221,7 @@ export default function ServicesPage() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Relocation Services
               </h3>
               <p className="text-muted">
@@ -237,7 +236,7 @@ export default function ServicesPage() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="font-serif text-4xl font-semibold text-charcoal">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal">
               Ready to get started?
             </h2>
             <p className="text-lg text-muted max-w-2xl mx-auto">
@@ -246,7 +245,7 @@ export default function ServicesPage() {
           </div>
 
           <Link href="/contact">
-            <Button className="bg-crimson hover:bg-crimson/90 font-semibold px-8 py-3 text-lg">
+            <Button className="bg-goldenrod hover:bg-goldenrod/90 font-semibold px-8 py-3 text-lg">
               Schedule a Consultation
             </Button>
           </Link>

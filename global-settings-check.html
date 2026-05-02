@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello LA Home - Global Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant_Garamond:wght@300;400;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    section h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    /* Typography Table */
+    .typography-table {
+      background: white;
+      border-collapse: collapse;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .typography-table th,
+    .typography-table td {
+      padding: 20px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    .typography-table th {
+      background: #f9f9f9;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .typography-table tr:last-child td {
+      border-bottom: none;
+    }
+    .typography-table td:first-child {
+      font-weight: 600;
+      color: #333;
+      width: 140px;
+    }
+    .typography-table td:nth-child(2) {
+      font-size: 13px;
+      color: #666;
+      font-family: 'Courier New', monospace;
+      width: 280px;
+    }
+    .reference-cell {
+      width: auto;
+    }
+
+    /* Color Palette */
+    .colors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .color-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .color-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .color-swatch {
+      height: 180px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .color-info {
+      padding: 20px;
+    }
+    .color-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .color-hex {
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 12px;
+      cursor: pointer;
+      padding: 8px;
+      background: #f9f9f9;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .color-hex:hover {
+      background: #efefef;
+    }
+    .color-rgb {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hello LA Home - Global Settings</h1>
+
+    <!-- Typography Section -->
+    <section>
+      <h2>Typography</h2>
+      <table class="typography-table">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Current Settings</th>
+            <th>Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Eyebrow</td>
+            <td>Manrope<br>14px, 400<br>charcoal<br>uppercase<br>tracking 0.1em</td>
+            <td class="reference-cell"><p style="font-family: Manrope, sans-serif; font-size: 14px; font-weight: 400; color: #3b3932; text-transform: uppercase; letter-spacing: 0.1em;">Los Angeles Real Estate</p></td>
+          </tr>
+          <tr>
+            <td>H1</td>
+            <td>Cormorant Garamond<br>72–96px, 600<br>charcoal<br>tight spacing</td>
+            <td class="reference-cell"><p style="font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 600; color: #3b3932; line-height: 1; letter-spacing: -0.01em;">Curated homes for your story.</p></td>
+          </tr>
+          <tr>
+            <td>H2</td>
+            <td>Cormorant Garamond<br>48px, 600<br>charcoal</td>
+            <td class="reference-cell"><p style="font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 600; color: #3b3932; line-height: 1.3;">Real estate rooted in relationships.</p></td>
+          </tr>
+          <tr>
+            <td>H3</td>
+            <td>Cormorant Garamond<br>32px, 600<br>charcoal</td>
+            <td class="reference-cell"><p style="font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: #3b3932; line-height: 1.3;">Mid City</p></td>
+          </tr>
+          <tr>
+            <td>H4</td>
+            <td>Cormorant Garamond<br>24px, 600<br>charcoal</td>
+            <td class="reference-cell"><p style="font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: #3b3932; line-height: 1.4;">Consultation & Goal Setting</p></td>
+          </tr>
+          <tr>
+            <td>Body Large</td>
+            <td>Manrope<br>18px, 400<br>charcoal</td>
+            <td class="reference-cell"><p style="font-family: Manrope, sans-serif; font-size: 18px; font-weight: 400; color: #3b3932; line-height: 1.6;">I help families and investors find, buy, and sell properties across Los Angeles with honesty, expertise, and genuine care.</p></td>
+          </tr>
+          <tr>
+            <td>Body</td>
+            <td>Manrope<br>18px, 400<br>charcoal</td>
+            <td class="reference-cell"><p style="font-family: Manrope, sans-serif; font-size: 18px; font-weight: 400; color: #3b3932; line-height: 1.6;">Whether you're buying your first home, selling a property, or investing in LA real estate, I bring creative problem-solving and a deep understanding of neighborhoods.</p></td>
+          </tr>
+          <tr>
+            <td>Body Small</td>
+            <td>Manrope<br>16px, 400<br>charcoal</td>
+            <td class="reference-cell"><p style="font-family: Manrope, sans-serif; font-size: 16px; font-weight: 400; color: #3b3932;">Monday – Friday, 9am – 6pm PT</p></td>
+          </tr>
+          <tr>
+            <td>Nav Link</td>
+            <td>Manrope<br>16px, 600<br>charcoal</td>
+            <td class="reference-cell"><p style="font-family: Manrope, sans-serif; font-size: 16px; font-weight: 600; color: #3b3932;">About</p></td>
+          </tr>
+          <tr>
+            <td>Ghost Button</td>
+            <td>Manrope<br>16px, 600<br>charcoal</td>
+            <td class="reference-cell"><p style="font-family: Manrope, sans-serif; font-size: 16px; font-weight: 600; color: #3b3932;">Learn more about my approach →</p></td>
+          </tr>
+          <tr>
+            <td>Label/Badge</td>
+            <td>Manrope<br>12px, 600<br>uppercase<br>tracking 0.1em</td>
+            <td class="reference-cell"><p style="font-family: Manrope, sans-serif; font-size: 12px; font-weight: 600; color: #3b3932; text-transform: uppercase; letter-spacing: 0.1em;">Featured</p></td>
+          </tr>
+          <tr>
+            <td>Footer Text</td>
+            <td>Manrope<br>14px, 400<br>muted (#6b6b6b)</td>
+            <td class="reference-cell"><p style="font-family: Manrope, sans-serif; font-size: 14px; font-weight: 400; color: #6b6b6b;">© 2025 Eric Zunkley. All rights reserved.</p></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Color Palette Section -->
+    <section>
+      <h2>Color Palette</h2>
+      <div class="colors-grid">
+        <!-- Primary Palette -->
+        <div class="color-card">
+          <div class="color-swatch" style="background: #eadbbb; color: #333;">#eadbbb</div>
+          <div class="color-info">
+            <div class="color-name">Wheat</div>
+            <div class="color-hex">#eadbbb</div>
+            <div class="color-rgb">rgb(234, 219, 187)</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background: #efede8; color: #333;">#efede8</div>
+          <div class="color-info">
+            <div class="color-name">Cream</div>
+            <div class="color-hex">#efede8</div>
+            <div class="color-rgb">rgb(239, 237, 232)</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background: #3b3932; color: #fff;">#3b3932</div>
+          <div class="color-info">
+            <div class="color-name">Charcoal</div>
+            <div class="color-hex">#3b3932</div>
+            <div class="color-rgb">rgb(59, 57, 50)</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background: #db2727; color: #fff;">#db2727</div>
+          <div class="color-info">
+            <div class="color-name">Crimson</div>
+            <div class="color-hex">#db2727</div>
+            <div class="color-rgb">rgb(219, 39, 39)</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background: #eebd2d;">#eebd2d</div>
+          <div class="color-info">
+            <div class="color-name">Goldenrod</div>
+            <div class="color-hex">#eebd2d</div>
+            <div class="color-rgb">rgb(238, 189, 45)</div>
+          </div>
+        </div>
+
+        <!-- Secondary/Accent Colors -->
+        <div class="color-card">
+          <div class="color-swatch" style="background: #48553f; color: #fff;">#48553f</div>
+          <div class="color-info">
+            <div class="color-name">Dark Green</div>
+            <div class="color-hex">#48553f</div>
+            <div class="color-rgb">rgb(72, 85, 63)</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background: #6B6B6B; color: #fff;">#6B6B6B</div>
+          <div class="color-info">
+            <div class="color-name">Muted</div>
+            <div class="color-hex">#6B6B6B</div>
+            <div class="color-rgb">rgb(107, 107, 107)</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background: #1a1a1a; color: #fff;">#1a1a1a</div>
+          <div class="color-info">
+            <div class="color-name">Dark Footer</div>
+            <div class="color-hex">#1a1a1a</div>
+            <div class="color-rgb">rgb(26, 26, 26)</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background: #a0644e; color: #fff;">#a0644e</div>
+          <div class="color-info">
+            <div class="color-name">Selection</div>
+            <div class="color-hex">#a0644e</div>
+            <div class="color-rgb">rgb(160, 100, 78)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

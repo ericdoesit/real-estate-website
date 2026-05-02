@@ -68,7 +68,7 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
                 setCurrentIndex(index)
                 setIsOpen(true)
               }}
-              className="relative aspect-square overflow-hidden rounded-lg group"
+              className="relative aspect-square overflow-hidden rounded-xl group"
             >
               {url && (
                 <Image
@@ -98,7 +98,7 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-charcoal z-40"
+              className="fixed inset-0 bg-black/80 z-40"
             />
 
             {/* Modal */}

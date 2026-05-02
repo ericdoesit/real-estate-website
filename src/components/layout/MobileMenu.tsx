@@ -16,7 +16,7 @@ export function MobileMenu() {
 
   return (
     <Sheet>
-      <SheetTrigger className="md:hidden text-charcoal hover:text-crimson transition-colors">
+      <SheetTrigger className="md:hidden text-charcoal hover:transition-colors">
         <svg
           className="w-6 h-6"
           fill="none"
@@ -37,7 +37,7 @@ export function MobileMenu() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-lg font-serif text-charcoal hover:text-crimson transition-colors"
+              className="text-lg font-serif text-charcoal hover:transition-colors"
             >
               {link.label}
             </Link>

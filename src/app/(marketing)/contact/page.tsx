@@ -1,4 +1,5 @@
 import { ContactForm } from '@/components/contact/ContactForm'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 
 export const metadata = {
   title: 'Contact Eric',
@@ -12,9 +13,7 @@ export default function ContactPage() {
       <section className="pt-20 pb-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
-            <p className="text-sm font-semibold tracking-luxury text-crimson uppercase">
-              Get In Touch
-            </p>
+            <Eyebrow>Get In Touch</Eyebrow>
             <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
               Let's talk about your goals.
             </h1>
@@ -31,7 +30,7 @@ export default function ContactPage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <div>
-              <h2 className="font-serif text-3xl font-semibold text-charcoal mb-2">
+              <h2 className="font-serif text-5xl font-semibold text-charcoal mb-2">
                 Send a Message
               </h2>
               <p className="text-muted">
@@ -49,14 +48,14 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Call Direct
               </h3>
               <div className="space-y-2">
                 <p className="text-muted">
                   <a
                     href="tel:+13234879865"
-                    className="text-crimson font-semibold hover:text-crimson/80"
+                    className="font-semibold hover:transition-colors"
                   >
                     (323) 487-9865
                   </a>
@@ -66,14 +65,14 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Email
               </h3>
               <div className="space-y-2">
                 <p className="text-muted">
                   <a
                     href="mailto:ezunkleysellsit@gmail.com"
-                    className="text-crimson font-semibold hover:text-crimson/80"
+                    className="font-semibold hover:transition-colors"
                   >
                     ezunkleysellsit@gmail.com
                   </a>

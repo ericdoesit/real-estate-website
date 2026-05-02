@@ -1,117 +1,58 @@
 import React from 'react'
 import Link from 'next/link'
+import styles from './Footer.module.css'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="mt-auto border-t border-charcoal/10 bg-wheat">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <img
-                src="/logo.svg"
-                alt="Eric Zunkley"
-                className="w-8 h-8"
-              />
-              <span className="font-serif text-lg font-semibold text-charcoal">
-                Eric Zunkley
-              </span>
-            </div>
-            <p className="text-sm text-muted">
-              Eric Zunkley<br />
-              CA DRE #01938067<br />
-              eXp Realty of California Inc.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-serif font-semibold text-charcoal mb-4">
-              Navigate
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/about" className="text-muted hover:text-crimson transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/neighborhoods" className="text-muted hover:text-crimson transition-colors">
-                  Neighborhoods
-                </Link>
-              </li>
-              <li>
-                <Link href="/properties" className="text-muted hover:text-crimson transition-colors">
-                  Properties
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-muted hover:text-crimson transition-colors">
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="font-serif font-semibold text-charcoal mb-4">
-              Contact
-            </h3>
-            <address className="not-italic text-sm space-y-2">
-              <p>
-                <a
-                  href="tel:+13234879865"
-                  className="text-muted hover:text-crimson transition-colors"
-                >
-                  (323) 487-9865
-                </a>
-              </p>
-              <p>
-                <a
-                  href="mailto:ezunkleysellsit@gmail.com"
-                  className="text-muted hover:text-crimson transition-colors"
-                >
-                  ezunkleysellsit@gmail.com
-                </a>
-              </p>
-              <p className="text-muted">Los Angeles, CA 90019</p>
-              <div className="flex gap-4 pt-2">
-                <a
-                  href="https://instagram.com/ericzunkleyrealestate"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted hover:text-crimson transition-colors"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="https://facebook.com/ericzunkleyrealtor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted hover:text-crimson transition-colors"
-                >
-                  Facebook
-                </a>
+    <footer className="border-t border-charcoal/10 bg-wheat">
+      <div className="w-full px-6 lg:px-12 py-8">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-8">
+            {/* Brand */}
+            <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <div className="h-10 w-10 flex-shrink-0 rounded overflow-hidden">
+                <img
+                  src="/logo.svg"
+                  alt="Eric Zunkley"
+                  className="w-full h-full"
+                />
               </div>
-            </address>
-          </div>
-        </div>
+              <div className="hidden sm:flex flex-col leading-tight">
+                <span className="text-base font-semibold text-charcoal">Eric Zunkley, Realtor</span>
+              </div>
+            </Link>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-charcoal/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted">
-          <p>&copy; {currentYear} Eric Zunkley. All rights reserved.</p>
-          <nav className="flex gap-6">
-            <Link href="/privacy" className="hover:text-crimson transition-colors">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-crimson transition-colors">
-              Terms
-            </Link>
-          </nav>
+            {/* Quick Links */}
+            <nav className="flex gap-6 text-base sm:ml-auto">
+              <Link href="/about" className={styles.footerLink}>
+                About
+              </Link>
+              <Link href="/neighborhoods" className={styles.footerLink}>
+                Neighborhoods
+              </Link>
+              <Link href="/properties" className={styles.footerLink}>
+                Properties
+              </Link>
+              <Link href="/blog" className={styles.footerLink}>
+                Blog
+              </Link>
+            </nav>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-charcoal/10 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted font-sans">
+            <p>&copy; {currentYear} Eric Zunkley. All rights reserved.</p>
+            <nav className="flex gap-6 text-base">
+              <Link href="/privacy" className={styles.footerLink}>
+                Privacy
+              </Link>
+              <Link href="/terms" className={styles.footerLink}>
+                Terms
+              </Link>
+            </nav>
+          </div>
         </div>
       </div>
     </footer>

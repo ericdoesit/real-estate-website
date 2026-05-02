@@ -2,20 +2,26 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { MobileMenu } from './MobileMenu'
 import { Logo } from './Logo'
-import { cn } from '@/lib/utils'
+import styles from './Nav.module.css'
 
 export function Nav() {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
+    let rafId: number
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 50)
+      })
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      cancelAnimationFrame(rafId)
+    }
   }, [])
 
   const navLinks = [
@@ -27,39 +33,27 @@ export function Nav() {
   ]
 
   return (
-    <nav
-      className={cn(
-        'sticky top-0 z-40 transition-all duration-300 font-sans',
-        isScrolled
-          ? 'bg-wheat border-b border-charcoal/10 shadow-sm'
-          : 'bg-transparent'
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className={`${styles.nav} ${isScrolled ? styles.scrolled : ''}`}>
+      <div className={styles.container}>
+        <div className={styles.maxWidth}>
           {/* Logo */}
           <Logo className="h-10 w-10" />
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className={styles.desktopNav}>
             {navLinks.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-charcoal hover:text-crimson transition-colors"
+                className={styles.navLink}
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          {/* CTA + Mobile Menu */}
-          <div className="flex items-center gap-4">
-            <Link href="/contact" className="hidden sm:block">
-              <Button variant="default" size="sm">
-                Consult
-              </Button>
-            </Link>
+          {/* Mobile Menu */}
+          <div className={styles.mobileMenuContainer}>
             <MobileMenu />
           </div>
         </div>

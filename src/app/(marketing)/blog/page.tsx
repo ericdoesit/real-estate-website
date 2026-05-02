@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { serverClient } from '@/lib/sanity/client'
 import { BLOG_POSTS_QUERY } from '@/lib/sanity/queries'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 
 interface BlogPost {
   _id: string
@@ -65,9 +66,7 @@ export default async function BlogPage() {
       <section className="pt-20 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
-            <p className="text-sm font-semibold tracking-luxury text-crimson uppercase">
-              Blog
-            </p>
+            <Eyebrow>Blog</Eyebrow>
             <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
               Market insights & guides.
             </h1>
@@ -100,7 +99,7 @@ export default async function BlogPage() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-serif text-xl font-semibold text-charcoal group-hover:text-crimson transition-colors line-clamp-3">
+                    <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors line-clamp-3">
                       {post.title}
                     </h3>
 

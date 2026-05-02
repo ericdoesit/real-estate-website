@@ -1,75 +1,105 @@
+'use client'
+
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import styles from './HeroButton.module.css'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { ArrowRight } from '@/components/ui/ArrowRight'
+
+const easeSmooth = [0.33, 0.66, 0.66, 1]
 
 export function HeroEditorial() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cream via-cream to-blue/10" />
+    <section className="relative h-[calc(100vh-80px)] overflow-hidden bg-cream">
+      {/* Full-height hero image - positioned absolutely */}
+      <motion.div
+        className="absolute right-0 top-20 bottom-20 w-full lg:w-[1260px] rounded-2xl overflow-hidden"
+        style={{ transform: 'translateX(-80px)' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: easeSmooth, delay: 0.15 }}
+      >
+        <Image
+          src="/hero-image.jpg"
+          alt="Los Angeles luxury homes"
+          fill
+          className="object-cover"
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 640px"
+        />
+      </motion.div>
 
-      {/* Accent shapes */}
-      <div className="absolute -right-32 top-20 w-96 h-96 bg-dark-green rounded-full opacity-10 blur-3xl" />
-      <div className="absolute -left-32 bottom-0 w-96 h-96 bg-crimson rounded-full opacity-10 blur-3xl" />
+      {/* Content Grid - centered with relative positioning */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] w-full mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Text */}
+            <div className="flex flex-col justify-center space-y-6">
+              {/* Eyebrow */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: easeSmooth, delay: 0 }}
+              >
+                <Eyebrow>Los Angeles Real Estate</Eyebrow>
+              </motion.div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text */}
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <p className="text-sm font-semibold tracking-luxury text-crimson uppercase">
-                Los Angeles Real Estate
-              </p>
-              <h1 className="font-serif text-6xl lg:text-7xl font-semibold text-charcoal leading-tight">
-                Curated homes for your story.
-              </h1>
-            </div>
-
-            <p className="text-lg text-muted max-w-lg">
-              I help families and investors find, buy, and sell properties across Los Angeles with honesty, expertise, and genuine care.
-            </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-8">
-              <div>
-                <p className="text-3xl font-serif font-semibold text-dark-green">150+</p>
-                <p className="text-sm text-muted">Transactions</p>
+              {/* Headline */}
+              <div className="space-y-2">
+                <motion.h1
+                  className="font-serif text-7xl lg:text-8xl font-semibold text-charcoal"
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <motion.span
+                    className="block"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: easeSmooth, delay: 0.1 }}
+                  >
+                    Curated homes
+                  </motion.span>
+                  <motion.span
+                    className="block"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: easeSmooth, delay: 0.22 }}
+                  >
+                    for your story.
+                  </motion.span>
+                </motion.h1>
               </div>
-              <div>
-                <p className="text-3xl font-serif font-semibold text-crimson">$1.2B</p>
-                <p className="text-sm text-muted">Portfolio Value</p>
-              </div>
-              <div>
-                <p className="text-3xl font-serif font-semibold text-goldenrod">15+</p>
-                <p className="text-sm text-muted">Years Experience</p>
-              </div>
-            </div>
 
-            {/* CTA */}
-            <div className="flex gap-4 pt-6">
-              <Link href="/contact">
-                <Button className="bg-crimson hover:bg-crimson/90">
-                  Start Conversation
-                </Button>
-              </Link>
-              <Link href="/properties">
-                <Button variant="outline" className="border-dark-green text-dark-green">
-                  View Properties
-                </Button>
-              </Link>
-            </div>
-          </div>
+              {/* Description */}
+              <motion.p
+                className="font-sans text-lg text-charcoal max-w-lg"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: easeSmooth, delay: 0.38 }}
+              >
+                I help families and investors find, buy, and sell properties across Los Angeles with honesty, expertise, and genuine care.
+              </motion.p>
 
-          {/* Visual - Dark green accent block with placeholder */}
-          <div className="relative h-96 lg:h-[500px]">
-            <div className="absolute inset-0 bg-dark-green rounded-2xl opacity-20" />
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-goldenrod rounded-lg" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-crimson/20 rounded-full blur-2xl" />
-            <div className="relative z-10 h-full flex items-center justify-center">
-              <p className="text-muted text-center">Hero image or video</p>
+              {/* CTA Button */}
+              <motion.div
+                className="pt-8"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: easeSmooth, delay: 0.46 }}
+              >
+                <Link href="/contact">
+                  <button className={`${styles.button} inline-flex items-center gap-2 group`}>
+                    Start Conversation
+                    <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
+                  </button>
+                </Link>
+              </motion.div>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   )

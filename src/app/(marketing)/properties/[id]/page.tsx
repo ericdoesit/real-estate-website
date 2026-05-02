@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import { ImageLightbox } from '@/components/ImageLightbox'
 import { serverClient } from '@/lib/sanity/client'
 import { urlFor } from '@/lib/sanity/image'
-import { PROPERTY_BY_SLUG_QUERY } from '@/lib/sanity/queries'
 
 interface SanityImage {
   _key?: string
@@ -31,49 +30,39 @@ interface Property {
 
 async function getProperty(id: string) {
   try {
-    const query = `*[_type == "property" && slug.current == "${id}"][0] {
-      _id,
-      address,
-      slug,
-      status,
-      listPrice,
-      soldPrice,
-      soldDate,
-      beds,
-      baths,
-      sqft,
-      lotSize,
-      yearBuilt,
-      propertyType,
-      heroImage,
-      gallery,
-      description,
-      features,
-    }`
-    const encodedQuery = encodeURIComponent(query)
-    const url = `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2024-01-01/data/query/${process.env.NEXT_PUBLIC_SANITY_DATASET}?query=${encodedQuery}`
-
-    const response = await fetch(url, {
-      headers: {
-        'Authorization': `Bearer ${process.env.SANITY_API_READ_TOKEN}`,
-      },
-      next: { revalidate: 60 },
-    })
-
-    if (!response.ok) {
-      throw new Error(`Sanity API error: ${response.statusText}`)
-    }
-
-    const data = await response.json()
-    return data.result
+    const property = await serverClient.fetch(
+      `*[_type == "property" && slug.current == $slug][0] {
+        _id,
+        address,
+        slug,
+        status,
+        listPrice,
+        soldPrice,
+        soldDate,
+        beds,
+        baths,
+        sqft,
+        lotSize,
+        yearBuilt,
+        propertyType,
+        heroImage,
+        gallery,
+        description,
+        features,
+      }`,
+      { slug: id }
+    )
+    console.log(`Fetched property for slug "${id}":`, property)
+    return property
   } catch (error) {
-    console.error('Failed to fetch property:', error)
+    console.error(`Failed to fetch property with slug "${id}":`, error)
     return null
   }
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const property = await getProperty(params.id)
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const property = await getProperty(id)
 
   if (!property) {
     return {
@@ -88,15 +77,16 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-export default async function PropertyDetailPage({ params }: { params: { id: string } }) {
-  const property = await getProperty(params.id)
+export default async function PropertyDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const property = await getProperty(id)
 
   if (!property) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h1 className="font-serif text-4xl font-semibold text-charcoal mb-4">Property Not Found</h1>
         <p className="text-muted mb-8">The property you're looking for doesn't exist.</p>
-        <Link href="/properties" className="text-crimson font-semibold hover:text-crimson/80">
+        <Link href="/properties" className="font-semibold hover:transition-colors">
           ← Back to Properties
         </Link>
       </div>
@@ -114,23 +104,26 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
     <article className="space-y-12">
       {/* Hero Image */}
       <section className="pt-20">
-        {property.heroImage ? (
-          <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden">
-            <Image
-              src={urlFor(property.heroImage).url()}
-              alt={property.heroImage.alt || property.address}
-              fill
-              className="object-cover"
-              priority
-            />
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-6xl mx-auto">
+            {property.heroImage ? (
+              <div className="relative w-full aspect-video overflow-hidden rounded-xl">
+                <Image
+                  src={urlFor(property.heroImage).url()}
+                  alt={property.heroImage.alt || property.address}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="w-full aspect-video bg-dark-green/10 flex items-center justify-center overflow-hidden rounded-xl">
+                <p className="text-muted">No property image available</p>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="h-96 lg:h-[500px] bg-dark-green/10 rounded-2xl flex items-center justify-center overflow-hidden">
-            <p className="text-muted">No property image available</p>
-          </div>
-        )}
+        </div>
       </section>
-
       {/* Header */}
       <section>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
@@ -205,7 +198,7 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
       <section>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div>
-            <h2 className="font-serif text-3xl font-semibold text-charcoal mb-4">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal mb-4">
               About This Home
             </h2>
             {property.description ? (
@@ -229,7 +222,7 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
 
           {property.features && property.features.length > 0 && (
             <div>
-              <h3 className="font-serif text-2xl font-semibold text-charcoal mb-6">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal mb-6">
                 Features
               </h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -250,7 +243,7 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
         <section>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
-              <h2 className="font-serif text-3xl font-semibold text-charcoal">
+              <h2 className="font-serif text-5xl font-semibold text-charcoal">
                 Property Gallery
               </h2>
             </div>
@@ -268,7 +261,7 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
       <section className="bg-dark-green py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="font-serif text-4xl font-semibold text-white">
+            <h2 className="font-serif text-5xl font-semibold text-white">
               Interested in this property?
             </h2>
             <p className="text-lg text-white/90 max-w-xl mx-auto">
@@ -297,7 +290,7 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
       {/* Back Link */}
       <section className="pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/properties" className="text-crimson font-semibold hover:text-crimson/80 inline-flex items-center gap-2">
+          <Link href="/properties" className="font-semibold inline-flex items-center gap-2">
             ← Back to Properties
           </Link>
         </div>

@@ -44,7 +44,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h1 className="font-serif text-4xl font-semibold text-charcoal mb-4">Post Not Found</h1>
         <p className="text-muted mb-8">The blog post you're looking for doesn't exist.</p>
-        <Link href="/blog" className="text-crimson font-semibold hover:text-crimson/80">
+        <Link href="/blog" className="font-semibold hover:transition-colors">
           ← Back to Blog
         </Link>
       </div>
@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       {/* Back Link */}
       <section className="border-t border-charcoal/10 pt-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/blog" className="text-crimson font-semibold hover:text-crimson/80 inline-flex items-center gap-2">
+          <Link href="/blog" className="font-semibold inline-flex items-center gap-2">
             ← Back to Blog
           </Link>
         </div>

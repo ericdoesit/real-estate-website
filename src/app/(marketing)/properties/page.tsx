@@ -1,6 +1,14 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { serverClient } from '@/lib/sanity/client'
 import { ALL_PROPERTIES_QUERY } from '@/lib/sanity/queries'
+import { urlFor } from '@/lib/sanity/image'
+
+interface SanityImage {
+  _key?: string
+  asset?: { _ref: string }
+  alt?: string
+}
 
 interface Property {
   _id: string
@@ -12,6 +20,7 @@ interface Property {
   beds: number
   baths: number
   sqft: number
+  heroImage?: SanityImage
 }
 
 export const metadata = {
@@ -63,14 +72,25 @@ export default async function PropertiesPage() {
       className="group"
     >
       <div className="space-y-4">
-        {/* Image placeholder */}
-        <div className="relative h-64 bg-dark-green/10 rounded-xl overflow-hidden flex items-center justify-center">
-          <p className="text-muted">Property image</p>
+        {/* Image */}
+        <div className="relative h-64 rounded-xl overflow-hidden group">
+          {property.heroImage ? (
+            <Image
+              src={urlFor(property.heroImage).url()}
+              alt={property.heroImage.alt || property.address}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          ) : (
+            <div className="w-full h-full bg-dark-green/10 flex items-center justify-center">
+              <p className="text-muted">No image available</p>
+            </div>
+          )}
         </div>
 
         {/* Info */}
         <div className="space-y-3">
-          <h3 className="font-serif text-lg font-semibold text-charcoal group-hover:text-crimson transition-colors line-clamp-2">
+          <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors line-clamp-2">
             {property.address}
           </h3>
 
@@ -86,7 +106,7 @@ export default async function PropertiesPage() {
           </p>
 
           {property.status === 'sold' && (
-            <span className="text-xs font-semibold text-crimson uppercase tracking-luxury">Sold</span>
+            <span className="text-xs font-semibold uppercase tracking-luxury">Sold</span>
           )}
         </div>
       </div>
@@ -119,10 +139,10 @@ export default async function PropertiesPage() {
         <section>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
-              <p className="text-sm font-semibold tracking-luxury text-crimson uppercase mb-2">
+              <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
                 Current
               </p>
-              <h2 className="font-serif text-4xl font-semibold text-charcoal">
+              <h2 className="font-serif text-5xl font-semibold text-charcoal">
                 Active Listings
               </h2>
             </div>
@@ -144,7 +164,7 @@ export default async function PropertiesPage() {
               <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase mb-2">
                 Track Record
               </p>
-              <h2 className="font-serif text-4xl font-semibold text-charcoal">
+              <h2 className="font-serif text-5xl font-semibold text-charcoal">
                 Recently Sold
               </h2>
             </div>
@@ -162,7 +182,7 @@ export default async function PropertiesPage() {
       <section>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="font-serif text-4xl font-semibold text-charcoal">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal">
               Looking for something specific?
             </h2>
             <p className="text-lg text-muted max-w-2xl mx-auto">

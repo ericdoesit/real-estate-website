@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 
 export const metadata = {
   title: 'About Eric - Real Estate',
@@ -13,9 +14,7 @@ export default function AboutPage() {
       <section className="pt-20 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
-            <p className="text-sm font-semibold tracking-luxury text-crimson uppercase">
-              About Eric
-            </p>
+            <Eyebrow>About Eric</Eyebrow>
             <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
               Real estate built on trust and communication.
             </h1>
@@ -40,7 +39,7 @@ export default function AboutPage() {
             </div>
 
             <div className="space-y-6 order-1 lg:order-2">
-              <h2 className="font-serif text-4xl font-semibold text-charcoal">
+              <h2 className="font-serif text-5xl font-semibold text-charcoal">
                 Why I Do This
               </h2>
 
@@ -67,7 +66,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-dark-green/5 rounded-2xl border border-dark-green/20 p-12 space-y-8">
             <div>
-              <h2 className="font-serif text-3xl font-semibold text-charcoal mb-8">
+              <h2 className="font-serif text-5xl font-semibold text-charcoal mb-8">
                 Credentials
               </h2>
             </div>
@@ -110,13 +109,13 @@ export default function AboutPage() {
       {/* Philosophy */}
       <section className="bg-cream py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-4xl font-semibold text-charcoal mb-12">
+          <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
             My Approach
           </h2>
 
           <div className="space-y-8">
-            <div className="border-l-4 border-crimson pl-6 space-y-2">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+            <div className="border-l-4 border-dark-green pl-6 space-y-2">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Honest Guidance
               </h3>
               <p className="text-muted">
@@ -124,8 +123,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="border-l-4 border-crimson pl-6 space-y-2">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+            <div className="border-l-4 border-dark-green pl-6 space-y-2">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Market Knowledge
               </h3>
               <p className="text-muted">
@@ -133,8 +132,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="border-l-4 border-crimson pl-6 space-y-2">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+            <div className="border-l-4 border-dark-green pl-6 space-y-2">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Creative Problem-Solving
               </h3>
               <p className="text-muted">
@@ -142,8 +141,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="border-l-4 border-crimson pl-6 space-y-2">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal">
+            <div className="border-l-4 border-dark-green pl-6 space-y-2">
+              <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Communication
               </h3>
               <p className="text-muted">
@@ -158,7 +157,7 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="font-serif text-4xl font-semibold text-charcoal">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal">
               Ready to work together?
             </h2>
             <p className="text-lg text-muted max-w-2xl mx-auto">
@@ -167,7 +166,7 @@ export default function AboutPage() {
           </div>
 
           <Link href="/contact">
-            <Button className="bg-crimson hover:bg-crimson/90 font-semibold px-8 py-3 text-lg">
+            <Button className="bg-goldenrod hover:bg-goldenrod/90 font-semibold px-8 py-3 text-lg">
               Get In Touch
             </Button>
           </Link>

@@ -1,6 +1,7 @@
 import { serverClient } from '@/lib/sanity/client'
 import { NEIGHBORHOOD_BY_SLUG_QUERY } from '@/lib/sanity/queries'
 import { PortableText } from '@portabletext/react'
+import Image from 'next/image'
 
 interface Neighborhood {
   _id: string
@@ -13,6 +14,44 @@ interface Neighborhood {
     name: string
     note: string
   }>
+}
+
+const PHOTOS = [
+  '13705488963_76a358d8ac_o.jpg',
+  '15060426861_f6d33577bb_k.jpg',
+  '15306603569_ba5fff0f60_k.jpg',
+  '15873911522_636c4c213a_o.jpg',
+  '5609986343_1b278c4750_o.jpg',
+  '9595594302_64be79ce3a_o.jpg',
+  'alexis-balinoff-2KIDkMzmO-k-unsplash.jpg',
+  'hero-1.jpg',
+  'hero-2.jpg',
+  'hero-3.jpg',
+  'ivan-karpov-7oLuzIZ3QIg-unsplash.jpg',
+  'pexels-anthony-thomas-733236359-18409401.jpg',
+  'pexels-blackmakaw-19964276.jpg',
+  'pexels-davidmcelwee-11695725.jpg',
+  'pexels-duggiefresch-4329924.jpg',
+  'pexels-loquellano-17928132.jpg',
+  'pexels-martinpechy-2763964.jpg',
+  'pexels-martinpechy-2763967.jpg',
+  'pexels-myatezhny39-30151761.jpg',
+  'pexels-myatezhny39-30151773.jpg',
+  'pexels-rdne-8782693.jpg',
+  'pexels-rdne-8783581.jpg',
+  'pexels-rdne-8783590.jpg',
+  'pexels-rdne-8783844.jpg',
+  'pexels-robertkso-34960816.jpg',
+  'pexels-rockwell-branding-agency-85164430-9137653.jpg',
+  'pexels-rpnickson-2709964.jpg',
+  'pexels-sergei-a-1322276-2539437.jpg',
+  'pexels-vincent-gerbouin-445991-2263669.jpg',
+  'pexels-vlada-karpovich-4449625.jpg',
+]
+
+function getRandomPhoto(seed: string) {
+  const hash = seed.split('').reduce((a, b) => a + b.charCodeAt(0), 0)
+  return PHOTOS[hash % PHOTOS.length]
 }
 
 export default async function NeighborhoodDetailPage({
@@ -46,16 +85,26 @@ export default async function NeighborhoodDetailPage({
 
   return (
     <div className="flex flex-col">
-      {/* Hero section with tagline */}
-      <section className="py-20 bg-gradient-to-br from-blue/10 to-coral/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <p className="text-sm font-semibold tracking-luxury text-coral uppercase">
-            Neighborhood Guide
-          </p>
-          <h1 className="font-serif text-6xl font-semibold text-charcoal">
-            {neighborhood.name}
-          </h1>
-          <p className="text-xl text-muted max-w-2xl">{neighborhood.tagline}</p>
+      {/* Hero section with image */}
+      <section className="relative h-96 lg:h-[500px] w-full">
+        <Image
+          src={`/neighborhoods/${getRandomPhoto(neighborhood._id)}`}
+          alt={neighborhood.name}
+          fill
+          className="object-cover"
+          priority
+        />
+
+        <div className="absolute inset-0 bg-black/40 flex items-end">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-8 space-y-4">
+            <p className="text-sm font-semibold tracking-luxury text-goldenrod uppercase">
+              Neighborhood Guide
+            </p>
+            <h1 className="font-serif text-6xl font-semibold text-white">
+              {neighborhood.name}
+            </h1>
+            <p className="text-xl text-white/90 max-w-2xl">{neighborhood.tagline}</p>
+          </div>
         </div>
       </section>
 
@@ -74,7 +123,7 @@ export default async function NeighborhoodDetailPage({
           {neighborhood.lifestyleHighlights &&
             neighborhood.lifestyleHighlights.length > 0 && (
               <div className="space-y-6">
-                <h2 className="font-serif text-3xl font-semibold text-charcoal">
+                <h2 className="font-serif text-5xl font-semibold text-charcoal">
                   What to Do Here
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -83,7 +132,7 @@ export default async function NeighborhoodDetailPage({
                       <p className="text-sm text-coral font-semibold uppercase tracking-luxury mb-1">
                         {highlight.category}
                       </p>
-                      <h3 className="font-serif text-xl font-semibold text-charcoal mb-2">
+                      <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
                         {highlight.name}
                       </h3>
                       <p className="text-muted">{highlight.note}</p>

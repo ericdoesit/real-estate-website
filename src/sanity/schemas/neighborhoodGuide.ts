@@ -43,43 +43,6 @@ export const neighborhoodGuide = defineType({
       of: [{ type: 'block' }],
     }),
     defineField({
-      name: 'marketStats',
-      title: 'Market Statistics',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'medianPrice',
-          title: 'Median Price (USD)',
-          type: 'number',
-        }),
-        defineField({
-          name: 'avgDaysOnMarket',
-          title: 'Average Days on Market',
-          type: 'number',
-        }),
-        defineField({
-          name: 'activeListings',
-          title: 'Active Listings',
-          type: 'number',
-        }),
-        defineField({
-          name: 'pricePerSqFt',
-          title: 'Price Per Sq Ft (USD)',
-          type: 'number',
-        }),
-        defineField({
-          name: 'yoyPriceChange',
-          title: 'Year-over-Year Price Change (%)',
-          type: 'number',
-        }),
-        defineField({
-          name: 'lastUpdated',
-          title: 'Last Updated',
-          type: 'date',
-        }),
-      ],
-    }),
-    defineField({
       name: 'lifestyleHighlights',
       title: 'Lifestyle Highlights',
       type: 'array',

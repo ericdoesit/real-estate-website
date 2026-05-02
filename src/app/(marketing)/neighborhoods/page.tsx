@@ -1,6 +1,46 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { serverClient } from '@/lib/sanity/client'
 import { NEIGHBORHOODS_QUERY } from '@/lib/sanity/queries'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+
+const PHOTOS = [
+  '13705488963_76a358d8ac_o.jpg',
+  '15060426861_f6d33577bb_k.jpg',
+  '15306603569_ba5fff0f60_k.jpg',
+  '15873911522_636c4c213a_o.jpg',
+  '5609986343_1b278c4750_o.jpg',
+  '9595594302_64be79ce3a_o.jpg',
+  'alexis-balinoff-2KIDkMzmO-k-unsplash.jpg',
+  'hero-1.jpg',
+  'hero-2.jpg',
+  'hero-3.jpg',
+  'ivan-karpov-7oLuzIZ3QIg-unsplash.jpg',
+  'pexels-anthony-thomas-733236359-18409401.jpg',
+  'pexels-blackmakaw-19964276.jpg',
+  'pexels-davidmcelwee-11695725.jpg',
+  'pexels-duggiefresch-4329924.jpg',
+  'pexels-loquellano-17928132.jpg',
+  'pexels-martinpechy-2763964.jpg',
+  'pexels-martinpechy-2763967.jpg',
+  'pexels-myatezhny39-30151761.jpg',
+  'pexels-myatezhny39-30151773.jpg',
+  'pexels-rdne-8782693.jpg',
+  'pexels-rdne-8783581.jpg',
+  'pexels-rdne-8783590.jpg',
+  'pexels-rdne-8783844.jpg',
+  'pexels-robertkso-34960816.jpg',
+  'pexels-rockwell-branding-agency-85164430-9137653.jpg',
+  'pexels-rpnickson-2709964.jpg',
+  'pexels-sergei-a-1322276-2539437.jpg',
+  'pexels-vincent-gerbouin-445991-2263669.jpg',
+  'pexels-vlada-karpovich-4449625.jpg',
+]
+
+function getRandomPhoto(seed: string) {
+  const hash = seed.split('').reduce((a, b) => a + b.charCodeAt(0), 0)
+  return PHOTOS[hash % PHOTOS.length]
+}
 
 interface Neighborhood {
   _id: string
@@ -72,9 +112,7 @@ export default async function NeighborhoodsPage() {
       <section className="pt-20 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
-            <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase">
-              Neighborhoods
-            </p>
+            <Eyebrow>Neighborhoods</Eyebrow>
             <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
               Explore LA neighborhoods.
             </h1>
@@ -97,15 +135,16 @@ export default async function NeighborhoodsPage() {
                 href={`/neighborhoods/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
                 className="group"
               >
-                <div className="relative h-64 bg-gradient-to-br from-dark-green/20 to-crimson/20 rounded-xl overflow-hidden mb-4 flex items-center justify-center hover:shadow-lg transition-shadow">
-                  {/* Accent shapes */}
-                  <div className="absolute top-4 left-4 w-8 h-8 bg-goldenrod rounded-full opacity-30" />
-                  <div className="absolute bottom-0 right-0 w-20 h-20 bg-dark-green/10 rounded-full blur-xl" />
-
-                  <p className="text-muted relative z-10">Neighborhood image</p>
+                <div className="relative h-64 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-xl overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
+                  <Image
+                    src={`/neighborhoods/${getRandomPhoto(neighborhood._id)}`}
+                    alt={neighborhood.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
 
-                <h3 className="font-serif text-2xl font-semibold text-charcoal group-hover:text-crimson transition-colors">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors">
                   {neighborhood.name}
                 </h3>
                 <p className="text-muted text-sm mt-2">{neighborhood.tagline}</p>
@@ -120,7 +159,7 @@ export default async function NeighborhoodsPage() {
       <section className="bg-cream py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="font-serif text-4xl font-semibold text-charcoal">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal">
               Want neighborhood insights?
             </h2>
             <p className="text-lg text-muted max-w-2xl mx-auto">

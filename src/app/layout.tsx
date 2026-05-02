@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import { Cormorant_Garamond, Manrope } from 'next/font/google'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -8,9 +8,10 @@ const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
 })
 
-const dmSans = DM_Sans({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  weight: ['400'],
+  variable: '--font-manrope',
 })
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} h-full scroll-smooth antialiased`}
+      className={`${cormorant.variable} ${manrope.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-cream text-charcoal font-sans">
         {children}

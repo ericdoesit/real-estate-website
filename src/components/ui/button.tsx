@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import styles from './button.module.css'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'outline' | 'ghost'
@@ -9,12 +10,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', ...props }, ref) => {
     const baseStyles =
-      'font-sans font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-clay disabled:opacity-50 disabled:cursor-not-allowed'
+      'font-sans font-normal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-clay disabled:opacity-50 disabled:cursor-not-allowed'
 
     const variants = {
-      default: 'bg-crimson text-white hover:bg-opacity-90',
-      outline: 'border border-crimson text-crimson hover:bg-crimson hover:text-white',
-      ghost: 'text-crimson hover:bg-wheat',
+      default: 'bg-goldenrod text-white hover:bg-opacity-90',
+      outline: 'border border-dark-green hover:bg-goldenrod hover:text-white',
+      ghost: 'text-charcoal hover:bg-wheat',
     }
 
     const sizes = {
@@ -23,9 +24,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       lg: 'px-6 py-3 text-lg',
     }
 
+    const variantStyles = variant === 'ghost' ? styles.ghost : ''
+
     return (
       <button
-        className={cn(baseStyles, variants[variant], sizes[size], className)}
+        className={cn(baseStyles, variants[variant], sizes[size], variantStyles, className)}
         ref={ref}
         {...props}
       />
