@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ArrowRight } from '@/components/ui/ArrowRight'
 import styles from './AboutSnippet.module.css'
