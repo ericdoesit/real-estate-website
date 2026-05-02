@@ -89,7 +89,7 @@ export function NeighborhoodTeaser() {
     }
   }
 
-  const easeSmooth = [0.33, 0.66, 0.66, 1]
+  const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
   return (
     <section className="py-20 bg-cream">

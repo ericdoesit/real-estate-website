@@ -7,7 +7,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ArrowRight } from '@/components/ui/ArrowRight'
 import styles from './AboutSnippet.module.css'
 
-const easeSmooth = [0.33, 0.66, 0.66, 1]
+const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
 export function AboutSnippet() {
   return (

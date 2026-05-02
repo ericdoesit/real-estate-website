@@ -10,12 +10,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', ...props }, ref) => {
     const baseStyles =
-      'font-sans font-normal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-clay disabled:opacity-50 disabled:cursor-not-allowed'
+      'font-sans font-normal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-selection disabled:opacity-50 disabled:cursor-not-allowed rounded-xl'
 
     const variants = {
-      default: 'bg-goldenrod text-white hover:bg-opacity-90',
-      outline: 'border border-dark-green hover:bg-goldenrod hover:text-white',
-      ghost: 'text-charcoal hover:bg-wheat',
+      default: '',
+      outline: 'border border-dark-green',
+      ghost: 'text-charcoal hover:bg-cream',
     }
 
     const sizes = {
@@ -24,7 +24,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       lg: 'px-6 py-3 text-lg',
     }
 
-    const variantStyles = variant === 'ghost' ? styles.ghost : ''
+    const variantStyles = variant === 'ghost' ? styles.ghost : variant === 'default' ? styles.primary : ''
 
     return (
       <button

@@ -25,7 +25,7 @@ interface Property {
   heroImage?: SanityImage
 }
 
-const easeSmooth = [0.33, 0.66, 0.66, 1]
+const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
 export function FeaturedListingsClient({ properties }: { properties: Property[] }) {
   return (
@@ -113,7 +113,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
           viewport={{ once: true, margin: '-80px' }}
         >
           <Link href="/properties">
-            <Button className="bg-goldenrod text-charcoal hover:bg-goldenrod/90 font-semibold">
+            <Button className="font-semibold">
               See All Properties
             </Button>
           </Link>

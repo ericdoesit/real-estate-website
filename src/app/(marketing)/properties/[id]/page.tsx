@@ -271,7 +271,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
-              <Button className="bg-goldenrod text-charcoal hover:bg-goldenrod/90 font-semibold px-8 py-3 text-lg">
+              <Button className="font-semibold px-8 py-3 text-lg">
                 Schedule a Showing
               </Button>
             </Link>

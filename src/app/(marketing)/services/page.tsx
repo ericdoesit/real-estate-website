@@ -245,7 +245,7 @@ export default function ServicesPage() {
           </div>
 
           <Link href="/contact">
-            <Button className="bg-goldenrod hover:bg-goldenrod/90 font-semibold px-8 py-3 text-lg">
+            <Button className="font-semibold px-8 py-3 text-lg">
               Schedule a Consultation
             </Button>
           </Link>

@@ -1,3 +1,12 @@
+.primary {
+  background-color: #a0644e;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #8e5844;
+}
+
 .ghost {
   position: relative;
   display: inline-block;

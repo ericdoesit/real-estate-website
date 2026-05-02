@@ -110,7 +110,7 @@ export function ContactForm() {
       <Button
         type="submit"
         disabled={isLoading}
-        className="bg-goldenrod hover:bg-goldenrod/90 font-semibold w-full"
+        className="font-semibold w-full"
       >
         {isLoading ? 'Sending...' : 'Send Message'}
       </Button>
