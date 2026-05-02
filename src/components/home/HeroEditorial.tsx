@@ -54,7 +54,7 @@ export function HeroEditorial() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center pb-16 lg:pb-0">
               {/* Text */}
-              <div className="rounded-xl p-8 lg:p-10" style={{ backgroundColor: 'rgb(239 237 232 / 0.75)', backdropFilter: 'blur(12px)' }}>
+              <div className="lg:rounded-xl lg:p-10 lg:bg-cream/75 lg:backdrop-blur-md">
               <div className="flex flex-col justify-center space-y-6">
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
@@ -66,7 +66,7 @@ export function HeroEditorial() {
 
                 <div className="space-y-2">
                   <motion.h1
-                    className="font-serif text-7xl lg:text-8xl font-semibold text-charcoal"
+                    className="font-serif text-6xl lg:text-8xl font-semibold text-charcoal"
                     initial="hidden"
                     animate="visible"
                   >
