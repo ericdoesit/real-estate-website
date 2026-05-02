@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer'
 import { HeroEditorial } from '@/components/home/HeroEditorial'
 import { AboutSnippet } from '@/components/home/AboutSnippet'
 import { NeighborhoodTeaser } from '@/components/home/NeighborhoodTeaser'
+import { Testimonials } from '@/components/home/Testimonials'
 import { CTABanner } from '@/components/home/CTABanner'
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
         <HeroEditorial />
         <AboutSnippet />
         <NeighborhoodTeaser />
+        <Testimonials />
         <CTABanner />
       </main>
       <Footer />

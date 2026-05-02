@@ -148,18 +148,18 @@ export function NeighborhoodTeaser() {
             <button
               onClick={handlePrev}
               disabled={!canGoPrev}
-              className="p-3 rounded-full border border-dark-green disabled:opacity-30 disabled:cursor-not-allowed hover:bg-dark-green/10 transition-colors"
+              className="group p-3 rounded-full border border-charcoal/30 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-charcoal hover:border-transparent transition-all duration-300 flex items-center justify-center"
               aria-label="Previous neighborhoods"
             >
-              ←
+              <ArrowRight className="w-5 h-5 text-charcoal group-hover:text-cream rotate-180 group-hover:-translate-x-1 transition-transform duration-500" />
             </button>
             <button
               onClick={handleNext}
               disabled={!hasMore}
-              className="p-3 rounded-full border border-dark-green disabled:opacity-30 disabled:cursor-not-allowed hover:bg-dark-green/10 transition-colors flex items-center justify-center"
+              className="group p-3 rounded-full border border-charcoal/30 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-charcoal hover:border-transparent transition-all duration-300 flex items-center justify-center"
               aria-label="Next neighborhoods"
             >
-              <ArrowRight className="w-5 h-5 text-dark-green" />
+              <ArrowRight className="w-5 h-5 text-charcoal group-hover:text-cream group-hover:translate-x-1 transition-transform duration-500" />
             </button>
           </div>
         </div>
@@ -172,7 +172,7 @@ export function NeighborhoodTeaser() {
           transition={{ duration: 1, ease: easeSmooth }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          <h3 className="font-serif text-2xl font-semibold text-charcoal">
+          <h3 className="font-serif text-3xl font-semibold text-charcoal">
             Want deeper neighborhood insights?
           </h3>
           <p className="font-sans text-lg text-charcoal max-w-2xl mx-auto">

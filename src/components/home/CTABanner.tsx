@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 
 const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
@@ -62,21 +63,13 @@ export function CTABanner() {
             transition={{ duration: 1, ease: easeSmooth }}
             viewport={{ once: true, margin: '-80px' }}
           >
-            {/* Badge */}
-            <div className="inline-flex w-fit">
-              <div className="px-3 py-1 bg-charcoal/50 border border-white/20 rounded-full">
-                <p className="text-xs font-semibold tracking-luxury text-white/80 uppercase">
-                  Contact
-                </p>
-              </div>
-            </div>
-
             {/* Heading */}
-            <div className="space-y-3">
-              <h2 className="font-serif text-5xl font-semibold text-white leading-tight">
+            <div>
+              <Eyebrow color="white">Contact</Eyebrow>
+              <h2 className="font-serif text-5xl font-semibold text-white leading-tight mt-3">
                 Get in touch.
               </h2>
-              <p className="font-sans text-lg text-white/70">
+              <p className="font-sans text-lg text-white/70 mt-4">
                 Whether you're buying, selling, or investing in LA real estate, I'm here to help. Reach out anytime.
               </p>
             </div>
