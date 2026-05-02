@@ -22,9 +22,6 @@
   animation-direction: reverse;
 }
 
-.track:hover {
-  animation-play-state: paused;
-}
 
 .card {
   flex-shrink: 0;

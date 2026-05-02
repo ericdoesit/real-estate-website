@@ -66,7 +66,7 @@ export function HeroEditorial() {
 
                 <div className="space-y-2">
                   <motion.h1
-                    className="font-serif text-6xl lg:text-8xl font-semibold text-charcoal"
+                    className="font-serif text-5xl sm:text-6xl lg:text-8xl font-semibold text-charcoal"
                     initial="hidden"
                     animate="visible"
                   >
