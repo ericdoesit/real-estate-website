@@ -96,9 +96,6 @@ export default async function PropertiesPage() {
             <span>{property.sqft?.toLocaleString()} sqft</span>
           </div>
 
-          {property.status === 'sold' && (
-            <span className="text-xs font-semibold uppercase tracking-luxury">Sold</span>
-          )}
         </div>
       </div>
     </Link>
@@ -108,19 +105,19 @@ export default async function PropertiesPage() {
     <div className="">
       {/* Hero */}
       <section className="pt-10 pb-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="space-y-4">
-            <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase">
-              Properties
-            </p>
-            <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-              Past transactions.
-            </h1>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto space-y-8">
+            <div className="space-y-4">
+              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                Recently Sold.
+              </h1>
+            </div>
 
-          <p className="text-lg text-charcoal max-w-2xl" style={{ lineHeight: '1.6' }}>
-            A look at some of the properties I've helped clients buy and sell across Los Angeles.
-          </p>
+            <p className="text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
+              A selection of homes I've helped clients buy and sell across Los Angeles —
+              representing both buyers and sellers over 13 years in the market.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -150,14 +147,6 @@ export default async function PropertiesPage() {
       {soldListings.length > 0 && (
         <section className="bg-cream py-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-12">
-              <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase mb-2">
-                Track Record
-              </p>
-              <h2 className="font-serif text-5xl font-semibold text-charcoal">
-                Recently Sold
-              </h2>
-            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {soldListings.map((property) => (

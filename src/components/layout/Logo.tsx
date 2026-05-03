@@ -19,7 +19,7 @@ export function Logo({ className = 'h-16 w-16', showText = true }: LogoProps) {
       </div>
       {showText && (
         <div className="hidden sm:flex flex-col leading-tight">
-          <span className="text-base font-semibold text-charcoal">Eric Zunkley, Realtor</span>
+          <span className="font-sans text-base font-bold uppercase tracking-luxury text-charcoal">Eric Zunkley, Realtor</span>
         </div>
       )}
     </Link>

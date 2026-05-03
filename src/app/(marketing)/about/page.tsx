@@ -12,80 +12,42 @@ export default function AboutPage() {
     <div className="">
       {/* Hero */}
       <section className="pt-10 pb-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="space-y-4">
-            <Eyebrow>About Eric</Eyebrow>
-            <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-              Real estate built on trust and communication.
-            </h1>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto space-y-8">
+            <div className="space-y-4">
+              <Eyebrow>About Eric</Eyebrow>
+              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                Real estate built on trust and communication.
+              </h1>
+            </div>
 
-          <p className="text-lg text-charcoal max-w-2xl" style={{ lineHeight: '1.6' }}>
-            For 13 years, I've helped buyers, sellers, and investors across Los Angeles achieve their goals — with honesty, deep market knowledge, and genuine care from start to finish.
-          </p>
+            <p className="text-lg text-charcoal max-w-2xl" style={{ lineHeight: '1.6' }}>
+              For 13 years, I've helped buyers, sellers, and investors across Los Angeles achieve their goals — with honesty, deep market knowledge, and genuine care from start to finish.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Headshot placeholder */}
       <section className="bg-cream py-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden order-2 lg:order-1">
-              <img
-                src="/headshot.jpg"
-                alt="Eric Zunkley - Real Estate Agent"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="space-y-6 order-1 lg:order-2">
-              <h2 className="font-serif text-5xl font-semibold text-charcoal">
-                Why I Do This
-              </h2>
-
-              <p className="text-charcoal text-lg" style={{ lineHeight: '1.6' }}>
-                Most of my business comes through referrals and repeat clients — that reflects the kind of trust I work to earn with every transaction. I'm not chasing deals. I'm building relationships, and I bring deep LA market knowledge and creative problem-solving to every one.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Credentials */}
-      <section>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-dark-green/5 rounded-2xl border border-dark-green/20 p-12 space-y-8">
-            <div>
-              <h2 className="font-serif text-5xl font-semibold text-charcoal mb-8">
-                Credentials
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="space-y-3">
-                <p className="text-sm font-semibold text-dark-green uppercase tracking-luxury">
-                  License
-                </p>
-                <p className="text-2xl font-serif font-semibold text-charcoal">
-                  CA DRE #01938067
-                </p>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="relative aspect-square rounded-2xl overflow-hidden order-2 lg:order-1">
+                <img
+                  src="/headshot.jpg"
+                  alt="Eric Zunkley - Real Estate Agent"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
-              <div className="space-y-3">
-                <p className="text-sm font-semibold text-dark-green uppercase tracking-luxury">
-                  Brokerage
-                </p>
-                <p className="text-2xl font-serif font-semibold text-charcoal">
-                  eXp Realty of California
-                </p>
-              </div>
+              <div className="space-y-6 order-1 lg:order-2">
+                <h2 className="font-serif text-5xl font-semibold text-charcoal">
+                  Why I Do This
+                </h2>
 
-              <div className="space-y-3">
-                <p className="text-sm font-semibold text-dark-green uppercase tracking-luxury">
-                  Experience
-                </p>
-                <p className="text-2xl font-serif font-semibold text-charcoal">
-                  13+ Years
+                <p className="text-charcoal text-lg" style={{ lineHeight: '1.6' }}>
+                  Most of my business comes through referrals and repeat clients — that reflects the kind of trust I work to earn with every transaction. I'm not chasing deals. I'm building relationships, and I bring deep LA market knowledge and creative problem-solving to every one.
                 </p>
               </div>
             </div>
@@ -95,46 +57,48 @@ export default function AboutPage() {
 
       {/* Philosophy */}
       <section className="bg-cream py-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
-            My Approach
-          </h2>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
+              My Approach
+            </h2>
 
-          <div className="space-y-8">
-            <div className="border-l-4 border-dark-green pl-6 space-y-2">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Honest Guidance
-              </h3>
-              <p className="text-charcoal">
-                I give you my honest opinion, not what I think you want to hear. That's the only way to build trust.
-              </p>
-            </div>
+            <div className="space-y-8">
+              <div className="border-l-4 border-dark-green pl-6 space-y-2">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                  Honest Guidance
+                </h3>
+                <p className="text-charcoal">
+                  I give you my honest opinion, not what I think you want to hear. That's the only way to build trust.
+                </p>
+              </div>
 
-            <div className="border-l-4 border-dark-green pl-6 space-y-2">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Market Knowledge
-              </h3>
-              <p className="text-charcoal">
-                I know LA real estate deeply—the neighborhoods, the trends, the opportunities. That expertise saves you money and time.
-              </p>
-            </div>
+              <div className="border-l-4 border-dark-green pl-6 space-y-2">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                  Market Knowledge
+                </h3>
+                <p className="text-charcoal">
+                  I know LA real estate deeply—the neighborhoods, the trends, the opportunities. That expertise saves you money and time.
+                </p>
+              </div>
 
-            <div className="border-l-4 border-dark-green pl-6 space-y-2">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Creative Problem-Solving
-              </h3>
-              <p className="text-charcoal">
-                Real estate is rarely straightforward. I bring creative solutions to complex transactions.
-              </p>
-            </div>
+              <div className="border-l-4 border-dark-green pl-6 space-y-2">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                  Creative Problem-Solving
+                </h3>
+                <p className="text-charcoal">
+                  Real estate is rarely straightforward. I bring creative solutions to complex transactions.
+                </p>
+              </div>
 
-            <div className="border-l-4 border-dark-green pl-6 space-y-2">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Communication
-              </h3>
-              <p className="text-charcoal">
-                You'll always know what's happening in your transaction. I keep you informed every step of the way.
-              </p>
+              <div className="border-l-4 border-dark-green pl-6 space-y-2">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                  Communication
+                </h3>
+                <p className="text-charcoal">
+                  You'll always know what's happening in your transaction. I keep you informed every step of the way.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -142,21 +106,23 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="py-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="space-y-4">
-            <h2 className="font-serif text-5xl font-semibold text-charcoal">
-              Ready to work together?
-            </h2>
-            <p className="text-lg text-charcoal max-w-2xl mx-auto">
-              Let's talk about your real estate goals. I'm here to help.
-            </p>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto text-center space-y-8">
+            <div className="space-y-4">
+              <h2 className="font-serif text-5xl font-semibold text-charcoal">
+                Ready to work together?
+              </h2>
+              <p className="text-lg text-charcoal max-w-2xl mx-auto">
+                Let's talk about your real estate goals. I'm here to help.
+              </p>
+            </div>
 
-          <Link href="/contact">
-            <Button className="font-semibold px-8 py-3 text-lg">
-              Get In Touch
-            </Button>
-          </Link>
+            <Link href="/contact">
+              <Button className="font-semibold px-8 py-3 text-lg">
+                Get In Touch
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

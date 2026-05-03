@@ -17,8 +17,8 @@ export function AboutSnippet() {
           {/* Text */}
           <motion.div
             className="space-y-6"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: easeSmooth }}
             viewport={{ once: true, margin: '-80px' }}
           >
@@ -41,17 +41,19 @@ export function AboutSnippet() {
             </div>
           </motion.div>
 
-          {/* Image placeholder */}
+          {/* Headshot */}
           <motion.div
-            className="relative h-96 lg:h-[450px] bg-dark-green/10 rounded-2xl flex items-center justify-center"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="relative aspect-square rounded-2xl overflow-hidden w-3/4 mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: easeSmooth }}
             viewport={{ once: true, margin: '-80px' }}
           >
-            <div className="text-center">
-              <p className="text-charcoal">Headshot + bio coming</p>
-            </div>
+            <img
+              src="/headshot.jpg"
+              alt="Eric Zunkley - Real Estate Agent"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
           </div>
         </div>

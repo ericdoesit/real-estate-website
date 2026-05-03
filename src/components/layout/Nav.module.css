@@ -5,7 +5,6 @@
   font-family: var(--font-manrope);
   background-color: rgb(239 237 232 / 0.75);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgb(59 57 50 / 0.5);
 }
 
 .nav.scrolled {

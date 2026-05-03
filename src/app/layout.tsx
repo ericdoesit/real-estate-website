@@ -17,9 +17,6 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: 'Eric Zunkley - Real Estate | Los Angeles',
   description: 'Real estate in Los Angeles. Eric Zunkley specializes in buying and selling properties across LA.',
-  icons: {
-    icon: '/favicon.ico',
-  },
 }
 
 export default function RootLayout({
@@ -30,6 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${cormorant.variable} ${manrope.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-cream text-charcoal font-sans">

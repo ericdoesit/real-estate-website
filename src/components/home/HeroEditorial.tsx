@@ -11,7 +11,7 @@ const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
 export function HeroEditorial() {
   return (
-    <section className="bg-cream overflow-hidden lg:relative lg:h-[calc(100vh-80px)]">
+    <section className="bg-cream overflow-hidden py-10 lg:py-0 lg:relative lg:h-[calc(100vh-80px)]">
       {/* Desktop: absolutely positioned image on the right */}
       <motion.div
         className="hidden lg:block absolute right-0 top-20 bottom-20 w-[1260px] rounded-2xl overflow-hidden"
@@ -37,7 +37,7 @@ export function HeroEditorial() {
 
             {/* Mobile: image above eyebrow and headline */}
             <motion.div
-              className="lg:hidden relative w-full aspect-[4/3] rounded-xl overflow-hidden mt-6 mb-8"
+              className="lg:hidden relative w-full aspect-[4/3] rounded-xl overflow-hidden mt-2 mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.2, ease: easeSmooth, delay: 0.15 }}
@@ -48,11 +48,11 @@ export function HeroEditorial() {
                 fill
                 className="object-cover"
                 priority
-                sizes="100vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center pb-8 lg:pb-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               {/* Text */}
               <div className="lg:rounded-xl lg:p-10 lg:bg-cream/75 lg:backdrop-blur-md">
               <div className="flex flex-col justify-center space-y-6">
@@ -76,7 +76,7 @@ export function HeroEditorial() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1.2, ease: easeSmooth, delay: 0.1 }}
                     >
-                      Curated homes
+                      Real Estate
                     </motion.span>
                     <motion.span
                       className="block"
@@ -84,7 +84,7 @@ export function HeroEditorial() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1.2, ease: easeSmooth, delay: 0.22 }}
                     >
-                      for your story.
+                      Done Right.
                     </motion.span>
                   </motion.h1>
                 </div>
@@ -95,7 +95,7 @@ export function HeroEditorial() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.2, ease: easeSmooth, delay: 0.38 }}
                 >
-                  I help families and investors find, buy, and sell properties across Los Angeles with honesty, expertise, and genuine care.
+                  Helping Los Angeles buyers and sellers for 13 years make smart, informed decisions. No pressure, honest guidance.
                 </motion.p>
 
                 <motion.div

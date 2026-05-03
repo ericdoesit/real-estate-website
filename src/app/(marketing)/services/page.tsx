@@ -103,130 +103,138 @@ export default function ServicesPage() {
     <div className="">
       {/* Hero */}
       <section className="pt-10 pb-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="space-y-4">
-            <Eyebrow>Services</Eyebrow>
-            <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-              Expert guidance. Every step.
-            </h1>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto space-y-8">
+            <div className="space-y-4">
+              <Eyebrow>Services</Eyebrow>
+              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                Expert guidance. Every step.
+              </h1>
+            </div>
 
-          <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
-            Whether you're buying your first home, selling a property, or making a strategic investment, I guide you
-            through every stage of the transaction with transparency and expertise.
-          </p>
+            <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
+              Whether you're buying your first home, selling a property, or making a strategic investment, I guide you
+              through every stage of the transaction with transparency and expertise.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Buying Process */}
       <section>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16">
-            <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase mb-2">
-              Buying
-            </p>
-            <h2 className="font-serif text-5xl font-semibold text-charcoal">
-              The Buying Process
-            </h2>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="mb-16">
+              <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase mb-2">
+                Buying
+              </p>
+              <h2 className="font-serif text-5xl font-semibold text-charcoal">
+                The Buying Process
+              </h2>
+            </div>
 
-          <div className="space-y-6">
-            {buyingSteps.map((step) => (
-              <div key={step.number} className="flex gap-6 pb-6 border-b border-charcoal/10">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-dark-green text-white font-serif font-semibold text-lg">
-                    {step.number}
+            <div className="space-y-6">
+              {buyingSteps.map((step) => (
+                <div key={step.number} className="flex gap-6 pb-6 border-b border-charcoal/10">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full border border-charcoal/30 font-sans text-lg font-medium text-charcoal">
+                      {step.number}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-charcoal leading-relaxed">{step.description}</p>
                   </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-charcoal leading-relaxed">{step.description}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Selling Process */}
       <section className="bg-cream py-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16">
-            <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
-              Selling
-            </p>
-            <h2 className="font-serif text-5xl font-semibold text-charcoal">
-              The Selling Process
-            </h2>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="mb-16">
+              <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
+                Selling
+              </p>
+              <h2 className="font-serif text-5xl font-semibold text-charcoal">
+                The Selling Process
+              </h2>
+            </div>
 
-          <div className="space-y-6">
-            {sellingSteps.map((step) => (
-              <div key={step.number} className="flex gap-6 pb-6 border-b border-charcoal/10">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-goldenrod text-white font-serif font-semibold text-lg">
-                    {step.number}
+            <div className="space-y-6">
+              {sellingSteps.map((step) => (
+                <div key={step.number} className="flex gap-6 pb-6 border-b border-charcoal/10">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full border border-charcoal/30 font-sans text-lg font-medium text-charcoal">
+                      {step.number}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-charcoal leading-relaxed">{step.description}</p>
                   </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-charcoal leading-relaxed">{step.description}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Additional Services */}
       <section>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
-            Additional Services
-          </h2>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
+            <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
+              Additional Services
+            </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Investment Analysis
-              </h3>
-              <p className="text-charcoal">
-                Strategic guidance for investors evaluating properties, neighborhoods, and market timing. I help you build
-                wealth through real estate with confidence.
-              </p>
-            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                  Investment Analysis
+                </h3>
+                <p className="text-charcoal">
+                  Strategic guidance for investors evaluating properties, neighborhoods, and market timing. I help you build
+                  wealth through real estate with confidence.
+                </p>
+              </div>
 
-            <div className="space-y-4">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Market Consultation
-              </h3>
-              <p className="text-charcoal">
-                Get educated about your neighborhood, market conditions, and opportunities. No pressure, just honest
-                guidance to help you make informed decisions.
-              </p>
-            </div>
+              <div className="space-y-4">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                  Market Consultation
+                </h3>
+                <p className="text-charcoal">
+                  Get educated about your neighborhood, market conditions, and opportunities. No pressure, just honest
+                  guidance to help you make informed decisions.
+                </p>
+              </div>
 
-            <div className="space-y-4">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                1031 Exchange Support
-              </h3>
-              <p className="text-charcoal">
-                Navigating a 1031 exchange requires timing and market knowledge. I guide you through the process to
-                maximize your investment.
-              </p>
-            </div>
+              <div className="space-y-4">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                  1031 Exchange Support
+                </h3>
+                <p className="text-charcoal">
+                  Navigating a 1031 exchange requires timing and market knowledge. I guide you through the process to
+                  maximize your investment.
+                </p>
+              </div>
 
-            <div className="space-y-4">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Relocation Services
-              </h3>
-              <p className="text-charcoal">
-                Moving to LA? I help you understand neighborhoods, find the right home, and settle into your new community.
-              </p>
+              <div className="space-y-4">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                  Relocation Services
+                </h3>
+                <p className="text-charcoal">
+                  Moving to LA? I help you understand neighborhoods, find the right home, and settle into your new community.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -234,21 +242,23 @@ export default function ServicesPage() {
 
       {/* CTA */}
       <section className="py-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="space-y-4">
-            <h2 className="font-serif text-5xl font-semibold text-charcoal">
-              Ready to get started?
-            </h2>
-            <p className="text-lg text-charcoal max-w-2xl mx-auto">
-              Let's discuss your real estate goals and how I can help you achieve them.
-            </p>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto text-center space-y-8">
+            <div className="space-y-4">
+              <h2 className="font-serif text-5xl font-semibold text-charcoal">
+                Ready to get started?
+              </h2>
+              <p className="text-lg text-charcoal max-w-2xl mx-auto">
+                Let's discuss your real estate goals and how I can help you achieve them.
+              </p>
+            </div>
 
-          <Link href="/contact">
-            <Button className="font-semibold px-8 py-3 text-lg">
-              Schedule a Consultation
-            </Button>
-          </Link>
+            <Link href="/contact">
+              <Button className="font-semibold px-8 py-3 text-lg">
+                Schedule a Consultation
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

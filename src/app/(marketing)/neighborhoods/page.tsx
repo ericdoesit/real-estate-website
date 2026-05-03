@@ -110,18 +110,20 @@ export default async function NeighborhoodsPage() {
     <div className="">
       {/* Hero */}
       <section className="pt-10 pb-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="space-y-4">
-            <Eyebrow>Neighborhoods</Eyebrow>
-            <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-              Explore LA neighborhoods.
-            </h1>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto space-y-8">
+            <div className="space-y-4">
+              <Eyebrow>Neighborhoods</Eyebrow>
+              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                Explore LA neighborhoods.
+              </h1>
+            </div>
 
-          <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
-            Each neighborhood has its own character, market dynamics, and investment potential. Explore detailed guides
-            with market data, lifestyle insights, and what makes each area special.
-          </p>
+            <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
+              Each neighborhood has its own character, market dynamics, and investment potential. Explore detailed guides
+              with market data, lifestyle insights, and what makes each area special.
+            </p>
+          </div>
         </div>
       </section>
 
