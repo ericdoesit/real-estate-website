@@ -115,7 +115,7 @@ export function ContactForm() {
         {isLoading ? 'Sending...' : 'Send Message'}
       </Button>
 
-      <p className="text-sm text-muted text-center">
+      <p className="text-sm text-charcoal text-center">
         Or call me directly at{' '}
         <a href="tel:+13234879865" className="font-semibold hover:transition-colors">
           (323) 487-9865

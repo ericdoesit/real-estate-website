@@ -33,17 +33,6 @@ export const property = defineType({
       initialValue: false,
     }),
     defineField({
-      name: 'listPrice',
-      title: 'List Price (USD)',
-      type: 'number',
-    }),
-    defineField({
-      name: 'soldPrice',
-      title: 'Sold Price (USD)',
-      type: 'number',
-      description: 'Fill when status = sold',
-    }),
-    defineField({
       name: 'soldDate',
       title: 'Sold Date',
       type: 'date',
@@ -61,17 +50,6 @@ export const property = defineType({
     defineField({
       name: 'sqft',
       title: 'Square Feet',
-      type: 'number',
-    }),
-    defineField({
-      name: 'lotSize',
-      title: 'Lot Size',
-      type: 'string',
-      description: 'e.g. "0.25 acres"',
-    }),
-    defineField({
-      name: 'yearBuilt',
-      title: 'Year Built',
       type: 'number',
     }),
     defineField({

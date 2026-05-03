@@ -31,20 +31,6 @@ export const blogPost = defineType({
       initialValue: 'Eric Zunkley',
     }),
     defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-      options: {
-        list: [
-          'Market Update',
-          'Buying Guide',
-          'Selling Tips',
-          'Neighborhood Spotlight',
-          'Lifestyle',
-        ],
-      },
-    }),
-    defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',

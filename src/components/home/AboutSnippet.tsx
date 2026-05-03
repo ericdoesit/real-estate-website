@@ -10,7 +10,7 @@ const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
 export function AboutSnippet() {
   return (
-    <section className="py-20 bg-wheat">
+    <section className="py-10 bg-wheat">
       <div className="w-full px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -30,7 +30,7 @@ export function AboutSnippet() {
             </div>
 
             <p className="font-sans text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
-              I'm a California real estate agent committed to helping my clients achieve their goals through honesty, deep market knowledge, and genuine care. Most of my business comes through referrals and repeat clients—a reflection of the relationships I build with every transaction. Whether you're buying your first home, selling a property, or investing in LA real estate, I bring creative problem-solving and a deep understanding of neighborhoods from Eagle Rock to Venice, Mid City to West Adams.
+              I'm a California real estate agent who helps buyers, sellers, and investors navigate LA with honesty, market expertise, and genuine care — whether that's Eagle Rock, Venice, Mid City, or West Adams. Most of my business comes through referrals and repeat clients, which reflects the kind of relationships I build in every transaction.
             </p>
 
             <div className="pt-4">

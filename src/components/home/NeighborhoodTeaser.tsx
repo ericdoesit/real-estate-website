@@ -92,7 +92,7 @@ export function NeighborhoodTeaser() {
   const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
   return (
-    <section className="py-20 bg-cream">
+    <section className="py-10 bg-cream">
       <div className="w-full px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
         {/* Header */}
@@ -107,6 +107,16 @@ export function NeighborhoodTeaser() {
           <h2 className="font-serif text-5xl font-semibold text-charcoal">
             Explore LA neighborhoods.
           </h2>
+          <p className="font-sans text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
+            Each guide highlights the character, culture, and details that make each neighborhood worth exploring.
+          </p>
+          <Link
+            href="/neighborhoods"
+            className={`${styles.browseLink} font-semibold whitespace-nowrap`}
+          >
+            Browse all neighborhoods
+            <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
+          </Link>
         </motion.div>
 
         {/* Navigation and Grid */}
@@ -164,28 +174,6 @@ export function NeighborhoodTeaser() {
           </div>
         </div>
 
-        {/* Full guide CTA */}
-        <motion.div
-          className="mt-12 p-8 bg-dark-green/5 rounded-xl border border-dark-green/20 text-center space-y-4"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: easeSmooth }}
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          <h3 className="font-serif text-3xl font-semibold text-charcoal">
-            Want deeper neighborhood insights?
-          </h3>
-          <p className="font-sans text-lg text-charcoal max-w-2xl mx-auto">
-            Each neighborhood guide includes market data, school info, lifestyle highlights, and what makes each area special.
-          </p>
-          <Link
-            href="/neighborhoods"
-            className={`${styles.browseLink} font-semibold whitespace-nowrap`}
-          >
-            Browse all neighborhoods
-            <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
-          </Link>
-        </motion.div>
         </div>
       </div>
     </section>

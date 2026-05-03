@@ -76,7 +76,7 @@ export default async function NeighborhoodDetailPage({
         <h1 className="font-serif text-4xl font-semibold text-charcoal mb-8">
           Neighborhood not found
         </h1>
-        <p className="text-muted">
+        <p className="text-charcoal">
           This neighborhood guide doesn't exist yet. Create it in Sanity Studio.
         </p>
       </div>
@@ -135,7 +135,7 @@ export default async function NeighborhoodDetailPage({
                       <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
                         {highlight.name}
                       </h3>
-                      <p className="text-muted">{highlight.note}</p>
+                      <p className="text-charcoal">{highlight.note}</p>
                     </div>
                   ))}
                 </div>

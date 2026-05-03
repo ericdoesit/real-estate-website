@@ -26,7 +26,7 @@
 .card {
   flex-shrink: 0;
   width: 320px;
-  background-color: var(--color-wheat);
+  background-color: var(--color-cream);
   border-radius: 1rem;
   padding: 1.5rem;
   display: flex;

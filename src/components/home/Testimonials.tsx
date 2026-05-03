@@ -154,7 +154,7 @@ export function Testimonials() {
   const doubledB = [...rowB, ...rowB]
 
   return (
-    <section className="py-20 bg-cream overflow-hidden">
+    <section className="py-10 bg-wheat overflow-hidden">
       <div className="w-full px-6 lg:px-12 mb-12">
         <div className="max-w-[1400px] mx-auto">
           <motion.div

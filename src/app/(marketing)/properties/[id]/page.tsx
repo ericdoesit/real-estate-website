@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ImageLightbox } from '@/components/ImageLightbox'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { serverClient } from '@/lib/sanity/client'
 import { urlFor } from '@/lib/sanity/image'
 
@@ -15,8 +16,6 @@ interface Property {
   _id: string
   address: string
   status: string
-  listPrice?: number
-  soldPrice?: number
   soldDate?: string
   beds?: number
   baths?: number
@@ -36,14 +35,10 @@ async function getProperty(id: string) {
         address,
         slug,
         status,
-        listPrice,
-        soldPrice,
         soldDate,
         beds,
         baths,
         sqft,
-        lotSize,
-        yearBuilt,
         propertyType,
         heroImage,
         gallery,
@@ -85,16 +80,13 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h1 className="font-serif text-4xl font-semibold text-charcoal mb-4">Property Not Found</h1>
-        <p className="text-muted mb-8">The property you're looking for doesn't exist.</p>
+        <p className="text-charcoal mb-8">The property you're looking for doesn't exist.</p>
         <Link href="/properties" className="font-semibold hover:transition-colors">
           ← Back to Properties
         </Link>
       </div>
     )
   }
-
-  const isActive = property.status === 'active'
-  const price = isActive ? property.listPrice : property.soldPrice
 
   const galleryImages = property.gallery && property.gallery.length > 0
     ? property.gallery
@@ -103,7 +95,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
   return (
     <article className="space-y-12">
       {/* Hero Image */}
-      <section className="pt-20">
+      <section className="pt-10">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-6xl mx-auto">
             {property.heroImage ? (
@@ -118,7 +110,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
               </div>
             ) : (
               <div className="w-full aspect-video bg-dark-green/10 flex items-center justify-center overflow-hidden rounded-xl">
-                <p className="text-muted">No property image available</p>
+                <p className="text-charcoal">No property image available</p>
               </div>
             )}
           </div>
@@ -128,25 +120,13 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
       <section>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <span
-                className={`text-xs font-semibold px-3 py-1 rounded-full tracking-luxury uppercase ${
-                  isActive
-                    ? 'bg-dark-green/10 text-dark-green'
-                    : 'bg-gray-100 text-gray-600'
-                }`}
-              >
-                {property.status === 'active' ? 'Active' : 'Sold'}
-              </span>
-            </div>
+            <Eyebrow color={property.status === 'active' ? 'dark-green' : 'charcoal'}>
+              {property.status === 'active' ? 'Active' : 'Sold'}
+            </Eyebrow>
 
             <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
               {property.address}
             </h1>
-
-            <p className="text-xl font-serif font-semibold text-dark-green">
-              ${price?.toLocaleString()}
-            </p>
           </div>
         </div>
       </section>
@@ -202,7 +182,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
               About This Home
             </h2>
             {property.description ? (
-              <div className="text-lg text-muted leading-relaxed">
+              <div className="text-lg text-charcoal leading-relaxed">
                 {Array.isArray(property.description) ? (
                   property.description.map((block: any, idx: number) => (
                     <p key={idx} className="mb-4">
@@ -216,7 +196,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
                 )}
               </div>
             ) : (
-              <p className="text-lg text-muted leading-relaxed">No description available.</p>
+              <p className="text-lg text-charcoal leading-relaxed">No description available.</p>
             )}
           </div>
 
@@ -229,7 +209,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
                 {property.features.map((feature: string, i: number) => (
                   <li key={i} className="flex items-center gap-3">
                     <span className="text-dark-green font-bold">✓</span>
-                    <span className="text-muted">{feature}</span>
+                    <span className="text-charcoal">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -257,38 +237,9 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
         </section>
       )}
 
-      {/* Contact CTA */}
-      <section className="bg-dark-green py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="space-y-4">
-            <h2 className="font-serif text-5xl font-semibold text-white">
-              Interested in this property?
-            </h2>
-            <p className="text-lg text-white/90 max-w-xl mx-auto">
-              Let me know if you'd like more information or to schedule a viewing.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button className="font-semibold px-8 py-3 text-lg">
-                Schedule a Showing
-              </Button>
-            </Link>
-            <a href="tel:+13234879865">
-              <Button
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-dark-green font-semibold px-8 py-3 text-lg"
-              >
-                Call (323) 487-9865
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* Back Link */}
-      <section className="pb-20">
+      <section className="pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/properties" className="font-semibold inline-flex items-center gap-2">
             ← Back to Properties

@@ -95,7 +95,7 @@ const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
           {children}
           <button
             onClick={() => setOpen(false)}
-            className="absolute right-4 top-4 text-muted hover:text-charcoal"
+            className="absolute right-4 top-4 text-charcoal hover:text-charcoal"
           >
             ✕
           </button>

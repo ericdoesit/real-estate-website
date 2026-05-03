@@ -107,9 +107,9 @@ export default async function NeighborhoodsPage() {
   }
 
   return (
-    <div className="space-y-20">
+    <div className="">
       {/* Hero */}
-      <section className="pt-20 pb-16">
+      <section className="pt-10 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
             <Eyebrow>Neighborhoods</Eyebrow>
@@ -118,7 +118,7 @@ export default async function NeighborhoodsPage() {
             </h1>
           </div>
 
-          <p className="text-lg text-muted max-w-2xl leading-relaxed">
+          <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
             Each neighborhood has its own character, market dynamics, and investment potential. Explore detailed guides
             with market data, lifestyle insights, and what makes each area special.
           </p>
@@ -147,7 +147,7 @@ export default async function NeighborhoodsPage() {
                 <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors">
                   {neighborhood.name}
                 </h3>
-                <p className="text-muted text-sm mt-2">{neighborhood.tagline}</p>
+                <p className="text-charcoal text-sm mt-2">{neighborhood.tagline}</p>
 
               </Link>
             ))}
@@ -156,13 +156,13 @@ export default async function NeighborhoodsPage() {
       </section>
 
       {/* Info Section */}
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="space-y-4">
             <h2 className="font-serif text-5xl font-semibold text-charcoal">
               Want neighborhood insights?
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
+            <p className="text-lg text-charcoal max-w-2xl mx-auto">
               Each neighborhood guide includes market data, lifestyle highlights, investment potential, and what makes
               the area special. Click any neighborhood above to explore.
             </p>

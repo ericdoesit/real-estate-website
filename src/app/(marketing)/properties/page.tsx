@@ -15,8 +15,6 @@ interface Property {
   address: string
   slug: { current: string }
   status: string
-  listPrice?: number
-  soldPrice?: number
   beds: number
   baths: number
   sqft: number
@@ -45,7 +43,6 @@ export default async function PropertiesPage() {
         address: 'Add properties to Sanity Studio to see them here',
         slug: { current: 'placeholder' },
         status: 'sold',
-        soldPrice: 2450000,
         beds: 3,
         baths: 2,
         sqft: 2100,
@@ -55,7 +52,6 @@ export default async function PropertiesPage() {
         address: 'Go to /studio to create properties',
         slug: { current: 'placeholder' },
         status: 'sold',
-        soldPrice: 1850000,
         beds: 2,
         baths: 2,
         sqft: 1600,
@@ -83,7 +79,7 @@ export default async function PropertiesPage() {
             />
           ) : (
             <div className="w-full h-full bg-dark-green/10 flex items-center justify-center">
-              <p className="text-muted">No image available</p>
+              <p className="text-charcoal">No image available</p>
             </div>
           )}
         </div>
@@ -94,16 +90,11 @@ export default async function PropertiesPage() {
             {property.address}
           </h3>
 
-          <div className="flex gap-4 text-sm text-muted">
+          <div className="flex gap-4 text-sm text-charcoal">
             <span>{property.beds} bed</span>
             <span>{property.baths} bath</span>
             <span>{property.sqft?.toLocaleString()} sqft</span>
           </div>
-
-          <p className="text-xl font-serif font-semibold text-dark-green">
-            $
-            {(property.status === 'sold' ? property.soldPrice : property.listPrice)?.toLocaleString()}
-          </p>
 
           {property.status === 'sold' && (
             <span className="text-xs font-semibold uppercase tracking-luxury">Sold</span>
@@ -114,22 +105,21 @@ export default async function PropertiesPage() {
   )
 
   return (
-    <div className="space-y-20">
+    <div className="">
       {/* Hero */}
-      <section className="pt-20 pb-16">
+      <section className="pt-10 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
             <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase">
               Properties
             </p>
             <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-              Featured listings & portfolio.
+              Past transactions.
             </h1>
           </div>
 
-          <p className="text-lg text-muted max-w-2xl leading-relaxed">
-            Browse my current active listings and recent sold properties. Each listing represents successful transactions
-            that have helped my clients achieve their real estate goals.
+          <p className="text-lg text-charcoal max-w-2xl" style={{ lineHeight: '1.6' }}>
+            A look at some of the properties I've helped clients buy and sell across Los Angeles.
           </p>
         </div>
       </section>
@@ -158,7 +148,7 @@ export default async function PropertiesPage() {
 
       {/* Sold Properties */}
       {soldListings.length > 0 && (
-        <section className="bg-cream py-20">
+        <section className="bg-cream py-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
               <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase mb-2">
@@ -185,7 +175,7 @@ export default async function PropertiesPage() {
             <h2 className="font-serif text-5xl font-semibold text-charcoal">
               Looking for something specific?
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
+            <p className="text-lg text-charcoal max-w-2xl mx-auto">
               Contact me for additional properties, market analysis, or to discuss your real estate goals.
             </p>
           </div>

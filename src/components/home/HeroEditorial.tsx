@@ -52,7 +52,7 @@ export function HeroEditorial() {
               />
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center pb-16 lg:pb-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center pb-8 lg:pb-0">
               {/* Text */}
               <div className="lg:rounded-xl lg:p-10 lg:bg-cream/75 lg:backdrop-blur-md">
               <div className="flex flex-col justify-center space-y-6">

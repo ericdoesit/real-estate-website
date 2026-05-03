@@ -51,7 +51,7 @@ export function CTABanner() {
   }
 
   return (
-    <section className="py-20 bg-charcoal">
+    <section className="py-10 bg-charcoal">
       <div className="w-full px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">

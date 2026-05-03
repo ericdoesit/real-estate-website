@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="space-y-20">
+    <div className="">
       {/* Hero */}
-      <section className="pt-20 pb-16">
+      <section className="pt-10 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
             <Eyebrow>About Eric</Eyebrow>
@@ -20,14 +20,14 @@ export default function AboutPage() {
             </h1>
           </div>
 
-          <p className="text-lg text-muted max-w-2xl leading-relaxed">
-            I believe the relationship between a real estate agent and their clients must be based on trust, communication, and honesty. For over 15 years, I've helped families and investors achieve their goals through a simple philosophy: your success is my success.
+          <p className="text-lg text-charcoal max-w-2xl" style={{ lineHeight: '1.6' }}>
+            For 13 years, I've helped buyers, sellers, and investors across Los Angeles achieve their goals — with honesty, deep market knowledge, and genuine care from start to finish.
           </p>
         </div>
       </section>
 
       {/* Headshot placeholder */}
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden order-2 lg:order-1">
@@ -43,19 +43,9 @@ export default function AboutPage() {
                 Why I Do This
               </h2>
 
-              <div className="space-y-4 text-muted">
-                <p>
-                  My reason for being in real estate is simple: I want to help my clients achieve their goals. Whether you're buying your first home, selling a property you've loved, or making a strategic investment, I'm committed to providing you with the expertise, honesty, and support you deserve.
-                </p>
-
-                <p>
-                  The vast majority of my business comes from referrals and repeat clients. That tells you something important—I prioritize relationships over transactions.
-                </p>
-
-                <p>
-                  I know the Los Angeles real estate market deeply. I understand the neighborhoods, the market dynamics, the opportunities. I have the creative talent to showcase your home. And I bring problem-solving skills to every transaction, no matter how complex.
-                </p>
-              </div>
+              <p className="text-charcoal text-lg" style={{ lineHeight: '1.6' }}>
+                Most of my business comes through referrals and repeat clients — that reflects the kind of trust I work to earn with every transaction. I'm not chasing deals. I'm building relationships, and I bring deep LA market knowledge and creative problem-solving to every one.
+              </p>
             </div>
           </div>
         </div>
@@ -79,7 +69,6 @@ export default function AboutPage() {
                 <p className="text-2xl font-serif font-semibold text-charcoal">
                   CA DRE #01938067
                 </p>
-                <p className="text-muted">California Department of Real Estate</p>
               </div>
 
               <div className="space-y-3">
@@ -87,9 +76,8 @@ export default function AboutPage() {
                   Brokerage
                 </p>
                 <p className="text-2xl font-serif font-semibold text-charcoal">
-                  eXp Realty
+                  eXp Realty of California
                 </p>
-                <p className="text-muted">eXp Realty of California Inc.</p>
               </div>
 
               <div className="space-y-3">
@@ -97,9 +85,8 @@ export default function AboutPage() {
                   Experience
                 </p>
                 <p className="text-2xl font-serif font-semibold text-charcoal">
-                  15+ Years
+                  13+ Years
                 </p>
-                <p className="text-muted">Los Angeles Real Estate</p>
               </div>
             </div>
           </div>
@@ -107,7 +94,7 @@ export default function AboutPage() {
       </section>
 
       {/* Philosophy */}
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
             My Approach
@@ -118,7 +105,7 @@ export default function AboutPage() {
               <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Honest Guidance
               </h3>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 I give you my honest opinion, not what I think you want to hear. That's the only way to build trust.
               </p>
             </div>
@@ -127,7 +114,7 @@ export default function AboutPage() {
               <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Market Knowledge
               </h3>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 I know LA real estate deeply—the neighborhoods, the trends, the opportunities. That expertise saves you money and time.
               </p>
             </div>
@@ -136,7 +123,7 @@ export default function AboutPage() {
               <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Creative Problem-Solving
               </h3>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 Real estate is rarely straightforward. I bring creative solutions to complex transactions.
               </p>
             </div>
@@ -145,7 +132,7 @@ export default function AboutPage() {
               <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Communication
               </h3>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 You'll always know what's happening in your transaction. I keep you informed every step of the way.
               </p>
             </div>
@@ -154,13 +141,13 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="space-y-4">
             <h2 className="font-serif text-5xl font-semibold text-charcoal">
               Ready to work together?
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
+            <p className="text-lg text-charcoal max-w-2xl mx-auto">
               Let's talk about your real estate goals. I'm here to help.
             </p>
           </div>

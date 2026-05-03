@@ -10,7 +10,6 @@ interface BlogPost {
   excerpt: string
   publishedAt: string
   author: string
-  category: string
 }
 
 export const metadata = {
@@ -38,7 +37,6 @@ export default async function BlogPage() {
         excerpt: 'California SB9 is changing the real estate landscape. Learn how it could benefit your property.',
         publishedAt: '2024-03-15',
         author: 'Eric Zunkley',
-        category: 'Legislation',
       },
       {
         _id: '2',
@@ -47,7 +45,6 @@ export default async function BlogPage() {
         excerpt: 'The LA real estate market is heating up. Here\'s what buyers and sellers need to know.',
         publishedAt: '2024-03-01',
         author: 'Eric Zunkley',
-        category: 'Market Update',
       },
     ]
   }
@@ -61,9 +58,9 @@ export default async function BlogPage() {
   }
 
   return (
-    <div className="space-y-20">
+    <div className="">
       {/* Hero */}
-      <section className="pt-20 pb-16">
+      <section className="pt-10 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
             <Eyebrow>Blog</Eyebrow>
@@ -72,7 +69,7 @@ export default async function BlogPage() {
             </h1>
           </div>
 
-          <p className="text-lg text-muted max-w-2xl leading-relaxed">
+          <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
             Stay informed with updates on LA real estate market conditions, buying and selling tips, and strategies for
             maximizing your real estate investment.
           </p>
@@ -91,23 +88,16 @@ export default async function BlogPage() {
                   className="group"
                 >
                   <div className="space-y-4 h-full flex flex-col">
-                    {/* Category badge */}
-                    <div className="inline-flex w-fit">
-                      <span className="text-xs font-semibold text-dark-green uppercase tracking-luxury bg-dark-green/10 px-3 py-1 rounded-full">
-                        {post.category}
-                      </span>
-                    </div>
-
                     {/* Title */}
                     <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors line-clamp-3">
                       {post.title}
                     </h3>
 
                     {/* Excerpt */}
-                    <p className="text-muted text-sm flex-1">{post.excerpt}</p>
+                    <p className="text-charcoal text-sm flex-1">{post.excerpt}</p>
 
                     {/* Meta */}
-                    <div className="flex items-center justify-between text-xs text-muted pt-4 border-t border-charcoal/10">
+                    <div className="flex items-center justify-between text-xs text-charcoal pt-4 border-t border-charcoal/10">
                       <span>{formatDate(post.publishedAt)}</span>
                       <span>By {post.author}</span>
                     </div>
@@ -117,7 +107,7 @@ export default async function BlogPage() {
             </div>
           ) : (
             <div className="text-center py-16">
-              <p className="text-muted">No blog posts yet. Check back soon for market updates and guides.</p>
+              <p className="text-charcoal">No blog posts yet. Check back soon for market updates and guides.</p>
             </div>
           )}
         </div>

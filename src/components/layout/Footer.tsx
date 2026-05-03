@@ -42,7 +42,7 @@ export function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-charcoal/10 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted font-sans">
+          <div className="border-t border-charcoal/10 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-charcoal font-sans">
             <p>&copy; {currentYear} Eric Zunkley. All rights reserved.</p>
             <nav className="flex gap-6 text-base">
               <Link href="/privacy" className={styles.footerLink}>

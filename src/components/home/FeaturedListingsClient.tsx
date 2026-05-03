@@ -18,7 +18,6 @@ interface Property {
   _id: string
   address: string
   slug: { current: string }
-  listPrice: number
   beds: number
   baths: number
   sqft: number
@@ -29,7 +28,7 @@ const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
 export function FeaturedListingsClient({ properties }: { properties: Property[] }) {
   return (
-    <section className="py-20 bg-cream">
+    <section className="py-10 bg-cream">
       <div className="w-full px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
         {/* Header */}
@@ -71,7 +70,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
                   />
                 ) : (
                   <div className="w-full h-full bg-dark-green/10 flex items-center justify-center">
-                    <p className="text-muted">No image available</p>
+                    <p className="text-charcoal">No image available</p>
                   </div>
                 )}
                 <div className="absolute top-4 right-4 bg-goldenrod text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
@@ -85,15 +84,11 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
                   {property.address}
                 </h3>
 
-                <div className="flex gap-6 text-sm text-muted">
+                <div className="flex gap-6 text-sm text-charcoal">
                   <span>{property.beds} bed</span>
                   <span>{property.baths} bath</span>
                   <span>{property.sqft?.toLocaleString()} sqft</span>
                 </div>
-
-                <p className="text-2xl font-serif font-semibold text-dark-green">
-                  ${property.listPrice?.toLocaleString()}
-                </p>
 
                 <Link href={`/properties/${property.slug?.current || 'placeholder'}`} className={`${styles.detailsLink} text-sm font-semibold whitespace-nowrap`}>
                   View details

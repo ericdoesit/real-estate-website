@@ -85,7 +85,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
           {children}
           <button
             onClick={() => setOpen(false)}
-            className="absolute right-4 top-4 text-muted hover:text-charcoal"
+            className="absolute right-4 top-4 text-charcoal hover:text-charcoal"
           >
             ✕
           </button>
@@ -109,7 +109,7 @@ DialogTitle.displayName = 'DialogTitle'
 
 const DialogDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
   ({ className, ...props }, ref) => (
-    <p ref={ref} className={cn('font-sans text-sm text-muted', className)} {...props} />
+    <p ref={ref} className={cn('font-sans text-sm text-charcoal', className)} {...props} />
   )
 )
 DialogDescription.displayName = 'DialogDescription'

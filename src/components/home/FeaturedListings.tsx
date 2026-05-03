@@ -16,7 +16,6 @@ interface Property {
   _id: string
   address: string
   slug: { current: string }
-  listPrice: number
   beds: number
   baths: number
   sqft: number
@@ -39,7 +38,6 @@ export async function FeaturedListings() {
         _id: '1',
         address: 'Add properties to Sanity Studio to see them here',
         slug: { current: 'placeholder' },
-        listPrice: 2450000,
         beds: 3,
         baths: 2,
         sqft: 2100,
@@ -48,7 +46,6 @@ export async function FeaturedListings() {
         _id: '2',
         address: 'Go to /studio to create properties',
         slug: { current: 'placeholder' },
-        listPrice: 1850000,
         beds: 2,
         baths: 2,
         sqft: 1600,
@@ -57,7 +54,6 @@ export async function FeaturedListings() {
         _id: '3',
         address: 'Featured properties will appear here',
         slug: { current: 'placeholder' },
-        listPrice: 3200000,
         beds: 4,
         baths: 3,
         sqft: 3500,

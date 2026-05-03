@@ -100,9 +100,9 @@ export default function ServicesPage() {
   ]
 
   return (
-    <div className="space-y-20">
+    <div className="">
       {/* Hero */}
-      <section className="pt-20 pb-16">
+      <section className="pt-10 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
             <Eyebrow>Services</Eyebrow>
@@ -111,7 +111,7 @@ export default function ServicesPage() {
             </h1>
           </div>
 
-          <p className="text-lg text-muted max-w-2xl leading-relaxed">
+          <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
             Whether you're buying your first home, selling a property, or making a strategic investment, I guide you
             through every stage of the transaction with transparency and expertise.
           </p>
@@ -142,7 +142,7 @@ export default function ServicesPage() {
                   <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-muted leading-relaxed">{step.description}</p>
+                  <p className="text-charcoal leading-relaxed">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -151,7 +151,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Selling Process */}
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
             <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
@@ -174,7 +174,7 @@ export default function ServicesPage() {
                   <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-muted leading-relaxed">{step.description}</p>
+                  <p className="text-charcoal leading-relaxed">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -194,7 +194,7 @@ export default function ServicesPage() {
               <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Investment Analysis
               </h3>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 Strategic guidance for investors evaluating properties, neighborhoods, and market timing. I help you build
                 wealth through real estate with confidence.
               </p>
@@ -204,7 +204,7 @@ export default function ServicesPage() {
               <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Market Consultation
               </h3>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 Get educated about your neighborhood, market conditions, and opportunities. No pressure, just honest
                 guidance to help you make informed decisions.
               </p>
@@ -214,7 +214,7 @@ export default function ServicesPage() {
               <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 1031 Exchange Support
               </h3>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 Navigating a 1031 exchange requires timing and market knowledge. I guide you through the process to
                 maximize your investment.
               </p>
@@ -224,7 +224,7 @@ export default function ServicesPage() {
               <h3 className="font-serif text-3xl font-semibold text-charcoal">
                 Relocation Services
               </h3>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 Moving to LA? I help you understand neighborhoods, find the right home, and settle into your new community.
               </p>
             </div>
@@ -233,13 +233,13 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="space-y-4">
             <h2 className="font-serif text-5xl font-semibold text-charcoal">
               Ready to get started?
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
+            <p className="text-lg text-charcoal max-w-2xl mx-auto">
               Let's discuss your real estate goals and how I can help you achieve them.
             </p>
           </div>

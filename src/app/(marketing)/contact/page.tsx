@@ -8,9 +8,9 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="space-y-20">
+    <div className="">
       {/* Hero */}
-      <section className="pt-20 pb-16">
+      <section className="pt-10 pb-8">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-4">
             <Eyebrow>Get In Touch</Eyebrow>
@@ -19,21 +19,21 @@ export default function ContactPage() {
             </h1>
           </div>
 
-          <p className="text-lg text-muted max-w-xl leading-relaxed">
+          <p className="text-lg text-charcoal max-w-xl leading-relaxed">
             Whether you're buying, selling, or exploring opportunities, I'm here to help. Reach out with any questions—I'll get back to you promptly.
           </p>
         </div>
       </section>
 
       {/* Form */}
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-10">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <div>
               <h2 className="font-serif text-5xl font-semibold text-charcoal mb-2">
                 Send a Message
               </h2>
-              <p className="text-muted">
+              <p className="text-charcoal">
                 I typically respond within 24 hours during business days.
               </p>
             </div>
@@ -44,7 +44,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Info */}
-      <section>
+      <section className="py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
@@ -52,7 +52,7 @@ export default function ContactPage() {
                 Call Direct
               </h3>
               <div className="space-y-2">
-                <p className="text-muted">
+                <p className="text-charcoal">
                   <a
                     href="tel:+13234879865"
                     className="font-semibold hover:transition-colors"
@@ -60,7 +60,7 @@ export default function ContactPage() {
                     (323) 487-9865
                   </a>
                 </p>
-                <p className="text-sm text-muted">Monday - Friday, 9am - 6pm PT</p>
+                <p className="text-sm text-charcoal">Monday - Friday, 9am - 6pm PT</p>
               </div>
             </div>
 
@@ -69,7 +69,7 @@ export default function ContactPage() {
                 Email
               </h3>
               <div className="space-y-2">
-                <p className="text-muted">
+                <p className="text-charcoal">
                   <a
                     href="mailto:ezunkleysellsit@gmail.com"
                     className="font-semibold hover:transition-colors"
@@ -77,7 +77,7 @@ export default function ContactPage() {
                     ezunkleysellsit@gmail.com
                   </a>
                 </p>
-                <p className="text-sm text-muted">I respond within 24 hours</p>
+                <p className="text-sm text-charcoal">I respond within 24 hours</p>
               </div>
             </div>
           </div>
