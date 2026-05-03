@@ -133,7 +133,7 @@ export default async function NeighborhoodsPage() {
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {neighborhoods.map((neighborhood) => (
+            {neighborhoods.map((neighborhood, i) => (
               <Link
                 key={neighborhood._id}
                 href={`/neighborhoods/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
@@ -144,6 +144,8 @@ export default async function NeighborhoodsPage() {
                     src={`/neighborhoods/${getRandomPhoto(neighborhood._id)}`}
                     alt={neighborhood.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={i === 0}
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
