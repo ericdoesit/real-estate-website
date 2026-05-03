@@ -8,7 +8,13 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 
 const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
-export function CTABanner() {
+export function CTABanner({
+  heading = 'Get in touch.',
+  description = "Whether you're buying, selling, or investing in LA real estate, I'm here to help. Reach out anytime.",
+}: {
+  heading?: string
+  description?: string
+} = {}) {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -67,10 +73,10 @@ export function CTABanner() {
             <div>
               <Eyebrow color="white">Contact</Eyebrow>
               <h2 className="font-serif text-5xl font-semibold text-white leading-tight mt-3">
-                Get in touch.
+                {heading}
               </h2>
               <p className="font-sans text-lg text-white/70 mt-4">
-                Whether you're buying, selling, or investing in LA real estate, I'm here to help. Reach out anytime.
+                {description}
               </p>
             </div>
 

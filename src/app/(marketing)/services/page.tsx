@@ -1,6 +1,5 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { CTABanner } from '@/components/home/CTABanner'
 
 export const metadata = {
   title: 'Services - Buying & Selling Guide',
@@ -236,27 +235,10 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-10">
-        <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto text-center space-y-8">
-            <div className="space-y-4">
-              <h2 className="font-serif text-5xl font-semibold text-charcoal">
-                Ready to get started?
-              </h2>
-              <p className="text-lg text-charcoal max-w-2xl mx-auto">
-                Let's discuss your real estate goals and how I can help you achieve them.
-              </p>
-            </div>
-
-            <Link href="/contact">
-              <Button className="font-semibold px-8 py-3 text-lg">
-                Schedule a Consultation
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTABanner
+        heading="Ready to get started?"
+        description="Let's discuss your real estate goals and how I can help you achieve them."
+      />
     </div>
   )
 }

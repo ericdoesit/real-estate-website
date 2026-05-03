@@ -4,6 +4,7 @@ import { serverClient } from '@/lib/sanity/client'
 import { ALL_PROPERTIES_QUERY } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { CTABanner } from '@/components/home/CTABanner'
 
 interface SanityImage {
   _key?: string
@@ -63,7 +64,7 @@ export default async function PropertiesPage() {
   const activeListings = properties.filter((p) => p.status === 'active')
   const soldListings = properties.filter((p) => p.status === 'sold')
 
-  const PropertyCard = ({ property }: { property: Property }) => (
+  const PropertyCard = ({ property, priority }: { property: Property; priority?: boolean }) => (
     <Link
       href={`/properties/${property.slug?.current || 'placeholder'}`}
       className="group"
@@ -76,6 +77,8 @@ export default async function PropertiesPage() {
               src={urlFor(property.heroImage).url()}
               alt={property.heroImage.alt || property.address}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={priority}
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
@@ -125,8 +128,9 @@ export default async function PropertiesPage() {
 
       {/* Active Listings */}
       {activeListings.length > 0 && (
-        <section>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-10">
+          <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
             <div className="mb-12">
               <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
                 Current
@@ -137,41 +141,34 @@ export default async function PropertiesPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {activeListings.map((property) => (
-                <PropertyCard key={property._id} property={property} />
+              {activeListings.map((property, i) => (
+                <PropertyCard key={property._id} property={property} priority={i === 0} />
               ))}
             </div>
+          </div>
           </div>
         </section>
       )}
 
       {/* Sold Properties */}
       {soldListings.length > 0 && (
-        <section className="bg-cream py-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
+        <section className="py-10">
+          <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {soldListings.map((property) => (
-                <PropertyCard key={property._id} property={property} />
+              {soldListings.map((property, i) => (
+                <PropertyCard key={property._id} property={property} priority={activeListings.length === 0 && i === 0} />
               ))}
             </div>
+          </div>
           </div>
         </section>
       )}
 
-      {/* More Info */}
-      <section>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="space-y-4">
-            <h2 className="font-serif text-5xl font-semibold text-charcoal">
-              Looking for something specific?
-            </h2>
-            <p className="text-lg text-charcoal max-w-2xl mx-auto">
-              Contact me for additional properties, market analysis, or to discuss your real estate goals.
-            </p>
-          </div>
-        </div>
-      </section>
+      <CTABanner
+        heading="Looking for something specific?"
+        description="Contact me for additional properties, market analysis, or to discuss your real estate goals."
+      />
     </div>
   )
 }

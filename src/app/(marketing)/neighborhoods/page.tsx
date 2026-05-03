@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { serverClient } from '@/lib/sanity/client'
 import { NEIGHBORHOODS_QUERY } from '@/lib/sanity/queries'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { CTABanner } from '@/components/home/CTABanner'
 
 const PHOTOS = [
   '13705488963_76a358d8ac_o.jpg',
@@ -120,7 +121,7 @@ export default async function NeighborhoodsPage() {
             </div>
 
             <p className="text-lg text-charcoal leading-relaxed">
-              Each neighborhood has its own character, market dynamics, and investment potential. Explore detailed guides
+              Each neighborhood has its own character and market dynamics. Explore detailed guides
               with market data, lifestyle insights, and what makes each area special.
             </p>
           </div>
@@ -128,9 +129,10 @@ export default async function NeighborhoodsPage() {
       </section>
 
       {/* Neighborhoods Grid */}
-      <section>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="py-10">
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {neighborhoods.map((neighborhood) => (
               <Link
                 key={neighborhood._id}
@@ -154,23 +156,15 @@ export default async function NeighborhoodsPage() {
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Info Section */}
-      <section className="bg-cream py-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="space-y-4">
-            <h2 className="font-serif text-5xl font-semibold text-charcoal">
-              Want neighborhood insights?
-            </h2>
-            <p className="text-lg text-charcoal max-w-2xl mx-auto">
-              Each neighborhood guide includes market data, lifestyle highlights, investment potential, and what makes
-              the area special. Click any neighborhood above to explore.
-            </p>
           </div>
         </div>
       </section>
+
+
+      <CTABanner
+        heading="Curious about an area?"
+        description="Contact me and let's chat about your needs — whether you're looking to buy, sell, or just explore what a neighborhood has to offer."
+      />
     </div>
   )
 }

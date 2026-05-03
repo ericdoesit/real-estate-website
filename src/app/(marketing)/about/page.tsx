@@ -1,6 +1,5 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { CTABanner } from '@/components/home/CTABanner'
 
 export const metadata = {
   title: 'About Eric - Real Estate',
@@ -104,27 +103,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-10">
-        <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto text-center space-y-8">
-            <div className="space-y-4">
-              <h2 className="font-serif text-5xl font-semibold text-charcoal">
-                Ready to work together?
-              </h2>
-              <p className="text-lg text-charcoal max-w-2xl mx-auto">
-                Let's talk about your real estate goals. I'm here to help.
-              </p>
-            </div>
-
-            <Link href="/contact">
-              <Button className="font-semibold px-8 py-3 text-lg">
-                Get In Touch
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTABanner
+        heading="Ready to work together?"
+        description="Let's talk about your real estate goals. I'm here to help."
+      />
     </div>
   )
 }
