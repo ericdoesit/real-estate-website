@@ -112,7 +112,7 @@ export default function ServicesPage() {
               </h1>
             </div>
 
-            <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
+            <p className="text-lg text-charcoal leading-relaxed">
               Whether you're buying your first home, selling a property, or making a strategic investment, I guide you
               through every stage of the transaction with transparency and expertise.
             </p>
@@ -121,14 +121,12 @@ export default function ServicesPage() {
       </section>
 
       {/* Buying Process */}
-      <section>
+      <section className="py-10">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
             <div className="mb-16">
-              <p className="text-sm font-semibold tracking-luxury text-dark-green uppercase mb-2">
-                Buying
-              </p>
-              <h2 className="font-serif text-5xl font-semibold text-charcoal">
+              <Eyebrow>Buying</Eyebrow>
+              <h2 className="font-serif text-5xl font-semibold text-charcoal mt-3">
                 The Buying Process
               </h2>
             </div>
@@ -159,10 +157,8 @@ export default function ServicesPage() {
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
             <div className="mb-16">
-              <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
-                Selling
-              </p>
-              <h2 className="font-serif text-5xl font-semibold text-charcoal">
+              <Eyebrow>Selling</Eyebrow>
+              <h2 className="font-serif text-5xl font-semibold text-charcoal mt-3">
                 The Selling Process
               </h2>
             </div>
@@ -189,7 +185,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Additional Services */}
-      <section>
+      <section className="py-10">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
             <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">

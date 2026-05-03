@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { serverClient } from '@/lib/sanity/client'
 import { ALL_PROPERTIES_QUERY } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 
 interface SanityImage {
   _key?: string
@@ -108,6 +109,7 @@ export default async function PropertiesPage() {
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto space-y-8">
             <div className="space-y-4">
+              <Eyebrow>Past Transactions</Eyebrow>
               <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
                 Recently Sold.
               </h1>

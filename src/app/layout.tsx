@@ -28,7 +28,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${cormorant.variable} ${manrope.variable} h-full scroll-smooth antialiased`}
+      className={`${cormorant.variable} ${manrope.variable} h-full scroll-smooth antialiased overflow-y-scroll`}
     >
       <body className="min-h-screen flex flex-col bg-cream text-charcoal font-sans">
         {children}

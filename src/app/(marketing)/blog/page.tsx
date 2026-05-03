@@ -61,24 +61,27 @@ export default async function BlogPage() {
     <div className="">
       {/* Hero */}
       <section className="pt-10 pb-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="space-y-4">
-            <Eyebrow>Blog</Eyebrow>
-            <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-              Market insights & guides.
-            </h1>
-          </div>
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto space-y-8">
+            <div className="space-y-4">
+              <Eyebrow>Blog</Eyebrow>
+              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                Market insights & guides.
+              </h1>
+            </div>
 
-          <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
-            Stay informed with updates on LA real estate market conditions, buying and selling tips, and strategies for
-            maximizing your real estate investment.
-          </p>
+            <p className="text-lg text-charcoal leading-relaxed">
+              Stay informed with updates on LA real estate market conditions, buying and selling tips, and strategies for
+              maximizing your real estate investment.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Blog Grid */}
-      <section>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pb-16">
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
           {posts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post) => (
@@ -110,6 +113,7 @@ export default async function BlogPage() {
               <p className="text-charcoal">No blog posts yet. Check back soon for market updates and guides.</p>
             </div>
           )}
+          </div>
         </div>
       </section>
     </div>

@@ -64,7 +64,7 @@ export default function AboutPage() {
             </h2>
 
             <div className="space-y-8">
-              <div className="border-l-4 border-dark-green pl-6 space-y-2">
+              <div className="border-l-4 border-charcoal pl-6 space-y-2">
                 <h3 className="font-serif text-3xl font-semibold text-charcoal">
                   Honest Guidance
                 </h3>
@@ -73,7 +73,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="border-l-4 border-dark-green pl-6 space-y-2">
+              <div className="border-l-4 border-charcoal pl-6 space-y-2">
                 <h3 className="font-serif text-3xl font-semibold text-charcoal">
                   Market Knowledge
                 </h3>
@@ -82,7 +82,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="border-l-4 border-dark-green pl-6 space-y-2">
+              <div className="border-l-4 border-charcoal pl-6 space-y-2">
                 <h3 className="font-serif text-3xl font-semibold text-charcoal">
                   Creative Problem-Solving
                 </h3>
@@ -91,7 +91,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="border-l-4 border-dark-green pl-6 space-y-2">
+              <div className="border-l-4 border-charcoal pl-6 space-y-2">
                 <h3 className="font-serif text-3xl font-semibold text-charcoal">
                   Communication
                 </h3>

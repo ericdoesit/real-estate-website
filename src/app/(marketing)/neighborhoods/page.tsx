@@ -119,7 +119,7 @@ export default async function NeighborhoodsPage() {
               </h1>
             </div>
 
-            <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
+            <p className="text-lg text-charcoal leading-relaxed">
               Each neighborhood has its own character, market dynamics, and investment potential. Explore detailed guides
               with market data, lifestyle insights, and what makes each area special.
             </p>
