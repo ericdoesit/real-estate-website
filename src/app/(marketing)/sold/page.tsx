@@ -66,7 +66,7 @@ export default async function PropertiesPage() {
 
   const PropertyCard = ({ property, priority }: { property: Property; priority?: boolean }) => (
     <Link
-      href={`/properties/${property.slug?.current || 'placeholder'}`}
+      href={`/sold/${property.slug?.current || 'placeholder'}`}
       className="group"
     >
       <div className="space-y-4">

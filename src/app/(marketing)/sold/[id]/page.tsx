@@ -81,7 +81,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h1 className="font-serif text-4xl font-semibold text-charcoal mb-4">Property Not Found</h1>
         <p className="text-charcoal mb-8">The property you're looking for doesn't exist.</p>
-        <Link href="/properties" className="font-semibold hover:transition-colors">
+        <Link href="/sold" className="font-semibold hover:transition-colors">
           ← Back to Properties
         </Link>
       </div>
@@ -241,7 +241,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
       {/* Back Link */}
       <section className="pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/properties" className="font-semibold inline-flex items-center gap-2">
+          <Link href="/sold" className="font-semibold inline-flex items-center gap-2">
             ← Back to Properties
           </Link>
         </div>

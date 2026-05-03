@@ -90,7 +90,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
                   <span>{property.sqft?.toLocaleString()} sqft</span>
                 </div>
 
-                <Link href={`/properties/${property.slug?.current || 'placeholder'}`} className={`${styles.detailsLink} text-sm font-semibold whitespace-nowrap`}>
+                <Link href={`/sold/${property.slug?.current || 'placeholder'}`} className={`${styles.detailsLink} text-sm font-semibold whitespace-nowrap`}>
                   View details
                   <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
                 </Link>
@@ -107,7 +107,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
           transition={{ duration: 1, ease: easeSmooth }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          <Link href="/properties">
+          <Link href="/sold">
             <Button className="font-semibold">
               See All Properties
             </Button>

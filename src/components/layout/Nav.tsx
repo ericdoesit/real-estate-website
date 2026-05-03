@@ -27,7 +27,7 @@ export function Nav() {
   const navLinks = [
     { href: '/about', label: 'About' },
     { href: '/neighborhoods', label: 'Neighborhoods' },
-    { href: '/properties', label: 'Sold' },
+    { href: '/sold', label: 'Sold' },
     { href: '/services', label: 'Services' },
     { href: '/blog', label: 'Blog' },
   ]

@@ -70,7 +70,7 @@ export function Footer() {
               <div className="grid grid-cols-2 gap-x-10 gap-y-2">
                 <Link href="/about" className={styles.footerLink}>About</Link>
                 <Link href="/neighborhoods" className={styles.footerLink}>Neighborhoods</Link>
-                <Link href="/properties" className={styles.footerLink}>Sold</Link>
+                <Link href="/sold" className={styles.footerLink}>Sold</Link>
                 <Link href="/blog" className={styles.footerLink}>Blog</Link>
                 <Link href="/contact" className={styles.footerLink}>Contact</Link>
               </div>
