@@ -17,7 +17,7 @@ export function Footer() {
             {/* Brand */}
             <div className="flex flex-col gap-4">
               <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                <div className="h-10 w-10 flex-shrink-0 rounded overflow-hidden">
+                <div className="h-[55px] w-[55px] flex-shrink-0 rounded overflow-hidden">
                   <img src="/logo.svg" alt="Eric Zunkley" className="w-full h-full" />
                 </div>
                 <span className="font-sans text-base font-bold uppercase tracking-luxury text-charcoal">Eric Zunkley, Realtor</span>

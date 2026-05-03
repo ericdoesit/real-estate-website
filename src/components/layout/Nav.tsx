@@ -37,7 +37,7 @@ export function Nav() {
       <div className={styles.container}>
         <div className={styles.maxWidth}>
           {/* Logo */}
-          <Logo className="h-10 w-10" />
+          <Logo className="h-[55px] w-[55px]" />
 
           {/* Desktop Nav */}
           <div className={styles.desktopNav}>
