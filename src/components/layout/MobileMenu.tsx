@@ -10,7 +10,7 @@ const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/neighborhoods', label: 'Neighborhoods' },
-  { href: '/sold', label: 'Properties' },
+  { href: '/sold', label: 'Sold' },
   { href: '/services', label: 'Services' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },

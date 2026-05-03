@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { serverClient } from '@/lib/sanity/client'
 import { BLOG_POSTS_QUERY } from '@/lib/sanity/queries'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
 
 interface BlogPost {
   _id: string
@@ -62,18 +63,24 @@ export default async function BlogPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto space-y-8">
-            <div className="space-y-4">
-              <Eyebrow>Blog</Eyebrow>
-              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                Market insights & guides.
-              </h1>
-            </div>
+          <div className="max-w-[1400px] mx-auto">
+            <StaggerGroup className="space-y-8">
+              <StaggerItem>
+                <div className="space-y-4">
+                  <Eyebrow>Blog</Eyebrow>
+                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                    Market insights & guides.
+                  </h1>
+                </div>
+              </StaggerItem>
 
-            <p className="text-lg text-charcoal leading-relaxed">
-              Stay informed with updates on LA real estate market conditions, buying and selling tips, and strategies for
-              maximizing your real estate investment.
-            </p>
+              <StaggerItem>
+                <p className="text-lg text-charcoal leading-relaxed">
+                  Stay informed with updates on LA real estate market conditions, buying and selling tips, and strategies for
+                  maximizing your real estate investment.
+                </p>
+              </StaggerItem>
+            </StaggerGroup>
           </div>
         </div>
       </section>
@@ -83,31 +90,27 @@ export default async function BlogPage() {
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
           {posts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post) => (
-                <Link
-                  key={post._id}
-                  href={`/blog/${post.slug?.current || post._id}`}
-                  className="group"
-                >
-                  <div className="space-y-4 h-full flex flex-col">
-                    {/* Title */}
-                    <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors line-clamp-3">
-                      {post.title}
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-charcoal text-sm flex-1">{post.excerpt}</p>
-
-                    {/* Meta */}
-                    <div className="flex items-center justify-between text-xs text-charcoal pt-4 border-t border-charcoal/10">
-                      <span>{formatDate(post.publishedAt)}</span>
-                      <span>By {post.author}</span>
+                <StaggerItem key={post._id}>
+                  <Link
+                    href={`/blog/${post.slug?.current || post._id}`}
+                    className="group block"
+                  >
+                    <div className="space-y-4 h-full flex flex-col">
+                      <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors line-clamp-3">
+                        {post.title}
+                      </h3>
+                      <p className="text-charcoal text-sm flex-1">{post.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs text-charcoal pt-4 border-t border-charcoal/10">
+                        <span>{formatDate(post.publishedAt)}</span>
+                        <span>By {post.author}</span>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           ) : (
             <div className="text-center py-16">
               <p className="text-charcoal">No blog posts yet. Check back soon for market updates and guides.</p>

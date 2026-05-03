@@ -1,5 +1,6 @@
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CTABanner } from '@/components/home/CTABanner'
+import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
 
 export const metadata = {
   title: 'Services - Buying & Selling Guide',
@@ -103,18 +104,24 @@ export default function ServicesPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto space-y-8">
-            <div className="space-y-4">
-              <Eyebrow>Services</Eyebrow>
-              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                Expert guidance. Every step.
-              </h1>
-            </div>
+          <div className="max-w-[1400px] mx-auto">
+            <StaggerGroup className="space-y-8">
+              <StaggerItem>
+                <div className="space-y-4">
+                  <Eyebrow>Services</Eyebrow>
+                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                    Expert guidance. Every step.
+                  </h1>
+                </div>
+              </StaggerItem>
 
-            <p className="text-lg text-charcoal leading-relaxed">
-              Whether you're buying your first home, selling a property, or making a strategic investment, I guide you
-              through every stage of the transaction with transparency and expertise.
-            </p>
+              <StaggerItem>
+                <p className="text-lg text-charcoal leading-relaxed">
+                  Whether you're buying your first home, selling a property, or making a strategic investment, I guide you
+                  through every stage of the transaction with transparency and expertise.
+                </p>
+              </StaggerItem>
+            </StaggerGroup>
           </div>
         </div>
       </section>
@@ -123,30 +130,32 @@ export default function ServicesPage() {
       <section className="py-10">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
-            <div className="mb-16">
-              <Eyebrow>Buying</Eyebrow>
-              <h2 className="font-serif text-5xl font-semibold text-charcoal mt-3">
-                The Buying Process
-              </h2>
-            </div>
+            <StaggerGroup className="space-y-6">
+              <StaggerItem className="mb-10">
+                <Eyebrow>Buying</Eyebrow>
+                <h2 className="font-serif text-5xl font-semibold text-charcoal mt-3">
+                  The Buying Process
+                </h2>
+              </StaggerItem>
 
-            <div className="space-y-6">
               {buyingSteps.map((step) => (
-                <div key={step.number} className="flex gap-6 pb-6 border-b border-charcoal/10">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border border-charcoal/30 font-sans text-lg font-medium text-charcoal">
-                      {step.number}
+                <StaggerItem key={step.number}>
+                  <div className="flex gap-6 pb-6 border-b border-charcoal/10">
+                    <div className="flex-shrink-0">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-full border border-charcoal/30 font-sans text-lg font-medium text-charcoal">
+                        {step.number}
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-charcoal leading-relaxed">{step.description}</p>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-charcoal leading-relaxed">{step.description}</p>
-                  </div>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </div>
       </section>
@@ -155,30 +164,32 @@ export default function ServicesPage() {
       <section className="bg-cream py-10">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
-            <div className="mb-16">
-              <Eyebrow>Selling</Eyebrow>
-              <h2 className="font-serif text-5xl font-semibold text-charcoal mt-3">
-                The Selling Process
-              </h2>
-            </div>
+            <StaggerGroup className="space-y-6">
+              <StaggerItem className="mb-10">
+                <Eyebrow>Selling</Eyebrow>
+                <h2 className="font-serif text-5xl font-semibold text-charcoal mt-3">
+                  The Selling Process
+                </h2>
+              </StaggerItem>
 
-            <div className="space-y-6">
               {sellingSteps.map((step) => (
-                <div key={step.number} className="flex gap-6 pb-6 border-b border-charcoal/10">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border border-charcoal/30 font-sans text-lg font-medium text-charcoal">
-                      {step.number}
+                <StaggerItem key={step.number}>
+                  <div className="flex gap-6 pb-6 border-b border-charcoal/10">
+                    <div className="flex-shrink-0">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-full border border-charcoal/30 font-sans text-lg font-medium text-charcoal">
+                        {step.number}
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-charcoal leading-relaxed">{step.description}</p>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-serif text-3xl font-semibold text-charcoal mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-charcoal leading-relaxed">{step.description}</p>
-                  </div>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </div>
       </section>
@@ -187,50 +198,62 @@ export default function ServicesPage() {
       <section className="py-10">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
-            <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
-              Additional Services
-            </h2>
+            <StaggerGroup>
+              <StaggerItem>
+                <h2 className="font-serif text-5xl font-semibold text-charcoal mb-12">
+                  Additional Services
+                </h2>
+              </StaggerItem>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                  Investment Analysis
-                </h3>
-                <p className="text-charcoal">
-                  Strategic guidance for investors evaluating properties, neighborhoods, and market timing. I help you build
-                  wealth through real estate with confidence.
-                </p>
-              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <StaggerItem>
+                  <div className="space-y-4">
+                    <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                      Investment Analysis
+                    </h3>
+                    <p className="text-charcoal">
+                      Strategic guidance for investors evaluating properties, neighborhoods, and market timing. I help you build
+                      wealth through real estate with confidence.
+                    </p>
+                  </div>
+                </StaggerItem>
 
-              <div className="space-y-4">
-                <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                  Market Consultation
-                </h3>
-                <p className="text-charcoal">
-                  Get educated about your neighborhood, market conditions, and opportunities. No pressure, just honest
-                  guidance to help you make informed decisions.
-                </p>
-              </div>
+                <StaggerItem>
+                  <div className="space-y-4">
+                    <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                      Market Consultation
+                    </h3>
+                    <p className="text-charcoal">
+                      Get educated about your neighborhood, market conditions, and opportunities. No pressure, just honest
+                      guidance to help you make informed decisions.
+                    </p>
+                  </div>
+                </StaggerItem>
 
-              <div className="space-y-4">
-                <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                  1031 Exchange Support
-                </h3>
-                <p className="text-charcoal">
-                  Navigating a 1031 exchange requires timing and market knowledge. I guide you through the process to
-                  maximize your investment.
-                </p>
-              </div>
+                <StaggerItem>
+                  <div className="space-y-4">
+                    <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                      1031 Exchange Support
+                    </h3>
+                    <p className="text-charcoal">
+                      Navigating a 1031 exchange requires timing and market knowledge. I guide you through the process to
+                      maximize your investment.
+                    </p>
+                  </div>
+                </StaggerItem>
 
-              <div className="space-y-4">
-                <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                  Relocation Services
-                </h3>
-                <p className="text-charcoal">
-                  Moving to LA? I help you understand neighborhoods, find the right home, and settle into your new community.
-                </p>
+                <StaggerItem>
+                  <div className="space-y-4">
+                    <h3 className="font-serif text-3xl font-semibold text-charcoal">
+                      Relocation Services
+                    </h3>
+                    <p className="text-charcoal">
+                      Moving to LA? I help you understand neighborhoods, find the right home, and settle into your new community.
+                    </p>
+                  </div>
+                </StaggerItem>
               </div>
-            </div>
+            </StaggerGroup>
           </div>
         </div>
       </section>

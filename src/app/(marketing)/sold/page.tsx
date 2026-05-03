@@ -5,6 +5,7 @@ import { ALL_PROPERTIES_QUERY } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CTABanner } from '@/components/home/CTABanner'
+import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
 
 interface SanityImage {
   _key?: string
@@ -110,18 +111,24 @@ export default async function PropertiesPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto space-y-8">
-            <div className="space-y-4">
-              <Eyebrow>Past Transactions</Eyebrow>
-              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                Recently Sold.
-              </h1>
-            </div>
+          <div className="max-w-[1400px] mx-auto">
+            <StaggerGroup className="space-y-8">
+              <StaggerItem>
+                <div className="space-y-4">
+                  <Eyebrow>Past Transactions</Eyebrow>
+                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                    Recently Sold.
+                  </h1>
+                </div>
+              </StaggerItem>
 
-            <p className="text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
-              A selection of homes I've helped clients buy and sell across Los Angeles —
-              representing both buyers and sellers over 13 years in the market.
-            </p>
+              <StaggerItem>
+                <p className="text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
+                  A selection of homes I've helped clients buy and sell across Los Angeles —
+                  representing both buyers and sellers over 13 years in the market.
+                </p>
+              </StaggerItem>
+            </StaggerGroup>
           </div>
         </div>
       </section>
@@ -131,20 +138,24 @@ export default async function PropertiesPage() {
         <section className="py-10">
           <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
-            <div className="mb-12">
-              <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
-                Current
-              </p>
-              <h2 className="font-serif text-5xl font-semibold text-charcoal">
-                Active Listings
-              </h2>
-            </div>
+            <StaggerGroup>
+              <StaggerItem className="mb-12">
+                <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
+                  Current
+                </p>
+                <h2 className="font-serif text-5xl font-semibold text-charcoal">
+                  Active Listings
+                </h2>
+              </StaggerItem>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {activeListings.map((property, i) => (
-                <PropertyCard key={property._id} property={property} priority={i === 0} />
-              ))}
-            </div>
+              <StaggerItem>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {activeListings.map((property, i) => (
+                    <PropertyCard key={property._id} property={property} priority={i === 0} />
+                  ))}
+                </div>
+              </StaggerItem>
+            </StaggerGroup>
           </div>
           </div>
         </section>
@@ -155,11 +166,13 @@ export default async function PropertiesPage() {
         <section className="py-10">
           <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {soldListings.map((property, i) => (
-                <PropertyCard key={property._id} property={property} priority={activeListings.length === 0 && i === 0} />
+                <StaggerItem key={property._id}>
+                  <PropertyCard property={property} priority={activeListings.length === 0 && i === 0} />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
           </div>
         </section>

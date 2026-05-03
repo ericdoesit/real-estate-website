@@ -4,6 +4,7 @@ import { serverClient } from '@/lib/sanity/client'
 import { NEIGHBORHOODS_QUERY } from '@/lib/sanity/queries'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CTABanner } from '@/components/home/CTABanner'
+import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
 
 const PHOTOS = [
   '13705488963_76a358d8ac_o.jpg',
@@ -112,18 +113,24 @@ export default async function NeighborhoodsPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto space-y-8">
-            <div className="space-y-4">
-              <Eyebrow>Neighborhoods</Eyebrow>
-              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                Explore LA neighborhoods.
-              </h1>
-            </div>
+          <div className="max-w-[1400px] mx-auto">
+            <StaggerGroup className="space-y-8">
+              <StaggerItem>
+                <div className="space-y-4">
+                  <Eyebrow>Neighborhoods</Eyebrow>
+                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
+                    Explore LA neighborhoods.
+                  </h1>
+                </div>
+              </StaggerItem>
 
-            <p className="text-lg text-charcoal leading-relaxed">
-              Each neighborhood has its own character and market dynamics. Explore detailed guides
-              with market data, lifestyle insights, and what makes each area special.
-            </p>
+              <StaggerItem>
+                <p className="text-lg text-charcoal leading-relaxed">
+                  Each neighborhood has its own character and market dynamics. Explore detailed guides
+                  with market data, lifestyle insights, and what makes each area special.
+                </p>
+              </StaggerItem>
+            </StaggerGroup>
           </div>
         </div>
       </section>
@@ -132,32 +139,32 @@ export default async function NeighborhoodsPage() {
       <section className="py-10">
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {neighborhoods.map((neighborhood, i) => (
-              <Link
-                key={neighborhood._id}
-                href={`/neighborhoods/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
-                className="group"
-              >
-                <div className="relative h-64 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-xl overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
-                  <Image
-                    src={`/neighborhoods/${getRandomPhoto(neighborhood._id)}`}
-                    alt={neighborhood.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority={i === 0}
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+              <StaggerItem key={neighborhood._id}>
+                <Link
+                  href={`/neighborhoods/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
+                  className="group block"
+                >
+                  <div className="relative h-64 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-xl overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
+                    <Image
+                      src={`/neighborhoods/${getRandomPhoto(neighborhood._id)}`}
+                      alt={neighborhood.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={i === 0}
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
 
-                <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors">
-                  {neighborhood.name}
-                </h3>
-                <p className="text-charcoal text-sm mt-2">{neighborhood.tagline}</p>
-
-              </Link>
+                  <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors">
+                    {neighborhood.name}
+                  </h3>
+                  <p className="text-charcoal text-sm mt-2">{neighborhood.tagline}</p>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
           </div>
         </div>
       </section>
