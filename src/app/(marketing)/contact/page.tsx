@@ -1,9 +1,10 @@
 import { ContactForm } from '@/components/contact/ContactForm'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { agent } from '@/config/agent'
 
 export const metadata = {
-  title: 'Contact Eric',
-  description: 'Get in touch with Eric Zunkley. Schedule a consultation or ask about real estate opportunities in LA.',
+  title: `Contact ${agent.name}`,
+  description: `Get in touch with ${agent.name}. Schedule a consultation or ask about real estate opportunities in LA.`,
 }
 
 export default function ContactPage() {
@@ -53,11 +54,8 @@ export default function ContactPage() {
               </h3>
               <div className="space-y-2">
                 <p className="text-charcoal">
-                  <a
-                    href="tel:+13234879865"
-                    className="font-semibold hover:transition-colors"
-                  >
-                    (323) 487-9865
+                  <a href={`tel:${agent.phone}`} className="font-semibold hover:transition-colors">
+                    {agent.phoneDisplay}
                   </a>
                 </p>
                 <p className="text-sm text-charcoal">Monday - Friday, 9am - 6pm PT</p>
@@ -70,11 +68,8 @@ export default function ContactPage() {
               </h3>
               <div className="space-y-2">
                 <p className="text-charcoal">
-                  <a
-                    href="mailto:ezunkleysellsit@gmail.com"
-                    className="font-semibold hover:transition-colors"
-                  >
-                    ezunkleysellsit@gmail.com
+                  <a href={`mailto:${agent.email}`} className="font-semibold hover:transition-colors">
+                    {agent.email}
                   </a>
                 </p>
                 <p className="text-sm text-charcoal">I respond within 24 hours</p>

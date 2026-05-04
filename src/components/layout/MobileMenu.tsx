@@ -4,8 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './MobileMenu.module.css'
-
-const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
+import { easeSmooth } from '@/lib/motion'
 
 const navLinks = [
   { href: '/about', label: 'About' },

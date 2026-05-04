@@ -6,6 +6,7 @@ import { urlFor } from '@/lib/sanity/image'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CTABanner } from '@/components/home/CTABanner'
 import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
+import { agent } from '@/config/agent'
 
 interface SanityImage {
   _key?: string
@@ -72,7 +73,7 @@ export default async function PropertiesPage() {
     >
       <div className="space-y-4">
         {/* Image */}
-        <div className="relative h-64 rounded-xl overflow-hidden group">
+        <div className="relative h-64 rounded-brand overflow-hidden group">
           {property.heroImage ? (
             <Image
               src={urlFor(property.heroImage).url()}
@@ -123,9 +124,9 @@ export default async function PropertiesPage() {
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
+                <p className="text-lg text-charcoal leading-relaxed">
                   A selection of homes I've helped clients buy and sell across Los Angeles —
-                  representing both buyers and sellers over 13 years in the market.
+                  representing both buyers and sellers over {agent.yearsExperience} years in the market.
                 </p>
               </StaggerItem>
             </StaggerGroup>

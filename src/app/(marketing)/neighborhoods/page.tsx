@@ -146,7 +146,7 @@ export default async function NeighborhoodsPage() {
                   href={`/neighborhoods/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
                   className="group block"
                 >
-                  <div className="relative h-64 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-xl overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
+                  <div className="relative h-64 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-brand overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
                     <Image
                       src={`/neighborhoods/${getRandomPhoto(neighborhood._id)}`}
                       alt={neighborhood.name}

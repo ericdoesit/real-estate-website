@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import { agent } from '@/config/agent'
 
 export function ContactForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -117,8 +118,8 @@ export function ContactForm() {
 
       <p className="text-sm text-charcoal text-center">
         Or call me directly at{' '}
-        <a href="tel:+13234879865" className="font-semibold hover:transition-colors">
-          (323) 487-9865
+        <a href={`tel:${agent.phone}`} className="font-semibold hover:transition-colors">
+          {agent.phoneDisplay}
         </a>
       </p>
     </form>

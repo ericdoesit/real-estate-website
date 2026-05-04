@@ -99,7 +99,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-6xl mx-auto">
             {property.heroImage ? (
-              <div className="relative w-full aspect-video overflow-hidden rounded-xl">
+              <div className="relative w-full aspect-video overflow-hidden rounded-brand">
                 <Image
                   src={urlFor(property.heroImage).url()}
                   alt={property.heroImage.alt || property.address}
@@ -109,7 +109,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
                 />
               </div>
             ) : (
-              <div className="w-full aspect-video bg-dark-green/10 flex items-center justify-center overflow-hidden rounded-xl">
+              <div className="w-full aspect-video bg-dark-green/10 flex items-center justify-center overflow-hidden rounded-brand">
                 <p className="text-charcoal">No property image available</p>
               </div>
             )}

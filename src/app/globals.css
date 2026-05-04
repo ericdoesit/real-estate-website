@@ -11,6 +11,7 @@
   --color-muted: #6b6b6b;
   --color-dark-footer: #1a1a1a;
   --color-selection: #a0644e;
+  --color-coral: #a0644e;
 
   /* Fonts */
   --font-sans: var(--font-manrope), system-ui, sans-serif;
@@ -46,4 +47,8 @@ body {
 ::selection {
   background-color: #a0644e;
   color: white;
+}
+
+.rounded-brand {
+  border-radius: 10px;
 }

@@ -5,8 +5,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
-
-const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
+import { easeSmooth } from '@/lib/motion'
 
 export function CTABanner({
   heading = 'Get in touch.',
@@ -69,7 +68,6 @@ export function CTABanner({
             transition={{ duration: 1, ease: easeSmooth }}
             viewport={{ once: true, margin: '-80px' }}
           >
-            {/* Heading */}
             <div>
               <Eyebrow color="white">Contact</Eyebrow>
               <h2 className="font-serif text-5xl font-semibold text-white leading-tight mt-3">
@@ -79,7 +77,6 @@ export function CTABanner({
                 {description}
               </p>
             </div>
-
           </motion.div>
 
           {/* Right: Contact Form */}
@@ -91,7 +88,6 @@ export function CTABanner({
             viewport={{ once: true, margin: '-80px' }}
           >
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Name */}
               <div>
                 <label className="block text-xs font-semibold tracking-luxury text-white/70 uppercase mb-2">
                   Name <span className="text-goldenrod">*</span>
@@ -107,7 +103,6 @@ export function CTABanner({
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-xs font-semibold tracking-luxury text-white/70 uppercase mb-2">
                   Email <span className="text-goldenrod">*</span>
@@ -123,7 +118,6 @@ export function CTABanner({
                 />
               </div>
 
-              {/* Phone */}
               <div>
                 <label className="block text-xs font-semibold tracking-luxury text-white/70 uppercase mb-2">
                   Phone
@@ -138,7 +132,6 @@ export function CTABanner({
                 />
               </div>
 
-              {/* Message */}
               <div>
                 <label className="block text-xs font-semibold tracking-luxury text-white/70 uppercase mb-2">
                   Message <span className="text-goldenrod">*</span>
@@ -154,7 +147,6 @@ export function CTABanner({
                 />
               </div>
 
-              {/* Status Messages */}
               {submitStatus === 'success' && (
                 <p className="text-goldenrod text-sm">Message sent! I'll be in touch soon.</p>
               )}
@@ -162,7 +154,6 @@ export function CTABanner({
                 <p className="text-sm">Something went wrong. Please try again.</p>
               )}
 
-              {/* Submit Button */}
               <Button
                 type="submit"
                 disabled={isSubmitting}

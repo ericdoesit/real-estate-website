@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
-
-const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
+import { easeSmooth } from '@/lib/motion'
 
 export function AnimateIn({
   children,

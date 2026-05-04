@@ -6,15 +6,15 @@ import { motion } from 'framer-motion'
 import styles from './HeroButton.module.css'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ArrowRight } from '@/components/ui/ArrowRight'
-
-const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
+import { easeSmooth } from '@/lib/motion'
+import { agent } from '@/config/agent'
 
 export function HeroEditorial() {
   return (
     <section className="bg-cream overflow-hidden py-10 lg:py-0 lg:relative lg:h-[calc(100vh-80px)]">
       {/* Desktop: absolutely positioned image on the right */}
       <motion.div
-        className="hidden lg:block absolute right-0 top-20 bottom-20 w-[1260px] rounded-2xl overflow-hidden"
+        className="hidden lg:block absolute right-0 top-20 bottom-20 w-[1260px] rounded-brand overflow-hidden"
         style={{ transform: 'translateX(-80px)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -37,7 +37,7 @@ export function HeroEditorial() {
 
             {/* Mobile: image above eyebrow and headline */}
             <motion.div
-              className="lg:hidden relative w-full aspect-[4/3] rounded-xl overflow-hidden mt-2 mb-4"
+              className="lg:hidden relative w-full aspect-[4/3] rounded-brand overflow-hidden mt-2 mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.2, ease: easeSmooth, delay: 0.15 }}
@@ -54,7 +54,7 @@ export function HeroEditorial() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               {/* Text */}
-              <div className="lg:rounded-xl lg:p-10 lg:bg-cream/75 lg:backdrop-blur-md">
+              <div className="rounded-brand lg:p-10 lg:bg-cream/75 lg:backdrop-blur-md">
               <div className="flex flex-col justify-center space-y-6">
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
@@ -95,7 +95,7 @@ export function HeroEditorial() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.2, ease: easeSmooth, delay: 0.38 }}
                 >
-                  Helping Los Angeles buyers and sellers for 13 years make smart, informed decisions. No pressure, honest guidance.
+                  Helping Los Angeles buyers and sellers for {agent.yearsExperience} years make smart, informed decisions. No pressure, honest guidance.
                 </motion.p>
 
                 <motion.div

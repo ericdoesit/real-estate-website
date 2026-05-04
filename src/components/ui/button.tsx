@@ -10,7 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', ...props }, ref) => {
     const baseStyles =
-      'font-sans font-normal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-selection disabled:opacity-50 disabled:cursor-not-allowed rounded-xl'
+      'font-sans font-normal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-selection disabled:opacity-50 disabled:cursor-not-allowed rounded-brand'
 
     const variants = {
       default: '',

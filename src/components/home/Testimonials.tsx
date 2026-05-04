@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import styles from './Testimonials.module.css'
-
-const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
+import { easeSmooth } from '@/lib/motion'
 
 interface Review {
   name: string

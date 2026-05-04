@@ -68,7 +68,7 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
                 setCurrentIndex(index)
                 setIsOpen(true)
               }}
-              className="relative aspect-square overflow-hidden rounded-xl group"
+              className="relative aspect-square overflow-hidden rounded-brand group"
             >
               {url && (
                 <Image

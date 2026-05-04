@@ -28,7 +28,6 @@ export const blogPost = defineType({
       name: 'author',
       title: 'Author',
       type: 'string',
-      initialValue: 'Eric Zunkley',
     }),
     defineField({
       name: 'excerpt',

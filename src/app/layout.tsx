@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Manrope } from 'next/font/google'
+import { site } from '@/config/agent'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -15,8 +16,8 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: 'Eric Zunkley - Real Estate | Los Angeles',
-  description: 'Real estate in Los Angeles. Eric Zunkley specializes in buying and selling properties across LA.',
+  title: site.title,
+  description: site.description,
 }
 
 export default function RootLayout({

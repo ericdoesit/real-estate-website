@@ -6,7 +6,9 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ArrowRight } from '@/components/ui/ArrowRight'
-import styles from './NeighborhoodTeaser.module.css'
+import { easeSmooth } from '@/lib/motion'
+import { getNeighborhoodPhoto } from '@/lib/neighborhoods'
+import styles from '@/styles/arrow-link.module.css'
 
 interface Neighborhood {
   _id: string
@@ -25,51 +27,13 @@ const NEIGHBORHOODS: Neighborhood[] = [
   { _id: '6', name: 'Silver Lake', slug: { current: 'silver-lake' }, tagline: 'Artistic haven', image: '' },
 ]
 
-const PHOTOS = [
-  '13705488963_76a358d8ac_o.jpg',
-  '15060426861_f6d33577bb_k.jpg',
-  '15306603569_ba5fff0f60_k.jpg',
-  '15873911522_636c4c213a_o.jpg',
-  '5609986343_1b278c4750_o.jpg',
-  '9595594302_64be79ce3a_o.jpg',
-  'alexis-balinoff-2KIDkMzmO-k-unsplash.jpg',
-  'hero-1.jpg',
-  'hero-2.jpg',
-  'hero-3.jpg',
-  'ivan-karpov-7oLuzIZ3QIg-unsplash.jpg',
-  'pexels-anthony-thomas-733236359-18409401.jpg',
-  'pexels-blackmakaw-19964276.jpg',
-  'pexels-davidmcelwee-11695725.jpg',
-  'pexels-duggiefresch-4329924.jpg',
-  'pexels-loquellano-17928132.jpg',
-  'pexels-martinpechy-2763964.jpg',
-  'pexels-martinpechy-2763967.jpg',
-  'pexels-myatezhny39-30151761.jpg',
-  'pexels-myatezhny39-30151773.jpg',
-  'pexels-rdne-8782693.jpg',
-  'pexels-rdne-8783581.jpg',
-  'pexels-rdne-8783590.jpg',
-  'pexels-rdne-8783844.jpg',
-  'pexels-robertkso-34960816.jpg',
-  'pexels-rockwell-branding-agency-85164430-9137653.jpg',
-  'pexels-rpnickson-2709964.jpg',
-  'pexels-sergei-a-1322276-2539437.jpg',
-  'pexels-vincent-gerbouin-445991-2263669.jpg',
-  'pexels-vlada-karpovich-4449625.jpg',
-]
-
-function getRandomPhoto(seed: string) {
-  const hash = seed.split('').reduce((a, b) => a + b.charCodeAt(0), 0)
-  return PHOTOS[hash % PHOTOS.length]
-}
-
 export function NeighborhoodTeaser() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const neighborhoodsWithImages = useMemo(() => {
     return NEIGHBORHOODS.map(n => ({
       ...n,
-      image: `/neighborhoods/${getRandomPhoto(n._id)}`
+      image: `/neighborhoods/${getNeighborhoodPhoto(n._id)}`
     }))
   }, [])
 
@@ -77,19 +41,8 @@ export function NeighborhoodTeaser() {
   const hasMore = currentIndex + 3 < neighborhoodsWithImages.length
   const canGoPrev = currentIndex > 0
 
-  const handleNext = () => {
-    if (hasMore) {
-      setCurrentIndex(currentIndex + 1)
-    }
-  }
-
-  const handlePrev = () => {
-    if (canGoPrev) {
-      setCurrentIndex(currentIndex - 1)
-    }
-  }
-
-  const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
+  const handleNext = () => { if (hasMore) setCurrentIndex(currentIndex + 1) }
+  const handlePrev = () => { if (canGoPrev) setCurrentIndex(currentIndex - 1) }
 
   return (
     <section className="py-10 bg-cream">
@@ -107,12 +60,12 @@ export function NeighborhoodTeaser() {
           <h2 className="font-serif text-5xl font-semibold text-charcoal">
             Explore LA neighborhoods.
           </h2>
-          <p className="font-sans text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
+          <p className="font-sans text-lg text-charcoal leading-relaxed">
             Each guide highlights the character, culture, and details that make each neighborhood worth exploring.
           </p>
           <Link
             href="/neighborhoods"
-            className={`${styles.browseLink} font-semibold whitespace-nowrap`}
+            className={`${styles.link} font-semibold whitespace-nowrap`}
           >
             Browse all neighborhoods
             <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
@@ -134,7 +87,7 @@ export function NeighborhoodTeaser() {
                   href={`/neighborhoods/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
                   className="group flex flex-col"
                 >
-                  <div className="relative h-72 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-xl overflow-hidden mb-4">
+                  <div className="relative h-72 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-brand overflow-hidden mb-4">
                     <Image
                       src={neighborhood.image}
                       alt={neighborhood.name}

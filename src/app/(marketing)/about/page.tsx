@@ -1,10 +1,12 @@
+import Image from 'next/image'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CTABanner } from '@/components/home/CTABanner'
 import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
+import { agent } from '@/config/agent'
 
 export const metadata = {
-  title: 'About Eric - Real Estate',
-  description: 'Learn about Eric Zunkley, a trusted LA real estate agent dedicated to honest, relationship-based transactions.',
+  title: `About ${agent.name} - Real Estate`,
+  description: `Learn about ${agent.name}, a trusted LA real estate agent dedicated to honest, relationship-based transactions.`,
 }
 
 export default function AboutPage() {
@@ -17,7 +19,7 @@ export default function AboutPage() {
             <StaggerGroup className="space-y-8">
               <StaggerItem>
                 <div className="space-y-4">
-                  <Eyebrow>About Eric</Eyebrow>
+                  <Eyebrow>About {agent.name}</Eyebrow>
                   <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
                     Real estate built on trust and communication.
                   </h1>
@@ -25,8 +27,8 @@ export default function AboutPage() {
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-lg text-charcoal max-w-2xl" style={{ lineHeight: '1.6' }}>
-                  For 13 years, I've helped buyers, sellers, and investors across Los Angeles achieve their goals — with honesty, deep market knowledge, and genuine care from start to finish.
+                <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
+                  For {agent.yearsExperience} years, I've helped buyers, sellers, and investors across Los Angeles achieve their goals — with honesty, deep market knowledge, and genuine care from start to finish.
                 </p>
               </StaggerItem>
             </StaggerGroup>
@@ -39,11 +41,12 @@ export default function AboutPage() {
         <div className="w-full px-6 lg:px-12">
           <div className="max-w-[1400px] mx-auto">
             <StaggerGroup className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <StaggerItem className="relative aspect-square rounded-2xl overflow-hidden order-2 lg:order-1">
-                <img
-                  src="/headshot.jpg"
-                  alt="Eric Zunkley - Real Estate Agent"
-                  className="w-full h-full object-cover"
+              <StaggerItem className="relative aspect-square rounded-brand overflow-hidden order-2 lg:order-1">
+                <Image
+                  src={agent.headshot}
+                  alt={`${agent.name} - Real Estate Agent`}
+                  fill
+                  className="object-cover"
                 />
               </StaggerItem>
 
@@ -51,7 +54,7 @@ export default function AboutPage() {
                 <h2 className="font-serif text-5xl font-semibold text-charcoal">
                   Why I Do This
                 </h2>
-                <p className="text-charcoal text-lg" style={{ lineHeight: '1.6' }}>
+                <p className="text-charcoal text-lg leading-relaxed">
                   Most of my business comes through referrals and repeat clients — that reflects the kind of trust I work to earn with every transaction. I'm not chasing deals. I'm building relationships, and I bring deep LA market knowledge and creative problem-solving to every one.
                 </p>
               </StaggerItem>

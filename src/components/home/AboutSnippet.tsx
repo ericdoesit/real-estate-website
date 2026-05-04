@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ArrowRight } from '@/components/ui/ArrowRight'
-import styles from './AboutSnippet.module.css'
-
-const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
+import { easeSmooth } from '@/lib/motion'
+import { agent } from '@/config/agent'
+import styles from '@/styles/arrow-link.module.css'
 
 export function AboutSnippet() {
   return (
@@ -23,18 +24,18 @@ export function AboutSnippet() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <div className="space-y-3">
-              <Eyebrow>About Eric</Eyebrow>
+              <Eyebrow>About {agent.name}</Eyebrow>
               <h2 className="font-serif text-5xl font-semibold text-charcoal">
                 Real estate rooted in relationships.
               </h2>
             </div>
 
-            <p className="font-sans text-lg text-charcoal" style={{ lineHeight: '1.6' }}>
+            <p className="font-sans text-lg text-charcoal leading-relaxed">
               I'm a California real estate agent who helps buyers, sellers, and investors navigate LA with honesty, market expertise, and genuine care — whether that's Eagle Rock, Venice, Mid City, or West Adams. Most of my business comes through referrals and repeat clients, which reflects the kind of relationships I build in every transaction.
             </p>
 
             <div className="pt-4">
-              <Link href="/about" className={`${styles.learnMoreLink} font-semibold text-charcoal whitespace-nowrap`}>
+              <Link href="/about" className={`${styles.link} font-semibold text-charcoal whitespace-nowrap`}>
                 Learn more about my approach
                 <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
               </Link>
@@ -43,16 +44,17 @@ export function AboutSnippet() {
 
           {/* Headshot */}
           <motion.div
-            className="relative aspect-square rounded-2xl overflow-hidden w-3/4 mx-auto"
+            className="relative aspect-square rounded-brand overflow-hidden w-3/4 mx-auto"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: easeSmooth }}
             viewport={{ once: true, margin: '-80px' }}
           >
-            <img
-              src="/headshot.jpg"
-              alt="Eric Zunkley - Real Estate Agent"
-              className="w-full h-full object-cover"
+            <Image
+              src={agent.headshot}
+              alt={`${agent.name} - Real Estate Agent`}
+              fill
+              className="object-cover"
             />
           </motion.div>
           </div>

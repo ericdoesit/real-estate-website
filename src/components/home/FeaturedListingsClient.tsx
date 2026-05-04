@@ -6,7 +6,8 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from '@/components/ui/ArrowRight'
 import { urlFor } from '@/lib/sanity/image'
-import styles from './FeaturedListingsClient.module.css'
+import { easeSmooth } from '@/lib/motion'
+import styles from '@/styles/arrow-link.module.css'
 
 interface SanityImage {
   _key?: string
@@ -23,8 +24,6 @@ interface Property {
   sqft: number
   heroImage?: SanityImage
 }
-
-const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
 
 export function FeaturedListingsClient({ properties }: { properties: Property[] }) {
   return (
@@ -59,7 +58,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
               viewport={{ once: true, margin: '-80px' }}
             >
               {/* Image */}
-              <div className="relative h-64 rounded-xl overflow-hidden mb-4 group">
+              <div className="relative h-64 rounded-brand overflow-hidden mb-4 group">
                 {property.heroImage ? (
                   <Image
                     src={urlFor(property.heroImage).url()}
@@ -80,7 +79,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
 
               {/* Info */}
               <div className="space-y-3">
-                <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:text-coral transition-colors">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:text-selection transition-colors">
                   {property.address}
                 </h3>
 
@@ -90,7 +89,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
                   <span>{property.sqft?.toLocaleString()} sqft</span>
                 </div>
 
-                <Link href={`/sold/${property.slug?.current || 'placeholder'}`} className={`${styles.detailsLink} text-sm font-semibold whitespace-nowrap`}>
+                <Link href={`/sold/${property.slug?.current || 'placeholder'}`} className={`${styles.link} text-sm font-semibold whitespace-nowrap`}>
                   View details
                   <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
                 </Link>

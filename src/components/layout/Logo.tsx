@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { agent, site } from '@/config/agent'
 
 interface LogoProps {
   className?: string
@@ -12,14 +13,14 @@ export function Logo({ className = 'h-16 w-16', showText = true }: LogoProps) {
     <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
       <div className={className + ' flex-shrink-0 rounded overflow-hidden'}>
         <img
-          src="/logo.svg"
-          alt="Eric Zunkley"
+          src={site.logo}
+          alt={agent.name}
           className="w-full h-full"
         />
       </div>
       {showText && (
         <div className="hidden sm:flex flex-col leading-tight">
-          <span className="font-sans text-base font-bold uppercase tracking-luxury text-charcoal">Eric Zunkley, Realtor</span>
+          <span className="font-sans text-base font-bold uppercase tracking-luxury text-charcoal">{agent.name}, {agent.title}</span>
         </div>
       )}
     </Link>

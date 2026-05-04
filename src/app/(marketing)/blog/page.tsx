@@ -3,6 +3,7 @@ import { serverClient } from '@/lib/sanity/client'
 import { BLOG_POSTS_QUERY } from '@/lib/sanity/queries'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
+import { agent } from '@/config/agent'
 
 interface BlogPost {
   _id: string
@@ -16,7 +17,7 @@ interface BlogPost {
 export const metadata = {
   title: 'Blog - Market Updates & Guides',
   description:
-    'Stay informed with market updates, buying guides, and LA real estate insights from Eric Zunkley.',
+    `Stay informed with market updates, buying guides, and LA real estate insights from ${agent.name}.`,
 }
 
 export default async function BlogPage() {
@@ -37,7 +38,7 @@ export default async function BlogPage() {
         slug: { current: 'sb9-guide' },
         excerpt: 'California SB9 is changing the real estate landscape. Learn how it could benefit your property.',
         publishedAt: '2024-03-15',
-        author: 'Eric Zunkley',
+        author: agent.name,
       },
       {
         _id: '2',
@@ -45,7 +46,7 @@ export default async function BlogPage() {
         slug: { current: 'spring-market-update' },
         excerpt: 'The LA real estate market is heating up. Here\'s what buyers and sellers need to know.',
         publishedAt: '2024-03-01',
-        author: 'Eric Zunkley',
+        author: agent.name,
       },
     ]
   }
