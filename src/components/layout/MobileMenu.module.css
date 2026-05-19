@@ -3,7 +3,7 @@
   top: 80px;
   left: 0;
   right: 0;
-  background-color: rgb(239 237 232 / 0.95);
+  background-color: color-mix(in srgb, var(--color-cream) 95%, transparent);
   backdrop-filter: blur(12px);
   z-index: 39;
   overflow: hidden;
@@ -24,7 +24,7 @@
   color: var(--color-charcoal);
   text-decoration: none;
   display: inline-block;
-  border-bottom: 1px solid rgb(59 57 50 / 0.1);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-charcoal) 10%, transparent);
   width: 100%;
 }
 

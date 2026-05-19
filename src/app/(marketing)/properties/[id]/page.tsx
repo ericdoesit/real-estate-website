@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { PrevNextNav } from '@/components/ui/PrevNextNav'
 import { ImageLightbox } from '@/components/ImageLightbox'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { serverClient } from '@/lib/sanity/client'
+import { ALL_PROPERTY_SLUGS_QUERY, PROPERTY_BY_SLUG_QUERY } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 
 interface SanityImage {
@@ -17,6 +19,8 @@ interface Property {
   address: string
   status: string
   soldDate?: string
+  price?: number
+  city?: string
   beds?: number
   baths?: number
   sqft?: number
@@ -29,29 +33,20 @@ interface Property {
 
 async function getProperty(id: string) {
   try {
-    const property = await serverClient.fetch(
-      `*[_type == "property" && slug.current == $slug][0] {
-        _id,
-        address,
-        slug,
-        status,
-        soldDate,
-        beds,
-        baths,
-        sqft,
-        propertyType,
-        heroImage,
-        gallery,
-        description,
-        features,
-      }`,
-      { slug: id }
-    )
-    console.log(`Fetched property for slug "${id}":`, property)
-    return property
+    return await serverClient.fetch(PROPERTY_BY_SLUG_QUERY, { slug: id })
   } catch (error) {
     console.error(`Failed to fetch property with slug "${id}":`, error)
     return null
+  }
+}
+
+export async function generateStaticParams() {
+  try {
+    const slugs = await serverClient.fetch(ALL_PROPERTY_SLUGS_QUERY)
+    return slugs.map((entry: { slug: string }) => ({ id: entry.slug }))
+  } catch (error) {
+    console.error('Failed to fetch property slugs:', error)
+    return []
   }
 }
 
@@ -68,7 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   return {
     title: `${property.address}`,
-    description: property.description || `${property.beds} bed, ${property.baths} bath property`,
+    description: `${property.beds ?? ''} bed, ${property.baths ?? ''} bath property`.trim(),
   }
 }
 
@@ -78,26 +73,39 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
 
   if (!property) {
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 py-16 text-center">
         <h1 className="font-serif text-4xl font-semibold text-charcoal mb-4">Property Not Found</h1>
         <p className="text-charcoal mb-8">The property you're looking for doesn't exist.</p>
-        <Link href="/sold" className="font-semibold hover:transition-colors">
+        <Link href="/properties" className="font-semibold hover:transition-colors">
           ← Back to Properties
         </Link>
       </div>
     )
   }
 
+  let allSlugs: Array<{ slug: string; address: string }> = []
+  try {
+    allSlugs = await serverClient.fetch(ALL_PROPERTY_SLUGS_QUERY)
+  } catch (error) {
+    console.error('Failed to fetch property slugs:', error)
+  }
+
   const galleryImages = property.gallery && property.gallery.length > 0
     ? property.gallery
     : (property.heroImage ? [property.heroImage] : [])
+
+  const currentIndex = allSlugs.findIndex((entry) => entry.slug === id)
+  const prevEntry = currentIndex > 0 ? allSlugs[currentIndex - 1] : null
+  const nextEntry = currentIndex >= 0 && currentIndex < allSlugs.length - 1 ? allSlugs[currentIndex + 1] : null
+  const prev = prevEntry ? { href: `/properties/${prevEntry.slug}`, label: prevEntry.address } : null
+  const next = nextEntry ? { href: `/properties/${nextEntry.slug}`, label: nextEntry.address } : null
 
   return (
     <article className="space-y-12">
       {/* Hero Image */}
       <section className="pt-10">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-6xl mx-auto">
+          <div className="container-site px-6 lg:px-12">
             {property.heroImage ? (
               <div className="relative w-full aspect-video overflow-hidden rounded-brand">
                 <Image
@@ -109,31 +117,38 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
                 />
               </div>
             ) : (
-              <div className="w-full aspect-video bg-dark-green/10 flex items-center justify-center overflow-hidden rounded-brand">
+              <div className="w-full aspect-video bg-charcoal/10 flex items-center justify-center overflow-hidden rounded-brand">
                 <p className="text-charcoal">No property image available</p>
               </div>
             )}
           </div>
         </div>
       </section>
+
       {/* Header */}
       <section>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 space-y-6">
           <div className="space-y-4">
-            <Eyebrow color={property.status === 'active' ? 'dark-green' : 'charcoal'}>
-              {property.status === 'active' ? 'Active' : 'Sold'}
+            <Eyebrow color="charcoal">
+              {property.city || (property.status === 'active' ? 'Active' : 'Sold')}
             </Eyebrow>
 
             <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
               {property.address}
             </h1>
+
+            {property.price && (
+              <p className="text-2xl font-sans text-muted">
+                ${property.price.toLocaleString()}
+              </p>
+            )}
           </div>
         </div>
       </section>
 
       {/* Quick Stats */}
       <section className="bg-cream py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
               <p className="text-sm font-semibold text-charcoal uppercase tracking-luxury mb-2">
@@ -176,7 +191,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
 
       {/* Description */}
       <section>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 space-y-8">
           <div>
             <h2 className="font-serif text-5xl font-semibold text-charcoal mb-4">
               About This Home
@@ -208,7 +223,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {property.features.map((feature: string, i: number) => (
                   <li key={i} className="flex items-center gap-3">
-                    <span className="text-dark-green font-bold">✓</span>
+                    <span className="text-charcoal font-bold">✓</span>
                     <span className="text-charcoal">{feature}</span>
                   </li>
                 ))}
@@ -221,7 +236,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
       {/* Gallery */}
       {galleryImages.length > 0 && (
         <section>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="container-site px-6 lg:px-12">
             <div className="mb-8">
               <h2 className="font-serif text-5xl font-semibold text-charcoal">
                 Property Gallery
@@ -233,15 +248,15 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
                 url: urlFor(img).url(),
               }))}
             />
+            <PrevNextNav prev={prev} next={next} />
           </div>
         </section>
       )}
 
-
       {/* Back Link */}
       <section className="pb-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/sold" className="font-semibold inline-flex items-center gap-2">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <Link href="/properties" className="font-semibold inline-flex items-center gap-2">
             ← Back to Properties
           </Link>
         </div>

@@ -25,7 +25,7 @@ export function Footer() {
               </Link>
               <div className="flex flex-col gap-1">
                 <span className="text-sm text-charcoal/60">{agent.dreLicense}</span>
-                <span className="text-sm text-charcoal/60">{agent.brokerage} {agent.brokerageDre}</span>
+                <span className="text-sm text-charcoal/60">{agent.brokerage}</span>
               </div>
               {/* Social icons */}
               <div className="flex items-center gap-4 mt-1">
@@ -70,8 +70,10 @@ export function Footer() {
               <Eyebrow>Quick Links</Eyebrow>
               <div className="grid grid-cols-2 gap-x-10 gap-y-2">
                 <Link href="/about" className={styles.footerLink}>About</Link>
-                <Link href="/neighborhoods" className={styles.footerLink}>Neighborhoods</Link>
-                <Link href="/sold" className={styles.footerLink}>Sold</Link>
+                <Link href="/local-guide" className={styles.footerLink}>Neighborhoods</Link>
+                <Link href="/properties" className={styles.footerLink}>Properties</Link>
+                <Link href="/buying" className={styles.footerLink}>Buying</Link>
+                <Link href="/selling" className={styles.footerLink}>Selling</Link>
                 <Link href="/blog" className={styles.footerLink}>Blog</Link>
                 <Link href="/contact" className={styles.footerLink}>Contact</Link>
               </div>
@@ -80,8 +82,18 @@ export function Footer() {
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-12 text-sm text-charcoal/50 font-sans leading-relaxed text-center">
-            <p>&copy; {currentYear} {agent.name}. All content on this website is the property of {agent.name} or its respective copyright owners and partners, and is protected by US and international copyright laws.</p>
+          <div className="mt-16">
+            <div className="grid grid-cols-3 items-center">
+              <Link href="/privacy-policy" className={styles.footerLink}>
+                Privacy Policy
+              </Link>
+              <p className="text-xs font-normal uppercase tracking-luxury text-charcoal text-center">
+                &copy; {currentYear} {agent.name}
+              </p>
+              <p className="text-xs font-normal uppercase tracking-luxury text-charcoal text-right">
+                {agent.dreLicense}
+              </p>
+            </div>
           </div>
 
         </div>

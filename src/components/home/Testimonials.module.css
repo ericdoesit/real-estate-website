@@ -26,13 +26,13 @@
 .card {
   flex-shrink: 0;
   width: 320px;
-  background-color: var(--color-cream);
+  background-color: var(--color-sand);
   border-radius: 10px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  border: 1px solid rgb(59 57 50 / 0.3);
+  border: 1px solid var(--color-border);
 }
 
 .stars {

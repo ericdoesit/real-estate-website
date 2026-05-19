@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
-import { easeSmooth } from '@/lib/motion'
+import { easeSmooth } from '@/lib/ease'
 
 export function CTABanner({
   heading = 'Get in touch.',
@@ -19,6 +19,7 @@ export function CTABanner({
     email: '',
     phone: '',
     message: '',
+    website: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
@@ -42,7 +43,7 @@ export function CTABanner({
 
       if (response.ok) {
         setSubmitStatus('success')
-        setFormState({ name: '', email: '', phone: '', message: '' })
+        setFormState({ name: '', email: '', phone: '', message: '', website: '' })
         setTimeout(() => setSubmitStatus('idle'), 5000)
       } else {
         setSubmitStatus('error')
@@ -56,7 +57,7 @@ export function CTABanner({
   }
 
   return (
-    <section className="py-10 bg-charcoal">
+    <section className="section-py bg-charcoal">
       <div className="w-full px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -88,9 +89,11 @@ export function CTABanner({
             viewport={{ once: true, margin: '-80px' }}
           >
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot field — hidden from users, catches bots */}
+              <input type="text" name="website" value={formState.website} onChange={handleChange} className="hidden" tabIndex={-1} autoComplete="off" />
               <div>
                 <label className="block text-xs font-semibold tracking-luxury text-white/70 uppercase mb-2">
-                  Name <span className="text-goldenrod">*</span>
+                  Name <span className="text-white/60">*</span>
                 </label>
                 <input
                   type="text"
@@ -99,13 +102,13 @@ export function CTABanner({
                   onChange={handleChange}
                   required
                   placeholder="John Smith"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-goldenrod/50 focus:ring-1 focus:ring-goldenrod/30 transition-colors"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/20 transition-colors"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-semibold tracking-luxury text-white/70 uppercase mb-2">
-                  Email <span className="text-goldenrod">*</span>
+                  Email <span className="text-white/60">*</span>
                 </label>
                 <input
                   type="email"
@@ -114,7 +117,7 @@ export function CTABanner({
                   onChange={handleChange}
                   required
                   placeholder="john@example.com"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-goldenrod/50 focus:ring-1 focus:ring-goldenrod/30 transition-colors"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/20 transition-colors"
                 />
               </div>
 
@@ -128,13 +131,13 @@ export function CTABanner({
                   value={formState.phone}
                   onChange={handleChange}
                   placeholder="(323) 123-4567"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-goldenrod/50 focus:ring-1 focus:ring-goldenrod/30 transition-colors"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/20 transition-colors"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-semibold tracking-luxury text-white/70 uppercase mb-2">
-                  Message <span className="text-goldenrod">*</span>
+                  Message <span className="text-white/60">*</span>
                 </label>
                 <textarea
                   name="message"
@@ -143,12 +146,12 @@ export function CTABanner({
                   required
                   placeholder="Tell me about your real estate needs..."
                   rows={5}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-goldenrod/50 focus:ring-1 focus:ring-goldenrod/30 transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/20 transition-colors resize-none"
                 />
               </div>
 
               {submitStatus === 'success' && (
-                <p className="text-goldenrod text-sm">Message sent! I'll be in touch soon.</p>
+                <p className="text-white text-sm">Message sent! I'll be in touch soon.</p>
               )}
               {submitStatus === 'error' && (
                 <p className="text-sm">Something went wrong. Please try again.</p>
@@ -156,6 +159,7 @@ export function CTABanner({
 
               <Button
                 type="submit"
+                variant="inverse"
                 disabled={isSubmitting}
                 className="w-full font-semibold py-3 mt-2"
               >

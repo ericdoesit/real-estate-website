@@ -64,7 +64,7 @@ export default async function BlogPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="space-y-8">
               <StaggerItem>
                 <div className="space-y-4">
@@ -89,7 +89,7 @@ export default async function BlogPage() {
       {/* Blog Grid */}
       <section className="pb-16">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
           {posts.length > 0 ? (
             <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post) => (

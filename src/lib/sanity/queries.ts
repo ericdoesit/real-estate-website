@@ -25,9 +25,13 @@ export const BLOG_POST_BY_SLUG_QUERY = `
   }
 `
 
+export const ALL_BLOG_SLUGS_QUERY = `
+  *[_type == "blogPost"]{ "slug": slug.current, title }
+`
+
 // Neighborhood queries
 export const NEIGHBORHOODS_QUERY = `
-  *[_type == "neighborhoodGuide"] | order(name asc) {
+  *[_type == "neighborhoodGuide"] | order(order asc, name asc) {
     _id,
     name,
     slug,
@@ -50,6 +54,10 @@ export const NEIGHBORHOOD_BY_SLUG_QUERY = `
   }
 `
 
+export const ALL_NEIGHBORHOOD_SLUGS_QUERY = `
+  *[_type == "neighborhoodGuide"]{ "slug": slug.current, name }
+`
+
 // Property queries
 export const FEATURED_PROPERTIES_QUERY = `
   *[_type == "property" && isFeatured == true] | order(soldDate desc)[0..5] {
@@ -59,6 +67,8 @@ export const FEATURED_PROPERTIES_QUERY = `
     beds,
     baths,
     sqft,
+    price,
+    city,
     heroImage,
     status,
   }
@@ -72,6 +82,8 @@ export const ALL_PROPERTIES_QUERY = `
     beds,
     baths,
     sqft,
+    price,
+    city,
     heroImage,
     status,
   }
@@ -87,10 +99,29 @@ export const PROPERTY_BY_SLUG_QUERY = `
     beds,
     baths,
     sqft,
+    price,
+    city,
     propertyType,
     heroImage,
     gallery,
     description,
     features,
+  }
+`
+
+export const ALL_PROPERTY_SLUGS_QUERY = `
+  *[_type == "property"]{ "slug": slug.current, address }
+`
+
+// Review queries
+export const FEATURED_REVIEWS_QUERY = `
+  *[_type == "review"] | order(date desc)[0..23] {
+    _id,
+    name,
+    source,
+    rating,
+    text,
+    date,
+    subtitle,
   }
 `

@@ -1,51 +1,36 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ArrowRight } from '@/components/ui/ArrowRight'
-import { easeSmooth } from '@/lib/motion'
+import { easeSmooth } from '@/lib/ease'
 import { getNeighborhoodPhoto } from '@/lib/neighborhoods'
+import { urlFor } from '@/lib/sanity/image'
 import styles from '@/styles/arrow-link.module.css'
 
-interface Neighborhood {
+interface NeighborhoodItem {
   _id: string
   name: string
   slug: { current: string }
   tagline: string
-  image: string
+  heroImage?: { asset?: { _ref: string } }
 }
 
-const NEIGHBORHOODS: Neighborhood[] = [
-  { _id: '1', name: 'Mid City', slug: { current: 'mid-city' }, tagline: 'LA\'s vibrant heart', image: '' },
-  { _id: '2', name: 'Eagle Rock', slug: { current: 'eagle-rock' }, tagline: 'Character and charm', image: '' },
-  { _id: '3', name: 'Highland Park', slug: { current: 'highland-park' }, tagline: 'Emerging coolness', image: '' },
-  { _id: '4', name: 'West Adams', slug: { current: 'west-adams' }, tagline: 'Historic elegance', image: '' },
-  { _id: '5', name: 'Venice', slug: { current: 'venice' }, tagline: 'Beachside culture', image: '' },
-  { _id: '6', name: 'Silver Lake', slug: { current: 'silver-lake' }, tagline: 'Artistic haven', image: '' },
-]
-
-export function NeighborhoodTeaser() {
+export function NeighborhoodTeaser({ neighborhoods }: { neighborhoods: NeighborhoodItem[] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const neighborhoodsWithImages = useMemo(() => {
-    return NEIGHBORHOODS.map(n => ({
-      ...n,
-      image: `/neighborhoods/${getNeighborhoodPhoto(n._id)}`
-    }))
-  }, [])
-
-  const visibleNeighborhoods = neighborhoodsWithImages.slice(currentIndex, currentIndex + 3)
-  const hasMore = currentIndex + 3 < neighborhoodsWithImages.length
+  const visibleNeighborhoods = neighborhoods.slice(currentIndex, currentIndex + 3)
+  const hasMore = currentIndex + 3 < neighborhoods.length
   const canGoPrev = currentIndex > 0
 
   const handleNext = () => { if (hasMore) setCurrentIndex(currentIndex + 1) }
   const handlePrev = () => { if (canGoPrev) setCurrentIndex(currentIndex - 1) }
 
   return (
-    <section className="py-10 bg-cream">
+    <section className="section-py">
       <div className="w-full px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
         {/* Header */}
@@ -64,7 +49,7 @@ export function NeighborhoodTeaser() {
             Each guide highlights the character, culture, and details that make each neighborhood worth exploring.
           </p>
           <Link
-            href="/neighborhoods"
+            href="/local-guide"
             className={`${styles.link} font-semibold whitespace-nowrap`}
           >
             Browse all neighborhoods
@@ -83,25 +68,33 @@ export function NeighborhoodTeaser() {
                 transition={{ duration: 1, ease: easeSmooth, delay: index * 0.1 }}
                 viewport={{ once: true, margin: '-80px' }}
               >
-                <Link
-                  href={`/neighborhoods/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
-                  className="group flex flex-col"
-                >
-                  <div className="relative h-72 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-brand overflow-hidden mb-4">
-                    <Image
-                      src={neighborhood.image}
-                      alt={neighborhood.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </div>
+                {(() => {
+                  const imgSrc = neighborhood.heroImage
+                    ? urlFor(neighborhood.heroImage).width(600).url()
+                    : `/hood-photos/${getNeighborhoodPhoto(neighborhood._id)}`
 
-                  <h3 className="font-serif text-2xl font-semibold text-charcoal group-hover:transition-colors">
-                    {neighborhood.name}
-                  </h3>
-                  <p className="font-sans text-base text-charcoal mt-2">{neighborhood.tagline}</p>
-                </Link>
+                  return (
+                    <Link
+                      href={`/local-guide/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
+                      className="group flex flex-col"
+                    >
+                      <div className="relative h-72 bg-gradient-to-br from-charcoal/10 to-charcoal/10 rounded-brand overflow-hidden mb-4">
+                        <Image
+                          src={imgSrc}
+                          alt={neighborhood.name}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+
+                      <h3 className="font-serif text-2xl font-semibold text-charcoal group-hover:transition-colors">
+                        {neighborhood.name}
+                      </h3>
+                      <p className="font-sans text-base text-charcoal mt-2">{neighborhood.tagline}</p>
+                    </Link>
+                  )
+                })()}
               </motion.div>
             ))}
           </div>

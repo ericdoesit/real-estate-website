@@ -38,6 +38,18 @@ export const property = defineType({
       type: 'date',
     }),
     defineField({
+      name: 'price',
+      title: 'Price',
+      type: 'number',
+      description: 'Sale or list price in dollars',
+    }),
+    defineField({
+      name: 'city',
+      title: 'City / Neighborhood',
+      type: 'string',
+      description: 'e.g. Silver Lake, West Adams, Eagle Rock',
+    }),
+    defineField({
       name: 'beds',
       title: 'Bedrooms',
       type: 'number',

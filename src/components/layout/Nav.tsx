@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { MobileMenu } from './MobileMenu'
 import { Logo } from './Logo'
 import styles from './Nav.module.css'
+import { navLinks } from '@/config/navLinks'
 
 export function Nav() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -23,14 +24,6 @@ export function Nav() {
       cancelAnimationFrame(rafId)
     }
   }, [])
-
-  const navLinks = [
-    { href: '/about', label: 'About' },
-    { href: '/neighborhoods', label: 'Neighborhoods' },
-    { href: '/sold', label: 'Sold' },
-    { href: '/services', label: 'Services' },
-    { href: '/blog', label: 'Blog' },
-  ]
 
   return (
     <nav className={`${styles.nav} ${isScrolled ? styles.scrolled : ''}`}>

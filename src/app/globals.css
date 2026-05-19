@@ -2,16 +2,12 @@
 
 @theme inline {
   /* Colors */
-  --color-wheat: #eadbbb;
-  --color-cream: #efede8;
-  --color-charcoal: #3b3932;
-  --color-crimson: #db2727;
-  --color-goldenrod: #eebd2d;
-  --color-dark-green: #48553f;
-  --color-muted: #6b6b6b;
+  --color-charcoal: #1a1919;
+  --color-cream: #faf9f5;
+  --color-muted: #807f7d;
   --color-dark-footer: #1a1a1a;
-  --color-selection: #a0644e;
-  --color-coral: #a0644e;
+  --color-sand: #f2f0e9;
+  --color-border: #b3b2af;
 
   /* Fonts */
   --font-sans: var(--font-manrope), system-ui, sans-serif;
@@ -45,10 +41,40 @@ body {
 }
 
 ::selection {
-  background-color: #a0644e;
-  color: white;
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
 }
 
 .rounded-brand {
   border-radius: 10px;
+}
+
+@utility section-py {
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+}
+
+@utility container-site {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 500ms cubic-bezier(0.42, 0, 0.2, 1);
+}
+
+.hover-underline:hover::after {
+  width: 100%;
 }

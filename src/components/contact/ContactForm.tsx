@@ -1,16 +1,36 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { agent } from '@/config/agent'
 
-export function ContactForm() {
+interface ContactFormProps {
+  dark?: boolean
+  submitLabel?: string
+  messagePlaceholder?: string
+}
+
+export function ContactForm({
+  dark = false,
+  submitLabel = 'Send Message',
+  messagePlaceholder = 'Tell me about your real estate goals...',
+}: ContactFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
+
+  const labelClass = cn(
+    'block text-xs font-semibold tracking-luxury uppercase mb-2',
+    dark ? 'text-white/70' : 'text-charcoal/70'
+  )
+
+  const inputClass = cn(
+    'w-full px-4 py-3 rounded-md focus:outline-none transition-colors',
+    dark
+      ? 'bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-cream/50 focus:ring-1 focus:ring-cream/30'
+      : 'bg-white border border-charcoal/20 text-charcoal placeholder:text-charcoal/40 focus:border-charcoal/40'
+  )
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -23,6 +43,7 @@ export function ContactForm() {
       email: formData.get('email'),
       phone: formData.get('phone'),
       message: formData.get('message'),
+      website: formData.get('website'),
     }
 
     try {
@@ -32,96 +53,75 @@ export function ContactForm() {
         body: JSON.stringify(data),
       })
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form')
-      }
+      if (!response.ok) throw new Error()
 
       setIsSuccess(true)
       e.currentTarget.reset()
       setTimeout(() => setIsSuccess(false), 5000)
-    } catch (err) {
+    } catch {
       setError('Something went wrong. Please try again or call directly.')
-      console.error(err)
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {isSuccess && (
-        <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-          Thanks for reaching out! I'll be in touch soon.
-        </div>
-      )}
-
-      {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-          {error}
-        </div>
-      )}
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Honeypot — hidden from humans, bots fill it in */}
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" style={{ position: 'absolute', left: '-9999px' }} />
 
       <div>
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Your name"
-          required
-          disabled={isLoading}
-        />
+        <label htmlFor="cf-name" className={labelClass}>Name <span>*</span></label>
+        <input id="cf-name" type="text" name="name" placeholder="John Smith" required disabled={isLoading} className={inputClass} />
       </div>
 
       <div>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="your@email.com"
-          required
-          disabled={isLoading}
-        />
+        <label htmlFor="cf-email" className={labelClass}>Email <span>*</span></label>
+        <input id="cf-email" type="email" name="email" placeholder="john@example.com" required disabled={isLoading} className={inputClass} />
       </div>
 
       <div>
-        <Label htmlFor="phone">Phone</Label>
-        <Input
-          id="phone"
-          name="phone"
-          type="tel"
-          placeholder="(323) 555-0000"
-          disabled={isLoading}
-        />
+        <label htmlFor="cf-phone" className={labelClass}>Phone</label>
+        <input id="cf-phone" type="tel" name="phone" placeholder="(323) 555-0000" disabled={isLoading} className={inputClass} />
       </div>
 
       <div>
-        <Label htmlFor="message">Message</Label>
-        <Textarea
-          id="message"
+        <label htmlFor="cf-message" className={labelClass}>Message <span>*</span></label>
+        <textarea
+          id="cf-message"
           name="message"
-          placeholder="Tell me about your real estate goals..."
-          rows={6}
+          placeholder={messagePlaceholder}
+          rows={5}
           required
           disabled={isLoading}
+          className={cn(inputClass, 'resize-none')}
         />
       </div>
+
+      {isSuccess && (
+        <p className={cn('text-sm', dark ? 'text-cream' : 'text-charcoal')}>
+          Message sent! I'll be in touch soon.
+        </p>
+      )}
+      {error && <p className={cn('text-sm', dark ? 'text-white/70' : 'text-charcoal/70')}>{error}</p>}
 
       <Button
         type="submit"
+        variant={dark ? 'inverse' : 'default'}
         disabled={isLoading}
-        className="font-semibold w-full"
+        className="mt-2"
       >
-        {isLoading ? 'Sending...' : 'Send Message'}
+        {isLoading ? 'Sending...' : submitLabel}
       </Button>
 
-      <p className="text-sm text-charcoal text-center">
-        Or call me directly at{' '}
-        <a href={`tel:${agent.phone}`} className="font-semibold hover:transition-colors">
-          {agent.phoneDisplay}
-        </a>
-      </p>
+      {!dark && (
+        <p className="text-sm text-charcoal text-center">
+          Or call me directly at{' '}
+          <a href={`tel:${agent.phone}`} className="font-semibold">
+            {agent.phoneDisplay}
+          </a>
+        </p>
+      )}
     </form>
   )
 }

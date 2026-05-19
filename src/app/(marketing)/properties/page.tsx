@@ -19,6 +19,8 @@ interface Property {
   address: string
   slug: { current: string }
   status: string
+  price?: number
+  city?: string
   beds: number
   baths: number
   sqft: number
@@ -68,7 +70,7 @@ export default async function PropertiesPage() {
 
   const PropertyCard = ({ property, priority }: { property: Property; priority?: boolean }) => (
     <Link
-      href={`/sold/${property.slug?.current || 'placeholder'}`}
+      href={`/properties/${property.slug?.current || 'placeholder'}`}
       className="group"
     >
       <div className="space-y-4">
@@ -84,7 +86,7 @@ export default async function PropertiesPage() {
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
-            <div className="w-full h-full bg-dark-green/10 flex items-center justify-center">
+            <div className="w-full h-full bg-charcoal/10 flex items-center justify-center">
               <p className="text-charcoal">No image available</p>
             </div>
           )}
@@ -92,9 +94,16 @@ export default async function PropertiesPage() {
 
         {/* Info */}
         <div className="space-y-3">
+          {property.city && <Eyebrow className="text-xs">{property.city}</Eyebrow>}
           <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors line-clamp-2">
             {property.address}
           </h3>
+
+          {property.price && (
+            <p className="text-2xl font-sans text-muted">
+              ${property.price.toLocaleString()}
+            </p>
+          )}
 
           <div className="flex gap-4 text-sm text-charcoal">
             <span>{property.beds} bed</span>
@@ -112,7 +121,7 @@ export default async function PropertiesPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="space-y-8">
               <StaggerItem>
                 <div className="space-y-4">
@@ -138,7 +147,7 @@ export default async function PropertiesPage() {
       {activeListings.length > 0 && (
         <section className="py-10">
           <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup>
               <StaggerItem className="mb-12">
                 <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
@@ -166,7 +175,8 @@ export default async function PropertiesPage() {
       {soldListings.length > 0 && (
         <section className="py-10">
           <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
+            <Eyebrow>Past Transactions</Eyebrow>
             <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {soldListings.map((property, i) => (
                 <StaggerItem key={property._id}>

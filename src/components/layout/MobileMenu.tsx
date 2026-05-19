@@ -4,16 +4,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './MobileMenu.module.css'
-import { easeSmooth } from '@/lib/motion'
-
-const navLinks = [
-  { href: '/about', label: 'About' },
-  { href: '/neighborhoods', label: 'Neighborhoods' },
-  { href: '/sold', label: 'Sold' },
-  { href: '/services', label: 'Services' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
-]
+import { easeSmooth } from '@/lib/ease'
+import { mobileNavLinks } from '@/config/navLinks'
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
@@ -44,7 +36,7 @@ export function MobileMenu() {
             transition={{ duration: 0.4, ease: easeSmooth }}
           >
             <nav className={styles.nav}>
-              {navLinks.map((link, i) => (
+              {mobileNavLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, y: 10 }}

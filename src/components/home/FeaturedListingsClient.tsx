@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from '@/components/ui/ArrowRight'
 import { urlFor } from '@/lib/sanity/image'
-import { easeSmooth } from '@/lib/motion'
+import { easeSmooth } from '@/lib/ease'
 import styles from '@/styles/arrow-link.module.css'
 
 interface SanityImage {
@@ -27,7 +27,7 @@ interface Property {
 
 export function FeaturedListingsClient({ properties }: { properties: Property[] }) {
   return (
-    <section className="py-10 bg-cream">
+    <section className="section-py">
       <div className="w-full px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
         {/* Header */}
@@ -68,18 +68,18 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 ) : (
-                  <div className="w-full h-full bg-dark-green/10 flex items-center justify-center">
+                  <div className="w-full h-full bg-charcoal/10 flex items-center justify-center">
                     <p className="text-charcoal">No image available</p>
                   </div>
                 )}
-                <div className="absolute top-4 right-4 bg-goldenrod text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                <div className="absolute top-4 right-4 bg-charcoal text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
                   Featured
                 </div>
               </div>
 
               {/* Info */}
               <div className="space-y-3">
-                <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:text-selection transition-colors">
+                <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:text-muted transition-colors">
                   {property.address}
                 </h3>
 
@@ -89,7 +89,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
                   <span>{property.sqft?.toLocaleString()} sqft</span>
                 </div>
 
-                <Link href={`/sold/${property.slug?.current || 'placeholder'}`} className={`${styles.link} text-sm font-semibold whitespace-nowrap`}>
+                <Link href={`/properties/${property.slug?.current || 'placeholder'}`} className={`${styles.link} text-sm font-semibold whitespace-nowrap`}>
                   View details
                   <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
                 </Link>
@@ -106,7 +106,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
           transition={{ duration: 1, ease: easeSmooth }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          <Link href="/sold">
+          <Link href="/properties">
             <Button className="font-semibold">
               See All Properties
             </Button>

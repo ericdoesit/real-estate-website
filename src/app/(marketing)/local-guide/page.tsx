@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { serverClient } from '@/lib/sanity/client'
 import { NEIGHBORHOODS_QUERY } from '@/lib/sanity/queries'
+import { urlFor } from '@/lib/sanity/image'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CTABanner } from '@/components/home/CTABanner'
 import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
@@ -49,6 +50,7 @@ interface Neighborhood {
   name: string
   slug: { current: string }
   tagline: string
+  heroImage?: { asset?: { _ref: string } }
 }
 
 export const metadata = {
@@ -66,7 +68,6 @@ export default async function NeighborhoodsPage() {
     console.error('Failed to fetch neighborhoods:', error)
   }
 
-  // Fallback placeholder
   if (neighborhoods.length === 0) {
     neighborhoods = [
       {
@@ -110,10 +111,9 @@ export default async function NeighborhoodsPage() {
 
   return (
     <div className="">
-      {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="space-y-8">
               <StaggerItem>
                 <div className="space-y-4">
@@ -135,40 +135,44 @@ export default async function NeighborhoodsPage() {
         </div>
       </section>
 
-      {/* Neighborhoods Grid */}
       <section className="py-10">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
-          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {neighborhoods.map((neighborhood, i) => (
-              <StaggerItem key={neighborhood._id}>
-                <Link
-                  href={`/neighborhoods/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
-                  className="group block"
-                >
-                  <div className="relative h-64 bg-gradient-to-br from-dark-green/20 to-dark-green/20 rounded-brand overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
-                    <Image
-                      src={`/neighborhoods/${getRandomPhoto(neighborhood._id)}`}
-                      alt={neighborhood.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      priority={i === 0}
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+          <div className="container-site">
+            <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {neighborhoods.map((neighborhood, i) => {
+                const imgSrc = neighborhood.heroImage
+                  ? urlFor(neighborhood.heroImage).width(800).url()
+                  : `/hood-photos/${getRandomPhoto(neighborhood._id)}`
 
-                  <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors">
-                    {neighborhood.name}
-                  </h3>
-                  <p className="text-charcoal text-sm mt-2">{neighborhood.tagline}</p>
-                </Link>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+                return (
+                  <StaggerItem key={neighborhood._id}>
+                    <Link
+                      href={`/local-guide/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
+                      className="group block"
+                    >
+                      <div className="relative h-64 bg-gradient-to-br from-charcoal/10 to-charcoal/10 rounded-brand overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
+                        <Image
+                          src={imgSrc}
+                          alt={neighborhood.name}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          priority={i === 0}
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+
+                      <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors">
+                        {neighborhood.name}
+                      </h3>
+                      <p className="text-charcoal text-sm mt-2">{neighborhood.tagline}</p>
+                    </Link>
+                  </StaggerItem>
+                )
+              })}
+            </StaggerGroup>
           </div>
         </div>
       </section>
-
 
       <CTABanner
         heading="Curious about an area?"

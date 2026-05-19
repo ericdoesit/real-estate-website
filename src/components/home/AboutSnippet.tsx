@@ -5,13 +5,13 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ArrowRight } from '@/components/ui/ArrowRight'
-import { easeSmooth } from '@/lib/motion'
+import { easeSmooth } from '@/lib/ease'
 import { agent } from '@/config/agent'
 import styles from '@/styles/arrow-link.module.css'
 
 export function AboutSnippet() {
   return (
-    <section className="py-10 bg-wheat">
+    <section className="section-py">
       <div className="w-full px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">

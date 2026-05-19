@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
-import { easeSmooth } from '@/lib/motion'
+import { easeSmooth } from '@/lib/ease'
 
 export function AnimateIn({
   children,

@@ -73,6 +73,12 @@ export const neighborhoodGuide = defineType({
       ],
     }),
     defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description: 'Lower numbers appear first. Leave blank to sort alphabetically.',
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seoFields',

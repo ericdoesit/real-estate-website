@@ -1,5 +1,7 @@
-import { ContactForm } from '@/components/contact/ContactForm'
+import { IntakeForm } from '@/components/contact/IntakeForm'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { CTABanner } from '@/components/home/CTABanner'
+import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
 import { agent } from '@/config/agent'
 
 export const metadata = {
@@ -9,75 +11,53 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="">
+    <div>
       {/* Hero */}
       <section className="pt-10 pb-8">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="space-y-4">
-            <Eyebrow>Get In Touch</Eyebrow>
-            <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-              Let's talk about your goals.
-            </h1>
+        <div className="w-full px-6 lg:px-12">
+          <div className="container-site">
+            <StaggerGroup className="space-y-6">
+              <StaggerItem className="space-y-3">
+                <Eyebrow>Get In Touch</Eyebrow>
+                <h1 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
+                  Let's talk about your goals.
+                </h1>
+              </StaggerItem>
+              <StaggerItem>
+                <p className="font-sans text-lg text-charcoal leading-relaxed max-w-3xl">
+                  Whether you're buying, selling, or exploring opportunities, I'm here to help. Fill out the form below and I'll get back to you within 24 hours.
+                </p>
+              </StaggerItem>
+            </StaggerGroup>
           </div>
-
-          <p className="text-lg text-charcoal max-w-xl leading-relaxed">
-            Whether you're buying, selling, or exploring opportunities, I'm here to help. Reach out with any questions—I'll get back to you promptly.
-          </p>
         </div>
       </section>
 
       {/* Form */}
-      <section className="bg-cream py-10">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
-            <div>
-              <h2 className="font-serif text-5xl font-semibold text-charcoal mb-2">
-                Send a Message
-              </h2>
-              <p className="text-charcoal">
-                I typically respond within 24 hours during business days.
-              </p>
-            </div>
-
-            <ContactForm />
+      <section className="bg-cream py-20">
+        <div className="w-full px-6 lg:px-12">
+          <div className="container-site">
+            <StaggerGroup className="max-w-2xl space-y-8">
+              <StaggerItem className="space-y-3">
+                <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-charcoal capitalize">
+                  Send a Message
+                </h2>
+                <p className="font-sans text-charcoal leading-relaxed">
+                  Tell me a bit about what you're looking for — it helps me prepare for our first call.
+                </p>
+              </StaggerItem>
+              <StaggerItem>
+                <IntakeForm />
+              </StaggerItem>
+            </StaggerGroup>
           </div>
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="py-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Call Direct
-              </h3>
-              <div className="space-y-2">
-                <p className="text-charcoal">
-                  <a href={`tel:${agent.phone}`} className="font-semibold hover:transition-colors">
-                    {agent.phoneDisplay}
-                  </a>
-                </p>
-                <p className="text-sm text-charcoal">Monday - Friday, 9am - 6pm PT</p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="font-serif text-3xl font-semibold text-charcoal">
-                Email
-              </h3>
-              <div className="space-y-2">
-                <p className="text-charcoal">
-                  <a href={`mailto:${agent.email}`} className="font-semibold hover:transition-colors">
-                    {agent.email}
-                  </a>
-                </p>
-                <p className="text-sm text-charcoal">I respond within 24 hours</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTABanner
+        heading="Ready to get started?"
+        description="No pressure, no commitment. Just a conversation about what you're looking for."
+      />
     </div>
   )
 }

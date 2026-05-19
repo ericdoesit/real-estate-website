@@ -63,6 +63,26 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Breakout Quote */}
+      <section className="bg-sand py-24">
+        <div className="w-full px-6 lg:px-12">
+          <div className="max-w-[1400px] mx-auto">
+            <StaggerGroup className="flex flex-col items-center text-center gap-6">
+              <StaggerItem className="flex items-center gap-4 lg:gap-8">
+                <span className="font-serif text-8xl lg:text-9xl text-charcoal/10 leading-none select-none self-start">&ldquo;</span>
+                <p className="font-serif text-4xl lg:text-6xl font-normal italic text-charcoal leading-none tracking-tight">
+                  I help people realize their home ownership dreams: find a home that gives them the space to write their story.
+                </p>
+                <span className="font-serif text-8xl lg:text-9xl text-charcoal/10 leading-none select-none self-end">&rdquo;</span>
+              </StaggerItem>
+              <StaggerItem>
+                <p className="font-sans text-sm font-semibold tracking-widest uppercase text-charcoal/40">{agent.name}</p>
+              </StaggerItem>
+            </StaggerGroup>
+          </div>
+        </div>
+      </section>
+
       {/* Approach */}
       <section className="bg-cream py-10">
         <div className="w-full px-6 lg:px-12">
