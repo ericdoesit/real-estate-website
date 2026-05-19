@@ -42,7 +42,7 @@ export function FeaturedListingsClient({ properties }: { properties: Property[] 
             Featured Properties
           </p>
           <h2 className="font-serif text-5xl font-semibold text-charcoal">
-            Curated listings. Available now.
+            Available now.
           </h2>
         </motion.div>
 
