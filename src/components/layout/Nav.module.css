@@ -7,9 +7,6 @@
   backdrop-filter: blur(12px);
 }
 
-.nav.scrolled {
-}
-
 .container {
   width: 100%;
   padding: 0 1.5rem;
@@ -44,26 +41,10 @@
 .navLink {
   font-size: 1rem;
   color: var(--color-charcoal);
-  padding: 0.25rem 0.125rem 0.25rem 0.125rem;
-  position: relative;
+  padding: 0.25rem 0.125rem;
   text-decoration: none;
   font-weight: 500;
   display: inline-block;
-}
-
-.navLink::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: var(--color-charcoal);
-  transition: width 500ms ease-in-out;
-}
-
-.navLink:hover::after {
-  width: 100%;
 }
 
 .mobileMenuContainer {

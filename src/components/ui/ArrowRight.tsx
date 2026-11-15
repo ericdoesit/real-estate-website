@@ -1,15 +1,11 @@
 export function ArrowRight({ className = '' }: { className?: string }) {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 256 256"
+      viewBox="0 0 340.034 340.034"
       fill="currentColor"
       className={className}
     >
-      <g>
-        <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
-      </g>
+      <polygon points="222.814,52.783 200.902,74.686 280.748,154.528 0,154.528 0,185.513 280.748,185.513 200.902,265.353 222.814,287.252 340.034,170.023" />
     </svg>
   )
 }

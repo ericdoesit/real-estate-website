@@ -1,125 +1,94 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { Eyebrow } from '@/components/ui/Eyebrow'
-import { ArrowRight } from '@/components/ui/ArrowRight'
+import NextImage from 'next/image'
+import { m } from '@/lib/motion'
+import { SectionHeader } from '@/components/ui/SectionHeader'
+import { ButtonLink } from '@/components/ui/button'
 import { easeSmooth } from '@/lib/ease'
+import { urlFor, sanityLoader } from '@/lib/sanity/image'
 import { getNeighborhoodPhoto } from '@/lib/neighborhoods'
-import { urlFor } from '@/lib/sanity/image'
-import styles from '@/styles/arrow-link.module.css'
 
-interface NeighborhoodItem {
+interface SanityNeighborhood {
   _id: string
   name: string
   slug: { current: string }
   tagline: string
-  heroImage?: { asset?: { _ref: string } }
+  heroImage?: { asset?: { _ref: string }; alt?: string }
 }
 
-export function NeighborhoodTeaser({ neighborhoods }: { neighborhoods: NeighborhoodItem[] }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+interface Props {
+  neighborhoods?: SanityNeighborhood[]
+}
 
-  const visibleNeighborhoods = neighborhoods.slice(currentIndex, currentIndex + 3)
-  const hasMore = currentIndex + 3 < neighborhoods.length
-  const canGoPrev = currentIndex > 0
-
-  const handleNext = () => { if (hasMore) setCurrentIndex(currentIndex + 1) }
-  const handlePrev = () => { if (canGoPrev) setCurrentIndex(currentIndex - 1) }
+export function NeighborhoodTeaser({ neighborhoods = [] }: Props) {
+  const visibleNeighborhoods = neighborhoods.slice(0, 6)
 
   return (
-    <section className="section-py">
+    <section className="section-py bg-cream">
       <div className="w-full px-6 lg:px-12">
-        <div className="max-w-[1400px] mx-auto">
-        {/* Header */}
-        <motion.div
-          className="mb-12 space-y-4 max-w-2xl"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: easeSmooth }}
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          <Eyebrow>Know Your Neighborhood</Eyebrow>
-          <h2 className="font-serif text-5xl font-semibold text-charcoal">
-            Explore LA neighborhoods.
-          </h2>
-          <p className="font-sans text-lg text-charcoal leading-relaxed">
-            Each guide highlights the character, culture, and details that make each neighborhood worth exploring.
-          </p>
-          <Link
-            href="/local-guide"
-            className={`${styles.link} font-semibold whitespace-nowrap`}
-          >
-            Browse all neighborhoods
-            <ArrowRight className={`w-5 h-5 ${styles.arrow}`} />
-          </Link>
-        </motion.div>
+        <div className="container-site">
+          {/* Header */}
+          <SectionHeader
+            eyebrow="Know Your Neighborhood"
+            heading="Explore LA neighborhoods"
+            body="Each guide highlights the character, culture, and details that make each neighborhood worth exploring."
+            className="max-w-[1050px]"
+          />
 
-        {/* Navigation and Grid */}
-        <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {visibleNeighborhoods.map((neighborhood, index) => (
-              <motion.div
+              <m.div
                 key={neighborhood._id}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: easeSmooth, delay: index * 0.1 }}
                 viewport={{ once: true, margin: '-80px' }}
               >
-                {(() => {
-                  const imgSrc = neighborhood.heroImage
-                    ? urlFor(neighborhood.heroImage).width(600).url()
-                    : `/hood-photos/${getNeighborhoodPhoto(neighborhood._id)}`
+                <Link
+                  href={`/local-guide/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
+                  className="group flex flex-col"
+                >
+                  <div className="min-h-[5.5rem]">
+                    <h3 className="font-serif text-2xl font-semibold text-charcoal">
+                      {neighborhood.name}
+                    </h3>
+                    <p className="font-sans text-base text-charcoal mt-2 mb-4">{neighborhood.tagline}</p>
+                  </div>
 
-                  return (
-                    <Link
-                      href={`/local-guide/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
-                      className="group flex flex-col"
-                    >
-                      <div className="relative h-72 bg-gradient-to-br from-charcoal/10 to-charcoal/10 rounded-brand overflow-hidden mb-4">
-                        <Image
-                          src={imgSrc}
-                          alt={neighborhood.name}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      </div>
-
-                      <h3 className="font-serif text-2xl font-semibold text-charcoal group-hover:transition-colors">
-                        {neighborhood.name}
-                      </h3>
-                      <p className="font-sans text-base text-charcoal mt-2">{neighborhood.tagline}</p>
-                    </Link>
-                  )
-                })()}
-              </motion.div>
+                  <div className="relative h-72 bg-sand rounded-brand overflow-hidden">
+                    <NextImage
+                      loader={sanityLoader}
+                      src={
+                        neighborhood.heroImage?.asset
+                          ? urlFor(neighborhood.heroImage).url()
+                          : `/hood-photos/${getNeighborhoodPhoto(neighborhood._id)}`
+                      }
+                      alt={neighborhood.heroImage?.alt || neighborhood.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-600 ease-out"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-600 ease-out pointer-events-none" />
+                  </div>
+                </Link>
+              </m.div>
             ))}
           </div>
 
-          {/* Arrow Navigation */}
-          <div className="flex justify-center gap-4 mt-8">
-            <button
-              onClick={handlePrev}
-              disabled={!canGoPrev}
-              className="group p-3 rounded-full border border-charcoal/30 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-charcoal hover:border-transparent transition-all duration-300 flex items-center justify-center"
-              aria-label="Previous neighborhoods"
-            >
-              <ArrowRight className="w-5 h-5 text-charcoal group-hover:text-cream rotate-180 group-hover:-translate-x-1 transition-transform duration-500" />
-            </button>
-            <button
-              onClick={handleNext}
-              disabled={!hasMore}
-              className="group p-3 rounded-full border border-charcoal/30 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-charcoal hover:border-transparent transition-all duration-300 flex items-center justify-center"
-              aria-label="Next neighborhoods"
-            >
-              <ArrowRight className="w-5 h-5 text-charcoal group-hover:text-cream group-hover:translate-x-1 transition-transform duration-500" />
-            </button>
-          </div>
-        </div>
-
+          {/* Browse all */}
+          <m.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: easeSmooth }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <ButtonLink href="/local-guide" variant="default" withArrow>
+              Browse All Neighborhoods
+            </ButtonLink>
+          </m.div>
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from './ArrowRight'
-import styles from '@/styles/arrow-link.module.css'
+import styles from './arrow-link.module.css'
 
 interface ArrowLinkProps {
   href: string

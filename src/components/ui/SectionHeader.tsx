@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from '@/lib/motion'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { easeSmooth } from '@/lib/ease'
 
@@ -40,7 +40,7 @@ export function SectionHeader({
 
   if (animated) {
     return (
-      <motion.div
+      <m.div
         className={`mb-10 space-y-3 ${className}`}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ export function SectionHeader({
         viewport={{ once: true, margin: '-80px' }}
       >
         {inner}
-      </motion.div>
+      </m.div>
     )
   }
 

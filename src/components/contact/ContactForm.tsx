@@ -26,18 +26,20 @@ export function ContactForm({
   )
 
   const inputClass = cn(
-    'w-full px-4 py-3 rounded-md focus:outline-none transition-colors',
+    'w-full px-4 py-3 rounded-brand focus:outline-none transition-colors',
     dark
-      ? 'bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-cream/50 focus:ring-1 focus:ring-cream/30'
-      : 'bg-white border border-charcoal/20 text-charcoal placeholder:text-charcoal/40 focus:border-charcoal/40'
+      ? 'bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-cream'
+      : 'bg-white border border-charcoal/20 text-charcoal placeholder:text-charcoal/40 focus:border-charcoal'
   )
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    const form = e.currentTarget
     setIsLoading(true)
     setError('')
+    setIsSuccess(false)
 
-    const formData = new FormData(e.currentTarget)
+    const formData = new FormData(form)
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -56,9 +58,10 @@ export function ContactForm({
       if (!response.ok) throw new Error()
 
       setIsSuccess(true)
-      e.currentTarget.reset()
+      form.reset()
       setTimeout(() => setIsSuccess(false), 5000)
     } catch {
+      setIsSuccess(false)
       setError('Something went wrong. Please try again or call directly.')
     } finally {
       setIsLoading(false)
@@ -68,7 +71,7 @@ export function ContactForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Honeypot — hidden from humans, bots fill it in */}
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" style={{ position: 'absolute', left: '-9999px' }} />
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }} />
 
       <div>
         <label htmlFor="cf-name" className={labelClass}>Name <span>*</span></label>

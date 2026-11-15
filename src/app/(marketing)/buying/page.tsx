@@ -60,18 +60,16 @@ export default function BuyingPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="space-y-8">
-              <StaggerItem>
-                <div className="space-y-4">
-                  <Eyebrow>Buying</Eyebrow>
-                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                    The buying process.
-                  </h1>
-                </div>
+              <StaggerItem className="space-y-3">
+                <Eyebrow>Buying</Eyebrow>
+                <h1 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
+                  The buying process
+                </h1>
               </StaggerItem>
               <StaggerItem>
-                <p className="text-lg text-charcoal leading-relaxed">
+                <p className="font-sans text-lg text-charcoal leading-relaxed">
                   Buying a home in LA is one of the biggest decisions you'll make. I guide you through every step with
                   transparency, market knowledge, and steady advocacy for your interests.
                 </p>
@@ -82,10 +80,14 @@ export default function BuyingPage() {
       </section>
 
       {/* Steps */}
-      <section className="py-10">
+      <section className="py-20">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
-            <ProcessAccordion steps={buyingSteps} />
+          <div className="container-site">
+            <StaggerGroup>
+              <StaggerItem>
+                <ProcessAccordion steps={buyingSteps} />
+              </StaggerItem>
+            </StaggerGroup>
           </div>
         </div>
       </section>

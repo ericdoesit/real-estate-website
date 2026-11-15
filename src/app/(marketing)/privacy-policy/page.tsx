@@ -40,7 +40,7 @@ export default function PrivacyPolicyPage() {
             <h1 className="font-serif text-4xl lg:text-5xl font-semibold text-charcoal">
               Privacy Policy
             </h1>
-            <p className="font-sans text-sm uppercase tracking-luxury text-charcoal/50">
+            <p className="font-sans text-sm uppercase tracking-luxury text-charcoal/70">
               Effective Date: {EFFECTIVE_DATE}
             </p>
           </div>

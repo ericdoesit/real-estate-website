@@ -2,12 +2,12 @@
 
 @theme inline {
   /* Colors */
-  --color-charcoal: #1a1919;
-  --color-cream: #faf9f5;
-  --color-muted: #807f7d;
-  --color-dark-footer: #1a1a1a;
   --color-sand: #f2f0e9;
+  --color-cream: #faf9f5;
+  --color-charcoal: #1a1919;
+  --color-muted: #807f7d;
   --color-border: #b3b2af;
+  --color-dark-footer: #1a1a1a;
 
   /* Fonts */
   --font-sans: var(--font-manrope), system-ui, sans-serif;
@@ -60,6 +60,7 @@ body {
   margin-right: auto;
 }
 
+/* Shared underline hover — apply alongside component-specific classes */
 .hover-underline {
   position: relative;
 }
@@ -77,4 +78,31 @@ body {
 
 .hover-underline:hover::after {
   width: 100%;
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hero-image-fade {
+  animation: hero-fade-in 1.2s cubic-bezier(0.12, 0.23, 0.5, 1) both;
+}
+
+/* Hero text entrance. CSS rather than motion so it starts at first paint
+   instead of waiting on hydration — the text is the LCP element. */
+@keyframes hero-text-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero-text-in {
+  animation: hero-text-in 1.2s cubic-bezier(0.12, 0.23, 0.5, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image-fade,
+  .hero-text-in {
+    animation: none;
+  }
 }

@@ -1,56 +1,20 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { serverClient } from '@/lib/sanity/client'
 import { NEIGHBORHOODS_QUERY } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
+import { getNeighborhoodPhoto } from '@/lib/neighborhoods'
+import { SanityImage } from '@/components/ui/SanityImage'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CTABanner } from '@/components/home/CTABanner'
 import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
 
-const PHOTOS = [
-  '13705488963_76a358d8ac_o.jpg',
-  '15060426861_f6d33577bb_k.jpg',
-  '15306603569_ba5fff0f60_k.jpg',
-  '15873911522_636c4c213a_o.jpg',
-  '5609986343_1b278c4750_o.jpg',
-  '9595594302_64be79ce3a_o.jpg',
-  'alexis-balinoff-2KIDkMzmO-k-unsplash.jpg',
-  'hero-1.jpg',
-  'hero-2.jpg',
-  'hero-3.jpg',
-  'ivan-karpov-7oLuzIZ3QIg-unsplash.jpg',
-  'pexels-anthony-thomas-733236359-18409401.jpg',
-  'pexels-blackmakaw-19964276.jpg',
-  'pexels-davidmcelwee-11695725.jpg',
-  'pexels-duggiefresch-4329924.jpg',
-  'pexels-loquellano-17928132.jpg',
-  'pexels-martinpechy-2763964.jpg',
-  'pexels-martinpechy-2763967.jpg',
-  'pexels-myatezhny39-30151761.jpg',
-  'pexels-myatezhny39-30151773.jpg',
-  'pexels-rdne-8782693.jpg',
-  'pexels-rdne-8783581.jpg',
-  'pexels-rdne-8783590.jpg',
-  'pexels-rdne-8783844.jpg',
-  'pexels-robertkso-34960816.jpg',
-  'pexels-rockwell-branding-agency-85164430-9137653.jpg',
-  'pexels-rpnickson-2709964.jpg',
-  'pexels-sergei-a-1322276-2539437.jpg',
-  'pexels-vincent-gerbouin-445991-2263669.jpg',
-  'pexels-vlada-karpovich-4449625.jpg',
-]
-
-function getRandomPhoto(seed: string) {
-  const hash = seed.split('').reduce((a, b) => a + b.charCodeAt(0), 0)
-  return PHOTOS[hash % PHOTOS.length]
-}
 
 interface Neighborhood {
   _id: string
   name: string
   slug: { current: string }
   tagline: string
-  heroImage?: { asset?: { _ref: string } }
+  heroImage?: { asset?: { _ref: string }; alt?: string }
 }
 
 export const metadata = {
@@ -115,17 +79,15 @@ export default async function NeighborhoodsPage() {
         <div className="w-full px-6 lg:px-12">
           <div className="container-site">
             <StaggerGroup className="space-y-8">
-              <StaggerItem>
-                <div className="space-y-4">
-                  <Eyebrow>Neighborhoods</Eyebrow>
-                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                    Explore LA neighborhoods.
-                  </h1>
-                </div>
+              <StaggerItem className="space-y-3">
+                <Eyebrow>Neighborhoods</Eyebrow>
+                <h1 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
+                  Explore LA neighborhoods
+                </h1>
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-lg text-charcoal leading-relaxed">
+                <p className="font-sans text-lg text-charcoal leading-relaxed">
                   Each neighborhood has its own character and market dynamics. Explore detailed guides
                   with market data, lifestyle insights, and what makes each area special.
                 </p>
@@ -135,14 +97,14 @@ export default async function NeighborhoodsPage() {
         </div>
       </section>
 
-      <section className="py-10">
+      <section className="py-20">
         <div className="w-full px-6 lg:px-12">
           <div className="container-site">
             <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {neighborhoods.map((neighborhood, i) => {
                 const imgSrc = neighborhood.heroImage
-                  ? urlFor(neighborhood.heroImage).width(800).url()
-                  : `/hood-photos/${getRandomPhoto(neighborhood._id)}`
+                  ? urlFor(neighborhood.heroImage).url()
+                  : `/hood-photos/${getNeighborhoodPhoto(neighborhood._id)}`
 
                 return (
                   <StaggerItem key={neighborhood._id}>
@@ -150,15 +112,16 @@ export default async function NeighborhoodsPage() {
                       href={`/local-guide/${neighborhood.slug?.current || neighborhood.name.toLowerCase().replace(' ', '-')}`}
                       className="group block"
                     >
-                      <div className="relative h-64 bg-gradient-to-br from-charcoal/10 to-charcoal/10 rounded-brand overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
-                        <Image
+                      <div className="relative h-64 bg-sand rounded-brand overflow-hidden mb-4 hover:shadow-lg transition-shadow group">
+                        <SanityImage
                           src={imgSrc}
-                          alt={neighborhood.name}
+                          alt={neighborhood.heroImage?.alt || neighborhood.name}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           priority={i === 0}
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="object-cover group-hover:scale-105 transition-transform duration-600 ease-out"
                         />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-600 ease-out pointer-events-none" />
                       </div>
 
                       <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors">

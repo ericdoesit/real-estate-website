@@ -5,6 +5,7 @@ import { serverClient } from '@/lib/sanity/client'
 import { FEATURED_PROPERTIES_QUERY } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 import { FeaturedListingsClient } from '@/components/home/FeaturedListingsClient'
+import { upcomingOpenHouses, formatOpenHouse, type OpenHouse } from '@/lib/openHouse'
 
 interface SanityImage {
   _key?: string
@@ -19,7 +20,10 @@ interface Property {
   beds: number
   baths: number
   sqft: number
+  status?: string
   heroImage?: SanityImage
+  openHouses?: OpenHouse[]
+  openHouseLabel?: string
 }
 
 export async function FeaturedListings() {
@@ -28,10 +32,8 @@ export async function FeaturedListings() {
   try {
     properties = await serverClient.fetch(FEATURED_PROPERTIES_QUERY)
   } catch (error) {
-    console.error('Failed to fetch properties:', error)
+    // Silent fallback
   }
-
-  // Fallback placeholder
   if (properties.length === 0) {
     properties = [
       {
@@ -60,6 +62,11 @@ export async function FeaturedListings() {
       },
     ]
   }
+
+  properties = properties.map(({ openHouses, ...p }) => {
+    const next = p.status === 'active' ? upcomingOpenHouses(openHouses)[0] : undefined
+    return next ? { ...p, openHouseLabel: formatOpenHouse(next) } : p
+  })
 
   return (
     <FeaturedListingsClient properties={properties} />

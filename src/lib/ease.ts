@@ -1,1 +1,1 @@
-export const easeSmooth: [number, number, number, number] = [0.33, 0.66, 0.66, 1]
+export const easeSmooth = [0.12, 0.23, 0.5, 1] as any

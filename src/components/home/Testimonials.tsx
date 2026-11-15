@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Eyebrow } from '@/components/ui/Eyebrow'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import styles from './Testimonials.module.css'
 
 interface Review {
@@ -53,15 +53,13 @@ export function Testimonials() {
 
   return (
     <section className="section-py bg-cream overflow-hidden">
-      <div className="w-full px-6 lg:px-12 mb-12">
-        <div className="max-w-[1400px] mx-auto">
-          <Eyebrow>Testimonials</Eyebrow>
-          <h2 className="font-serif text-5xl font-semibold text-charcoal mt-3">
-            Hear from our clients.
-          </h2>
-          <p className="font-sans text-lg text-charcoal mt-4 max-w-xl">
-            Real stories from buyers and sellers who trusted us with their most important decisions.
-          </p>
+      <div className="w-full px-6 lg:px-12 mb-8">
+        <div className="container-site">
+          <SectionHeader
+            eyebrow="Testimonials"
+            heading="Hear from our clients"
+            body="Real stories from buyers and sellers who trusted us with their most important decisions."
+          />
         </div>
       </div>
 

@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import styles from './MobileMenu.module.css'
-import { easeSmooth } from '@/lib/ease'
+import { m, AnimatePresence } from '@/lib/motion'
 import { mobileNavLinks } from '@/config/navLinks'
+import { easeSmooth } from '@/lib/ease'
+import styles from './MobileMenu.module.css'
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,19 +16,17 @@ export function MobileMenu() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle menu"
-        className="text-charcoal"
+        className="flex flex-col justify-center items-center w-8 h-8 gap-[5px] group"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
-          />
-        </svg>
+        <span className={`block h-[1.5px] w-6 bg-charcoal origin-center transition-all duration-300 ease-in-out ${isOpen ? 'translate-y-[6.5px] rotate-45' : ''}`} />
+        <span className={`block h-[1.5px] w-6 bg-charcoal transition-all duration-200 ease-in-out ${isOpen ? 'opacity-0 scale-x-0' : ''}`} />
+        <span className={`block h-[1.5px] w-6 bg-charcoal origin-center transition-all duration-300 ease-in-out ${isOpen ? '-translate-y-[6.5px] -rotate-45' : ''}`} />
       </button>
 
-      {/* Dropdown — grows down from nav bar */}
+      {/* Dropdown */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             className={styles.dropdown}
             initial={{ height: 0 }}
             animate={{ height: 'auto' }}
@@ -37,7 +35,7 @@ export function MobileMenu() {
           >
             <nav className={styles.nav}>
               {mobileNavLinks.map((link, i) => (
-                <motion.div
+                <m.div
                   key={link.href}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -46,15 +44,15 @@ export function MobileMenu() {
                 >
                   <Link
                     href={link.href}
-                    className={styles.link}
+                    className={`${styles.link} hover-underline`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
             </nav>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

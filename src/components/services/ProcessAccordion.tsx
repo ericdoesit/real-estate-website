@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from '@/lib/motion'
 import { easeSmooth } from '@/lib/ease'
 
 type Step = {
@@ -21,7 +21,7 @@ function AccordionItem({ step, index }: { step: Step; index: number }) {
         className="w-full flex items-center gap-6 lg:gap-10 py-6 text-left group cursor-pointer"
         aria-expanded={open}
       >
-        <span className="flex-shrink-0 font-sans text-sm font-semibold tracking-luxury uppercase text-charcoal/40 w-8 select-none">
+        <span className="flex-shrink-0 font-sans text-sm font-semibold tracking-luxury uppercase text-charcoal/60 w-8 select-none">
           {num}
         </span>
 
@@ -29,21 +29,21 @@ function AccordionItem({ step, index }: { step: Step; index: number }) {
           {step.title}
         </span>
 
-        <motion.span
+        <m.span
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.35, ease: easeSmooth }}
-          className="flex-shrink-0 text-charcoal/50 group-hover:text-charcoal transition-colors"
+          className="flex-shrink-0 text-charcoal/70 group-hover:text-charcoal transition-colors"
           aria-hidden="true"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M10 2v16M2 10h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
-        </motion.span>
+        </m.span>
       </button>
 
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
+          <m.div
             key="content"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
@@ -56,7 +56,7 @@ function AccordionItem({ step, index }: { step: Step; index: number }) {
                 {step.description}
               </p>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

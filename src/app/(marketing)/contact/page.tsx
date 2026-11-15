@@ -37,7 +37,7 @@ export default function ContactPage() {
       <section className="bg-cream py-20">
         <div className="w-full px-6 lg:px-12">
           <div className="container-site">
-            <StaggerGroup className="max-w-2xl space-y-8">
+            <StaggerGroup className="space-y-8">
               <StaggerItem className="space-y-3">
                 <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-charcoal capitalize">
                   Send a Message

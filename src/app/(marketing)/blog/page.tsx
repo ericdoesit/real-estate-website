@@ -1,9 +1,16 @@
 import Link from 'next/link'
 import { serverClient } from '@/lib/sanity/client'
 import { BLOG_POSTS_QUERY } from '@/lib/sanity/queries'
+import { urlFor } from '@/lib/sanity/image'
+import { SanityImage } from '@/components/ui/SanityImage'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
 import { agent } from '@/config/agent'
+
+interface SanityImage {
+  asset?: { _ref: string }
+  alt?: string
+}
 
 interface BlogPost {
   _id: string
@@ -12,6 +19,7 @@ interface BlogPost {
   excerpt: string
   publishedAt: string
   author: string
+  coverImage?: SanityImage
 }
 
 export const metadata = {
@@ -66,17 +74,15 @@ export default async function BlogPage() {
         <div className="w-full px-6 lg:px-12">
           <div className="container-site">
             <StaggerGroup className="space-y-8">
-              <StaggerItem>
-                <div className="space-y-4">
-                  <Eyebrow>Blog</Eyebrow>
-                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                    Market insights & guides.
-                  </h1>
-                </div>
+              <StaggerItem className="space-y-3">
+                <Eyebrow>Blog</Eyebrow>
+                <h1 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
+                  Market insights &amp; guides
+                </h1>
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-lg text-charcoal leading-relaxed">
+                <p className="font-sans text-lg text-charcoal leading-relaxed">
                   Stay informed with updates on LA real estate market conditions, buying and selling tips, and strategies for
                   maximizing your real estate investment.
                 </p>
@@ -99,6 +105,17 @@ export default async function BlogPage() {
                     className="group block"
                   >
                     <div className="space-y-4 h-full flex flex-col">
+                      {post.coverImage?.asset && (
+                        <div className="relative w-full aspect-[16/9] overflow-hidden rounded-brand">
+                          <SanityImage
+                            src={urlFor(post.coverImage).url()}
+                            alt={post.coverImage.alt || post.title}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                        </div>
+                      )}
                       <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors line-clamp-3">
                         {post.title}
                       </h3>

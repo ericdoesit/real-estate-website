@@ -15,19 +15,17 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="space-y-8">
-              <StaggerItem>
-                <div className="space-y-4">
-                  <Eyebrow>About {agent.name}</Eyebrow>
-                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                    Real estate built on trust and communication.
-                  </h1>
-                </div>
+              <StaggerItem className="space-y-3">
+                <Eyebrow>About {agent.name}</Eyebrow>
+                <h1 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
+                  Real estate built on trust and communication
+                </h1>
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-lg text-charcoal max-w-2xl leading-relaxed">
+                <p className="font-sans text-lg text-charcoal leading-relaxed">
                   For {agent.yearsExperience} years, I've helped buyers, sellers, and investors across Los Angeles achieve their goals — with honesty, deep market knowledge, and genuine care from start to finish.
                 </p>
               </StaggerItem>
@@ -37,9 +35,9 @@ export default function AboutPage() {
       </section>
 
       {/* Headshot */}
-      <section className="bg-cream py-10">
+      <section className="bg-cream py-20">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <StaggerItem className="relative aspect-square rounded-brand overflow-hidden order-2 lg:order-1">
                 <Image
@@ -50,11 +48,11 @@ export default function AboutPage() {
                 />
               </StaggerItem>
 
-              <StaggerItem className="space-y-6 order-1 lg:order-2">
-                <h2 className="font-serif text-5xl font-semibold text-charcoal">
+              <StaggerItem className="space-y-3 order-1 lg:order-2">
+                <h2 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
                   Why I Do This
                 </h2>
-                <p className="text-charcoal text-lg leading-relaxed">
+                <p className="font-sans text-lg text-charcoal leading-relaxed">
                   Most of my business comes through referrals and repeat clients — that reflects the kind of trust I work to earn with every transaction. I'm not chasing deals. I'm building relationships, and I bring deep LA market knowledge and creative problem-solving to every one.
                 </p>
               </StaggerItem>
@@ -66,7 +64,7 @@ export default function AboutPage() {
       {/* Breakout Quote */}
       <section className="bg-sand py-24">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="flex flex-col items-center text-center gap-6">
               <StaggerItem className="flex items-center gap-4 lg:gap-8">
                 <span className="font-serif text-8xl lg:text-9xl text-charcoal/10 leading-none select-none self-start">&ldquo;</span>
@@ -76,7 +74,7 @@ export default function AboutPage() {
                 <span className="font-serif text-8xl lg:text-9xl text-charcoal/10 leading-none select-none self-end">&rdquo;</span>
               </StaggerItem>
               <StaggerItem>
-                <p className="font-sans text-sm font-semibold tracking-widest uppercase text-charcoal/40">{agent.name}</p>
+                <p className="font-sans text-sm font-semibold tracking-luxury uppercase text-charcoal/70">{agent.name}</p>
               </StaggerItem>
             </StaggerGroup>
           </div>
@@ -84,12 +82,12 @@ export default function AboutPage() {
       </section>
 
       {/* Approach */}
-      <section className="bg-cream py-10">
+      <section className="bg-cream py-20">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="space-y-8">
               <StaggerItem>
-                <h2 className="font-serif text-5xl font-semibold text-charcoal mb-4">
+                <h2 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize mb-4">
                   My Approach
                 </h2>
               </StaggerItem>

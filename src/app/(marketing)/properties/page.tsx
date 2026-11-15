@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { SanityImage } from '@/components/ui/SanityImage'
 import { serverClient } from '@/lib/sanity/client'
 import { ALL_PROPERTIES_QUERY } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
@@ -7,6 +7,8 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CTABanner } from '@/components/home/CTABanner'
 import { StaggerGroup, StaggerItem } from '@/components/ui/Stagger'
 import { agent } from '@/config/agent'
+
+export const revalidate = 86400
 
 interface SanityImage {
   _key?: string
@@ -17,10 +19,10 @@ interface SanityImage {
 interface Property {
   _id: string
   address: string
+  city?: string
   slug: { current: string }
   status: string
   price?: number
-  city?: string
   beds: number
   baths: number
   sqft: number
@@ -29,7 +31,7 @@ interface Property {
 
 export const metadata = {
   title: 'Properties - Listings',
-  description: 'Browse featured properties and listings in Los Angeles. Current and sold listings with full details.',
+  description: 'Browse featured properties and sold listings across Los Angeles from Eric Zunkley, REALTOR®.',
 }
 
 export default async function PropertiesPage() {
@@ -38,10 +40,9 @@ export default async function PropertiesPage() {
   try {
     properties = await serverClient.fetch(ALL_PROPERTIES_QUERY)
   } catch (error) {
-    console.error('Failed to fetch properties:', error)
+    // Silent fallback
   }
 
-  // Fallback placeholder
   if (properties.length === 0) {
     properties = [
       {
@@ -65,52 +66,43 @@ export default async function PropertiesPage() {
     ]
   }
 
-  const activeListings = properties.filter((p) => p.status === 'active')
-  const soldListings = properties.filter((p) => p.status === 'sold')
+  const activeListings = properties.filter((p) => p.status?.toLowerCase() === 'active')
+  const pendingListings = properties.filter((p) => p.status?.toLowerCase() === 'pending')
+  const soldListings = properties.filter((p) => p.status?.toLowerCase() === 'sold')
 
   const PropertyCard = ({ property, priority }: { property: Property; priority?: boolean }) => (
-    <Link
-      href={`/properties/${property.slug?.current || 'placeholder'}`}
-      className="group"
-    >
+    <Link href={`/properties/${property.slug?.current || 'placeholder'}`} className="group">
       <div className="space-y-4">
-        {/* Image */}
         <div className="relative h-64 rounded-brand overflow-hidden group">
           {property.heroImage ? (
-            <Image
+            <SanityImage
               src={urlFor(property.heroImage).url()}
               alt={property.heroImage.alt || property.address}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={priority}
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              className="object-cover group-hover:scale-105 transition-transform duration-600 ease-out"
             />
           ) : (
-            <div className="w-full h-full bg-charcoal/10 flex items-center justify-center">
+            <div className="w-full h-full bg-sand flex items-center justify-center">
               <p className="text-charcoal">No image available</p>
             </div>
           )}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-600 ease-out pointer-events-none" />
         </div>
 
-        {/* Info */}
-        <div className="space-y-3">
-          {property.city && <Eyebrow className="text-xs">{property.city}</Eyebrow>}
+        <div className="space-y-2">
+          {property.city && <Eyebrow>{property.city}</Eyebrow>}
           <h3 className="font-serif text-3xl font-semibold text-charcoal group-hover:transition-colors line-clamp-2">
             {property.address}
           </h3>
 
-          {property.price && (
-            <p className="text-2xl font-sans text-muted">
-              ${property.price.toLocaleString()}
-            </p>
-          )}
-
           <div className="flex gap-4 text-sm text-charcoal">
+            {property.price && <span>${property.price.toLocaleString()}</span>}
             <span>{property.beds} bed</span>
             <span>{property.baths} bath</span>
             <span>{property.sqft?.toLocaleString()} sqft</span>
           </div>
-
         </div>
       </div>
     </Link>
@@ -123,19 +115,16 @@ export default async function PropertiesPage() {
         <div className="w-full px-6 lg:px-12">
           <div className="container-site">
             <StaggerGroup className="space-y-8">
-              <StaggerItem>
-                <div className="space-y-4">
-                  <Eyebrow>Past Transactions</Eyebrow>
-                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                    Recently Sold.
-                  </h1>
-                </div>
+              <StaggerItem className="space-y-3">
+                <Eyebrow>Properties</Eyebrow>
+                <h1 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
+                  Active &amp; Sold
+                </h1>
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-lg text-charcoal leading-relaxed">
-                  A selection of homes I've helped clients buy and sell across Los Angeles —
-                  representing both buyers and sellers over {agent.yearsExperience} years in the market.
+                <p className="font-sans text-lg text-charcoal leading-relaxed">
+                  The properties shown represent a selection of recent transactions across Los Angeles over the past {agent.yearsExperience} years. Eric served as the buyer&apos;s agent on some of these sales. Photos and listing information for buyer-represented transactions are provided courtesy of the respective listing agents and MLS, and do not imply that Eric Zunkley held the listing.
                 </p>
               </StaggerItem>
             </StaggerGroup>
@@ -145,46 +134,73 @@ export default async function PropertiesPage() {
 
       {/* Active Listings */}
       {activeListings.length > 0 && (
-        <section className="py-10">
+        <section className="py-20">
           <div className="w-full px-6 lg:px-12">
-          <div className="container-site">
-            <StaggerGroup>
-              <StaggerItem className="mb-12">
-                <p className="text-sm font-semibold tracking-luxury uppercase mb-2">
-                  Current
-                </p>
-                <h2 className="font-serif text-5xl font-semibold text-charcoal">
-                  Active Listings
-                </h2>
-              </StaggerItem>
-
-              <StaggerItem>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {activeListings.map((property, i) => (
-                    <PropertyCard key={property._id} property={property} priority={i === 0} />
-                  ))}
-                </div>
-              </StaggerItem>
-            </StaggerGroup>
+            <div className="container-site">
+              <StaggerGroup>
+                <StaggerItem className="mb-10 space-y-3">
+                  <Eyebrow>Current</Eyebrow>
+                  <h2 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">Active Listings</h2>
+                </StaggerItem>
+                <StaggerItem>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {activeListings.map((property, i) => (
+                      <PropertyCard key={property._id} property={property} priority={i === 0} />
+                    ))}
+                  </div>
+                </StaggerItem>
+              </StaggerGroup>
+            </div>
           </div>
+        </section>
+      )}
+
+      {/* Pending Listings */}
+      {pendingListings.length > 0 && (
+        <section className="py-20">
+          <div className="w-full px-6 lg:px-12">
+            <div className="container-site">
+              <StaggerGroup>
+                <StaggerItem className="mb-10 space-y-3">
+                  <Eyebrow>Under Contract</Eyebrow>
+                  <h2 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">Pending</h2>
+                </StaggerItem>
+                <StaggerItem>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {pendingListings.map((property, i) => (
+                      <PropertyCard key={property._id} property={property} priority={false} />
+                    ))}
+                  </div>
+                </StaggerItem>
+              </StaggerGroup>
+            </div>
           </div>
         </section>
       )}
 
       {/* Sold Properties */}
       {soldListings.length > 0 && (
-        <section className="py-10">
+        <section className="py-20">
           <div className="w-full px-6 lg:px-12">
-          <div className="container-site">
-            <Eyebrow>Past Transactions</Eyebrow>
-            <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {soldListings.map((property, i) => (
-                <StaggerItem key={property._id}>
-                  <PropertyCard property={property} priority={activeListings.length === 0 && i === 0} />
+            <div className="container-site">
+              <StaggerGroup>
+                <StaggerItem className="mb-10 space-y-3">
+                  <Eyebrow>Past Transactions</Eyebrow>
+                  <h2 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">Sold</h2>
                 </StaggerItem>
-              ))}
-            </StaggerGroup>
-          </div>
+                <StaggerItem>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {soldListings.map((property, i) => (
+                      <PropertyCard
+                        key={property._id}
+                        property={property}
+                        priority={activeListings.length === 0 && pendingListings.length === 0 && i === 0}
+                      />
+                    ))}
+                  </div>
+                </StaggerItem>
+              </StaggerGroup>
+            </div>
           </div>
         </section>
       )}

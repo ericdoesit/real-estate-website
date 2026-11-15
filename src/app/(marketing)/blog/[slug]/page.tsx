@@ -1,12 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import { notFound } from 'next/navigation'
 import { serverClient } from '@/lib/sanity/client'
 import { BLOG_POST_BY_SLUG_QUERY, ALL_BLOG_SLUGS_QUERY } from '@/lib/sanity/queries'
 import { PrevNextNav } from '@/components/ui/PrevNextNav'
 import { ArrowRight } from '@/components/ui/ArrowRight'
-import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { urlFor } from '@/lib/sanity/image'
+import { SanityImage } from '@/components/ui/SanityImage'
+
 
 function renderChildren(children: any[], markDefs: any[] = []) {
   return children?.map((child: any, i: number) => {
@@ -19,6 +21,7 @@ function renderChildren(children: any[], markDefs: any[] = []) {
       else {
         const def = markDefs?.find((d: any) => d._key === mark)
         if (def?._type === 'link') {
+          // Handle both href (external) and _ref (internal property links)
           const href = def.href || (def._ref ? `/properties/${def._ref}` : '#')
           const isExternal = def.href?.startsWith('http')
           content = (
@@ -45,13 +48,14 @@ function BlogBody({ blocks }: { blocks: any[] }) {
   while (i < blocks.length) {
     const block = blocks[i]
 
+    // Handle image blocks
     if (block._type === 'image') {
       const imageUrl = block.asset ? urlFor(block.asset).url() : null
       if (imageUrl) {
         elements.push(
           <figure key={block._key} className="my-8">
-            <div className="relative w-full aspect-video bg-gray-100 rounded-brand overflow-hidden">
-              <Image
+            <div className="relative w-full aspect-video bg-sand rounded-brand overflow-hidden">
+              <SanityImage
                 src={imageUrl}
                 alt={block.alt || 'Blog image'}
                 fill
@@ -108,10 +112,18 @@ function BlogBody({ blocks }: { blocks: any[] }) {
   return <>{elements}</>
 }
 
+interface BlogPost {
+  title: string
+  author: string
+  publishedAt: string
+  excerpt: string
+  body: any[]
+}
+
 async function getPost(slug: string) {
   try {
     return await serverClient.fetch(BLOG_POST_BY_SLUG_QUERY, { slug })
-  } catch {
+  } catch (error) {
     return null
   }
 }
@@ -120,7 +132,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = await getPost(slug)
 
-  if (!post) return { title: 'Post Not Found', description: 'The blog post you are looking for does not exist.' }
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+      description: 'The blog post you are looking for does not exist.',
+    }
+  }
 
   return {
     title: post.title,
@@ -139,55 +156,52 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const prevPost = currentIdx > 0 ? allPosts[currentIdx - 1] : null
   const nextPost = currentIdx < allPosts.length - 1 ? allPosts[currentIdx + 1] : null
 
-  if (!post) {
-    return (
-      <div className="w-full px-6 lg:px-12 py-16 text-center">
-        <div className="max-w-[1400px] mx-auto">
-          <h1 className="font-serif text-4xl font-semibold text-charcoal mb-4">Post Not Found</h1>
-          <p className="text-charcoal mb-8">The blog post you're looking for doesn't exist.</p>
-          <Link href="/blog" className="font-semibold hover:transition-colors inline-flex items-center gap-2">
-            <ArrowRight className="w-4 h-4 rotate-180" /> Back to Blog
-          </Link>
-        </div>
-      </div>
-    )
+  if (!post) notFound()
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
   }
-
-  const formatDate = (dateString: string) =>
-    new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-
-  const coverSrc = post.coverImage ? urlFor(post.coverImage).width(1400).url() : null
 
   return (
     <article className="space-y-12">
       {/* Hero */}
-      <section className="pt-10">
+      <section className="pt-10 pb-12">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-3xl mx-auto space-y-6">
-            {coverSrc && (
-              <div className="relative aspect-video overflow-hidden rounded-brand">
-                <Image
-                  src={coverSrc}
-                  alt={post.coverImage?.alt || post.title}
+          <div className="container-site space-y-6">
+            <Breadcrumbs items={[
+              { label: 'Home', href: '/' },
+              { label: 'Blog', href: '/blog' },
+              { label: post.title },
+            ]} />
+            <div className="space-y-3">
+              <h1 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
+                {post.title}
+              </h1>
+            </div>
+
+            <p className="font-sans text-lg text-charcoal leading-relaxed">{post.excerpt}</p>
+
+            <div className="flex items-center gap-4 text-sm text-charcoal">
+              <span>By {post.author}</span>
+              <span>•</span>
+              <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+            </div>
+
+            {post.coverImage && (
+              <div className="relative w-full aspect-video bg-sand rounded-brand overflow-hidden mt-8">
+                <SanityImage
+                  src={urlFor(post.coverImage).url()}
+                  alt={post.coverImage.alt || post.title}
                   fill
                   className="object-cover"
                   priority
-                  sizes="(max-width: 1024px) 100vw, 900px"
                 />
               </div>
             )}
-            <div className="space-y-4">
-              <Eyebrow>Blog</Eyebrow>
-              <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                {post.title}
-              </h1>
-              <p className="text-lg text-charcoal/80 max-w-2xl leading-relaxed">{post.excerpt}</p>
-              <div className="flex items-center gap-4 text-sm text-charcoal">
-                <span>By {post.author}</span>
-                <span>•</span>
-                <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -195,7 +209,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       {/* Content */}
       <section className="pb-10">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-3xl mx-auto">
+          <div className="container-site">
             {post.body && post.body.length > 0 ? (
               <div className="space-y-5 text-charcoal leading-relaxed text-lg">
                 <BlogBody blocks={post.body} />
@@ -208,16 +222,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Prev / Next */}
-      <section className="w-full px-6 lg:px-12 pb-10">
-        <div className="max-w-3xl mx-auto">
-          <PrevNextNav
-            prev={prevPost ? { label: prevPost.title, href: `/blog/${prevPost.slug}` } : null}
-            next={nextPost ? { label: nextPost.title, href: `/blog/${nextPost.slug}` } : null}
-          />
-          <div className="text-center mt-2">
-            <Link href="/blog" className="text-sm font-semibold tracking-widest uppercase text-charcoal/50 hover:text-charcoal transition-colors">
-              Back to Blog
-            </Link>
+      <section className="pt-6 pb-10">
+        <div className="w-full px-6 lg:px-12">
+          <div className="container-site">
+            <PrevNextNav
+              prev={prevPost ? { label: prevPost.title, href: `/blog/${prevPost.slug}` } : null}
+              next={nextPost ? { label: nextPost.title, href: `/blog/${nextPost.slug}` } : null}
+            />
+            <div className="text-center mt-2">
+              <Link href="/blog" className="text-sm font-semibold tracking-luxury uppercase text-charcoal/70 hover:text-charcoal transition-colors">
+                Back to Blog
+              </Link>
+            </div>
           </div>
         </div>
       </section>

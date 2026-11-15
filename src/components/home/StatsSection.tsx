@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { useInView, animate } from 'framer-motion'
+import { useInView, animate } from '@/lib/motion'
 
 const stats = [
   {
@@ -75,7 +75,7 @@ export function StatsSection() {
                   <p className="font-sans text-sm font-semibold text-charcoal uppercase tracking-widest">
                     {stat.label}
                   </p>
-                  <p className="font-sans text-sm text-charcoal/60 leading-relaxed">
+                  <p className="font-sans text-sm text-charcoal/70 leading-relaxed">
                     {stat.description}
                   </p>
                 </div>

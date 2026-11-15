@@ -14,14 +14,15 @@ export function IntakeForm() {
   const [error, setError] = useState('')
 
   const labelClass = 'block text-xs font-semibold tracking-luxury uppercase mb-2 text-charcoal/70'
-  const inputClass = 'w-full px-4 py-3 rounded-md focus:outline-none transition-colors bg-white border border-charcoal/20 text-charcoal placeholder:text-charcoal/40 focus:border-charcoal/40'
+  const inputClass = 'w-full px-4 py-3 rounded-brand focus:outline-none transition-colors bg-white border border-charcoal/20 text-charcoal placeholder:text-charcoal/40 focus:border-charcoal'
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setIsLoading(true)
     setError('')
 
-    const formData = new FormData(e.currentTarget)
+    const form = e.currentTarget
+    const formData = new FormData(form)
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -45,7 +46,7 @@ export function IntakeForm() {
       if (!response.ok) throw new Error()
 
       setIsSuccess(true)
-      e.currentTarget.reset()
+      form.reset()
       setIntent('')
       setTimeout(() => setIsSuccess(false), 6000)
     } catch {
@@ -58,7 +59,7 @@ export function IntakeForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Honeypot */}
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" style={{ position: 'absolute', left: '-9999px' }} />
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }} />
 
       {/* Intent */}
       <div>
@@ -66,7 +67,7 @@ export function IntakeForm() {
         <div className="flex flex-wrap gap-3 mt-1">
           {(['buying', 'selling', 'both'] as const).map((opt) => (
             <label key={opt} className={cn(
-              'flex items-center gap-2 px-4 py-2.5 rounded-md border cursor-pointer transition-colors text-sm font-medium',
+              'flex items-center gap-2 px-4 py-2.5 rounded-brand border cursor-pointer transition-colors text-sm font-medium',
               intent === opt
                 ? 'border-charcoal bg-charcoal text-white'
                 : 'border-charcoal/20 bg-white text-charcoal hover:border-charcoal/40'

@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { sanityLoader } from '@/lib/sanity/image'
+import { m, AnimatePresence } from '@/lib/motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface ImageLightboxProps {
@@ -11,6 +12,7 @@ interface ImageLightboxProps {
     asset?: { _ref: string; url?: string }
     url?: string
     alt?: string
+    caption?: string
   } | string>
   initialIndex?: number
 }
@@ -51,8 +53,12 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
     return image.alt || `Property image ${currentIndex + 1}`
   }
 
+  const getImageCaption = (image: (typeof images)[0]) =>
+    typeof image === 'string' ? undefined : image.caption
+
   const currentImage = images[currentIndex]
   const imageUrl = getImageUrl(currentImage)
+  const currentCaption = getImageCaption(currentImage)
 
   return (
     <>
@@ -72,17 +78,20 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
             >
               {url && (
                 <Image
+                  loader={sanityLoader}
                   src={url}
                   alt={getImageAlt(image)}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-600 ease-out"
                 />
               )}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                <span className="opacity-0 group-hover:opacity-100 text-white text-sm font-medium transition-opacity">
-                  View
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-600 ease-out pointer-events-none" />
+              {getImageCaption(image) && (
+                <span className="absolute bottom-2 left-2 bg-black/70 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none">
+                  {getImageCaption(image)}
                 </span>
-              </div>
+              )}
             </button>
           )
         })}
@@ -93,7 +102,7 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
         {isOpen && imageUrl && (
           <>
             {/* Backdrop */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -102,37 +111,39 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
             />
 
             {/* Modal */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 flex items-center justify-center p-4"
               onClick={() => setIsOpen(false)}
             >
-              <motion.div
+              <m.div
                 onClick={(e) => e.stopPropagation()}
                 className="relative w-full h-full flex items-center justify-center"
               >
                 {/* Image */}
-                <motion.div
+                <m.div
                   key={currentIndex}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.2 }}
-                  className="relative w-full h-full max-w-5xl max-h-[90vh]"
+                  className="relative max-w-[75vw] max-h-[90vh] w-[75vw] h-[90vh]"
                 >
                   <Image
+                    loader={sanityLoader}
                     src={imageUrl}
                     alt={getImageAlt(currentImage)}
                     fill
+                    sizes="75vw"
                     className="object-contain"
                     priority
                   />
-                </motion.div>
+                </m.div>
 
                 {/* Close Button */}
-                <motion.button
+                <m.button
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -141,12 +152,12 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
                   aria-label="Close lightbox"
                 >
                   <X className="w-6 h-6 text-charcoal" />
-                </motion.button>
+                </m.button>
 
                 {/* Navigation Buttons */}
                 {images.length > 1 && (
                   <>
-                    <motion.button
+                    <m.button
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -158,9 +169,9 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
                       aria-label="Previous image"
                     >
                       <ChevronLeft className="w-6 h-6 text-white" />
-                    </motion.button>
+                    </m.button>
 
-                    <motion.button
+                    <m.button
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -172,21 +183,22 @@ export function ImageLightbox({ images, initialIndex = 0 }: ImageLightboxProps) 
                       aria-label="Next image"
                     >
                       <ChevronRight className="w-6 h-6 text-white" />
-                    </motion.button>
+                    </m.button>
                   </>
                 )}
 
                 {/* Counter */}
-                <motion.div
+                <m.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm"
                 >
                   {currentIndex + 1} / {images.length}
-                </motion.div>
-              </motion.div>
-            </motion.div>
+                  {currentCaption && <span> · {currentCaption}</span>}
+                </m.div>
+              </m.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Manrope } from 'next/font/google'
 import { site } from '@/config/agent'
+import { MotionProvider } from '@/components/providers/MotionProvider'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -11,7 +12,9 @@ const cormorant = Cormorant_Garamond({
 
 const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['400'],
+  // 500/600/700 back font-medium, font-semibold and font-bold. Without them the
+  // browser synthesises bold for the elements that use those classes.
+  weight: ['400', '500', '600', '700'],
   variable: '--font-manrope',
 })
 
@@ -32,7 +35,9 @@ export default function RootLayout({
       className={`${cormorant.variable} ${manrope.variable} h-full scroll-smooth antialiased overflow-y-scroll`}
     >
       <body className="min-h-screen flex flex-col bg-cream text-charcoal font-sans">
-        {children}
+        <MotionProvider>
+          {children}
+        </MotionProvider>
       </body>
     </html>
   )

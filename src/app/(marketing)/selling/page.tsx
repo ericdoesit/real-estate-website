@@ -60,18 +60,16 @@ export default function SellingPage() {
       {/* Hero */}
       <section className="pt-10 pb-8">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container-site">
             <StaggerGroup className="space-y-8">
-              <StaggerItem>
-                <div className="space-y-4">
-                  <Eyebrow>Selling</Eyebrow>
-                  <h1 className="font-serif text-5xl lg:text-6xl font-semibold text-charcoal">
-                    The selling process.
-                  </h1>
-                </div>
+              <StaggerItem className="space-y-3">
+                <Eyebrow>Selling</Eyebrow>
+                <h1 className="font-serif text-4xl lg:text-6xl font-semibold text-charcoal capitalize">
+                  The selling process
+                </h1>
               </StaggerItem>
               <StaggerItem>
-                <p className="text-lg text-charcoal leading-relaxed">
+                <p className="font-sans text-lg text-charcoal leading-relaxed">
                   Selling your home is both a financial and emotional decision. I bring market expertise, professional
                   marketing, and steady guidance to help you get the best possible outcome.
                 </p>
@@ -82,10 +80,14 @@ export default function SellingPage() {
       </section>
 
       {/* Steps */}
-      <section className="py-10 bg-cream">
+      <section className="py-20">
         <div className="w-full px-6 lg:px-12">
-          <div className="max-w-[1400px] mx-auto">
-            <ProcessAccordion steps={sellingSteps} />
+          <div className="container-site">
+            <StaggerGroup>
+              <StaggerItem>
+                <ProcessAccordion steps={sellingSteps} />
+              </StaggerItem>
+            </StaggerGroup>
           </div>
         </div>
       </section>

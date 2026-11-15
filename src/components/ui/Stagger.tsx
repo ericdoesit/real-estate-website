@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from '@/lib/motion'
 import { ReactNode } from 'react'
 import { easeSmooth } from '@/lib/ease'
 
@@ -14,7 +14,7 @@ const containerVariants = {
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
@@ -30,7 +30,7 @@ export function StaggerGroup({
   className?: string
 }) {
   return (
-    <motion.div
+    <m.div
       variants={containerVariants}
       initial="hidden"
       whileInView="show"
@@ -38,7 +38,7 @@ export function StaggerGroup({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -50,8 +50,8 @@ export function StaggerItem({
   className?: string
 }) {
   return (
-    <motion.div variants={itemVariants} className={className}>
+    <m.div variants={itemVariants} className={className}>
       {children}
-    </motion.div>
+    </m.div>
   )
 }
