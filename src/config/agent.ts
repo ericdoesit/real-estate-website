@@ -14,7 +14,7 @@ export const agent = {
   expSite: 'https://ericzunkley.exprealty.com/',
   headshot: '/headshot.jpg',
   social: {
-    instagram: 'https://www.instagram.com/hellolahome',
+    instagram: 'https://www.instagram.com/ericzunkleyrealestate/',
     facebook: 'https://www.facebook.com/ericzunkleyrealtor',
   },
 }
